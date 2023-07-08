@@ -1,0 +1,743 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: gb-font;
+    src: url("./fonts/PokemonGb-RAeo.ttf");
+  }
+
+  @font-face {
+    font-family: poke-font;
+    src: url("./fonts/PokemonSolidNormal-xyWR.ttf");
+  }
+  @font-face {
+    font-family: poke-coins;
+    src: url("./fonts/Mario-Party-Hudson-Font.ttf");
+  }
+  
+
+.main-box{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./images/pxfuel.jpg");
+    background-size: cover;
+    overflow: hidden;
+
+
+}
+/* Seleccion fichas  */
+#MainFichas{
+    width: 100%;
+    display: block;
+}
+.fichas{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.title-fichas{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+
+}
+.logo{
+    width: 40vw;
+    
+}
+
+.ficha{
+    width: 22vw;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem 0 1rem;
+    margin-bottom: 1rem;
+    height: 25vh;
+}
+.ficha:hover{
+    cursor: pointer;
+    transform: scale(1.5);
+}
+.div-button{
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+}
+.div-button button{
+    height: 3rem;
+    width: 5rem;
+    border-radius: 16px;
+    background-color: rgb(222, 38, 38);
+    color: aliceblue;
+    border: none;
+}
+.div-button button:hover{
+    background-color: aquamarine;
+    color: rgb(222, 38, 38);
+}
+/* Menu jugadores  fichas  */
+
+#MenuPlayer{
+    display: none;
+}
+.menu-players{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height:100% ;
+    justify-content: space-evenly;
+}
+.title-menu-player{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 7rem;
+    justify-items: center;
+}
+
+.player{
+    width: 24vw;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem 0 1rem;
+    border-color:chocolate;
+    border-style: dashed;
+    margin-top: 1rem;
+    height: 20vh;
+}
+
+/*ONe PlAYER*/
+#MainOnePlayer{
+    display: none;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+.One-Player{
+    display: flex;
+    width: 95%;
+    height: 100%;
+    align-items: center;
+    margin: auto;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.titles-one-player{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    justify-items: center; 
+    margin-top: 1rem;
+    flex-direction: row;
+}
+.name-one-player{
+    width: 25%;
+    font-size: 3rem;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-family: "poke-font";
+    color: rgb(238, 238, 30);
+    -webkit-text-stroke: 3px rgb(40, 82, 223);
+}
+.Medallas{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin-right: 5vw;
+}
+
+#badge1,#badge2,#badge3,#badge4,#badge5,#badge6,#badge7,#badge8{
+ width: 4rem;
+ margin-right: 1rem;
+ filter: brightness(30%);
+}
+#badge1:hover,#badge2:hover,#badge3:hover,#badge4:hover,#badge5:hover,#badge6:hover,#badge7:hover,#badge8:hover{
+    cursor: pointer;
+    transform: scale(1.5);
+    filter: brightness(100%);
+
+}
+.coins-one-player{
+    width: 20%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    font-family: "poke-coins";
+    font-size: 4rem;
+    color: rgb(238, 238, 231);
+    -webkit-text-stroke: 3px rgb(223, 52, 40);
+}
+#coin-image{
+    width: 2rem;
+    height: 3rem;
+}
+.coin-x{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    -webkit-text-stroke: 1px rgb(223, 52, 40);
+    display: flex;
+    align-items: flex-end;
+}
+
+.pokemons-table{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    
+}
+.One-Pokemon{
+    display: flex;
+    width: 90%;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+    font-family: "gb-font";
+    font-size: 1rem;
+    color: #2F3336;
+}
+.No-Pokemon{
+    display: none;
+}
+.name{
+    width: 30%;
+    font-size: 1.5rem;
+}
+.type{
+    width: 15%;
+}
+.level{
+    width: 15%;
+text-align: center;
+font-size: 1.5rem;
+}
+.status{
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.plus-level{
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.plus-level button{
+    width: 1.5rem;
+    height: 2rem;
+    border: solid 1px rgb(7, 76, 2);
+    color: rgb(241, 232, 214);
+    font-size: 1.5rem;
+}
+
+#pkm1Plus,#pkm2Plus,#pkm3Plus,#pkm4Plus,#pkm5Plus,#pkm6Plus{
+    background-color: rgb(25, 183, 86);
+}
+
+#pkm1Plus:hover,#pkm2Plus:hover,#pkm3Plus:hover,#pkm4Plus:hover,#pkm5Plus:hover,#pkm6Plus:hover{
+    cursor: pointer;
+    background-color: rgb(25, 28, 183);
+    }
+
+#pkm1Less,#pkm2Less,#pkm3Less,#pkm4Less,#pkm5Less,#pkm6Less{
+    background-color: rgb(25, 28, 183);
+}
+.remove {
+    width: 10%;
+}
+.remove button {
+    background-color: rgb(19, 15, 15);
+    color: aliceblue;
+    padding: .5rem .75rem;
+    border-radius: 15px;
+    border:none;
+}
+.remove button:hover {
+    background-color: rgb(238, 58, 58);
+    color: aliceblue;
+    cursor: pointer;
+}
+
+.addPokemon button{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    background-color: rgb(14, 173, 96);
+    color: aliceblue;
+    padding: 1rem 1rem;
+    border-radius: 15px;
+    border:none;
+}
+.addPokemon button:hover{
+    background-color: rgb(23, 73, 211);
+    color: aliceblue;
+    cursor: pointer;
+    
+}
+
+#all-player{
+    display: flex;
+    width: 100%;
+    height: 15vh;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    position: fixed;
+    bottom: 0%;
+}
+.one-player-footer{
+    display: flex;
+    width: 100%;
+    height: 15vh;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    position: fixed;
+    bottom: 7%;
+}
+.Market-one-player{
+    width: 33%;
+    text-align: center;
+}
+#PokeMarket{
+    width: 6rem;
+}
+#PokeMarket:hover{
+    width: 8rem;
+    cursor: pointer;
+}
+.Battle-one-player{
+    width: 33%;
+    text-align: center;
+}
+#PokeBattle{
+    width: 8rem;
+}
+#PokeBattle:hover{
+    width: 10rem;
+    cursor: pointer;
+}
+.Next-one-player{
+    width: 33%;
+    text-align: center;
+}
+#NextPlayer{
+    background-color: #2f333600;
+    font-family: "poke-font";
+    font-size: 1.5rem;
+    border: none;
+    color: rgb(236, 236, 227);
+    -webkit-text-stroke: 3px rgb(15, 92, 170);
+}
+#NextPlayer:hover{
+    cursor: pointer;
+    color: rgb(236, 236, 227);
+    -webkit-text-stroke: 3px rgb(197, 24, 12);
+}
+/*FICHAS*/
+
+#Mila{
+    background-image: url("/FICHAS/mila.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 45%;
+}
+
+#Ablan{
+    background-image: url("/FICHAS/wuicho.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 45%;
+}
+
+#Kennys{
+    background-image: url("/FICHAS/kennys.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 45%;
+}
+
+#Doc{
+    background-image: url("/FICHAS/doc.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 45%;
+}
+
+#Kampis{
+    background-image: url("/FICHAS/kampis.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 45%;
+}
+
+#Tacho{
+    background-image: url("/FICHAS/tacho.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 45%;
+}
+
+#Mandito{
+    background-image: url("/FICHAS/mandito.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 45%;
+}
+
+#Entei{
+    background-image: url("/FICHAS/entei.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 45%;
+}
+
+
+.coinsWindow{
+    background-image: url("./images/PKMBG2.jpg");
+    background-size: cover;
+    z-index: 3;
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 70%;
+    height: 60%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border :solid 3px #084dc6;
+}
+
+.menuCoins{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-direction: column;
+}
+.oneCoin{
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+.plus1{
+    display: flex;
+    width: 50%;
+    justify-content: left;
+    margin: auto;
+}
+
+.less1{ 
+    display: flex;
+    width: 50%;
+    justify-content: right;
+    margin: auto;
+}
+ .imgCoin{
+    width: 5rem;
+    height: 5rem;
+ }
+ .imgCoin img:hover{
+    transform: scale(1.5);
+    cursor: pointer;
+ }
+
+ .manycoins{
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 2rem;
+ }
+ .plus5{
+    display: flex;
+    width: 33%;
+    justify-content: center;
+    margin: auto;
+ }
+ .less1_3{
+    display: flex;
+    width: 33%;
+    justify-content: center;
+    margin: auto;
+ }
+ .less1_2{display: flex;
+    width: 33%;
+    justify-content: center;
+    margin: auto;
+ }
+ .Title_coins{
+    font-family: "poke-font";
+    color: rgb(238, 238, 30);
+    -webkit-text-stroke: 3px rgb(40, 82, 223);
+    font-size: 2rem;
+    margin-top: -5rem;
+    margin-bottom: 5rem;
+ }
+ 
+
+
+ #closeCOINS{
+    font-size: 3rem;
+    position: absolute;
+    top: -7%;
+    right: -2%;
+}
+#closeCOINS img{
+    width: 4rem;
+    height: 4rem;
+}
+#closeCOINS img:hover{
+    width: 6rem;
+    height: 6rem;
+}
+#closeCOINS:hover{
+    cursor: pointer;
+}
+/*Market  PHASE */
+
+.Buy-market-window{
+    background-image: url("./images/PKMBG2.jpg");
+    background-size: cover;
+    z-index: 3;
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 70%;
+    height: 60%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    border :solid 3px #084dc6;
+}
+
+.market-menu{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 1.5rem;
+
+}
+.items{
+    width: 33%;
+    margin-top: 1.3rem;
+    font-family: "poke-coins";
+    display: flex;
+    color: bisque;
+}
+.items:hover{
+    color: rgb(0, 255, 153);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.itemSelected{
+    color: rgb(0, 255, 153);
+    cursor: pointer;
+    text-decoration: underline;
+}
+.item_name{
+    display: flex;
+    width: 60%;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+    text-decoration:double;
+}
+.item_price{
+    display: flex;
+    width: 40%;
+    font-family: "gb-font";
+    font-size: 1rem;
+    align-items: center;
+}
+
+#closeMarket{
+    font-size: 3rem;
+    position: absolute;
+    top: -7%;
+    right: -2%;
+}
+#closeMarket img{
+    width: 4rem;
+    height: 4rem;
+}
+#closeMarket img:hover{
+    width: 6rem;
+    height: 6rem;
+}
+#closeMarket:hover{
+    cursor: pointer;
+}
+#buyButton{
+    margin-top: 1rem;
+    background-color: rgb(14, 173, 96);
+    color: aliceblue;
+    padding: 1rem 1rem;
+    border-radius: 15px;
+    border:none;
+}
+#buyButton:hover{
+    background-color: rgb(23, 73, 211);
+    color: aliceblue;
+    cursor: pointer;
+}
+
+
+/*ADD POKEMON PHASE */
+
+.main-add-Pokemon{
+    background-image: url("./images/pokedex.png");
+    background-size: cover;
+    z-index: 3;
+    display: flex;
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 70%;
+    height: 60%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    border :thick double #eb1176;
+}
+#pokedexMain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main-add-Pokemon label{
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    color: rgb(236, 236, 227);
+    -webkit-text-stroke: 3px rgb(15, 92, 170);
+    font-family: "poke-font";
+}
+
+.main-add-Pokemon input{
+    height: 2.5rem;
+    font-size: 2rem;
+    color: rgb(66, 64, 62);
+    width: 10rem;
+    margin-bottom: 2rem;
+    font-family: "gb-font";
+}
+
+#PokemonFound{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+  
+    text-align: left;
+
+}
+
+.pokemonfound_name, .pokemonfound_type,.pokemonfound_level{
+    font-size: 2rem;
+    font-family: "gb-font";
+    margin-bottom: 1rem;
+
+}
+
+#SearchPokedex{
+    height: 3rem;
+    width: 5rem;
+    border-radius: 16px;
+    background-color: rgb(222, 38, 38);
+    color: aliceblue;
+    border: none;  
+}
+
+#SearchPokedex:hover{
+    background-color: rgb(48, 55, 202);
+    cursor: pointer;
+    
+}
+#Not_Found{
+    display: none;
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: rgb(1, 14, 2);
+    font-family: "gb-font";
+}
+
+#ConfirmPokemon{
+    margin-left: 15vw;
+    margin-top: 2rem;
+    height: 3rem;
+    width: 5rem;
+    border-radius: 16px;
+    background-color: rgb(48, 55, 202);
+    color: aliceblue;
+    border: none;  
+}
+#ConfirmPokemon:hover{
+    background-color: rgb(179, 20, 227);
+}
+
+.Add-Pokemon-windows{
+    display: none;
+}
+
+#Other-Player{
+    display: none;
+}
+
+.StartMENU{
+    width: 100vw;
+    height: 100vh;
+    z-index: 4;
+    position: absolute;
+    background-image: url(./images/pokemonStart.png);
+    background-size:cover;
+}
+
+#startGame{
+    border: none;
+    position: absolute;
+    right: 45%;
+    top: 80%;
+    width: 12vw;
+    height: 12vh;
+    font-size: 2rem;
+    background-color: #084dc6;
+    color: white;
+    border-radius: 45px;
+}
+
+#startGame:hover{
+    background-color:rgb(201, 39, 39);
+    transform: scale(1.5);
+    cursor: pointer;
+}
