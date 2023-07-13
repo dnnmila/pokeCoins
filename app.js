@@ -13,6 +13,12 @@ class Player{
         this.badge6 = false; 
         this.badge7 = false; 
         this.badge8 = false; 
+        this.frontierPink = false;
+        this.frontierGreen = false;
+        this.frontierYellow = false;
+        this.frontierBlue = false;
+        this.frontierRed = false;
+        this.frontierGolden = false;
         
     }
 
@@ -57,6 +63,12 @@ class Pokemon {
         this.tipo = tipo;
         this.nivel = nivel;
         this.estatus = estatus;
+        this.attack1 ="";
+        this.attack2 = "";
+        this.attached = "";
+        this.evolution = "";
+        this.LevelToEvo = "";
+        this.effecto = "";
     }
 
     cambioEstatus(nuevoEstatus){
@@ -67,6 +79,18 @@ class Pokemon {
         this.nivel += 1;
     }
 }
+
+class Attack {
+    constructor(nombre,tipo,strength,effect,dice){
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.strength = strength;
+        this.effect = effect;
+        this.dice =dice;
+    }
+}
+
+
 
 class Juego{
     constructor(){
@@ -141,13 +165,15 @@ async function buscarPokemon(numeroPokedex) {
       
   }
 
-function PaginaOnePlayer( player){
-  
+function PaginaOnePlayer( Game){
+    showPlayerCard();
+    var turnoActual = Game.turnoActual;
+   
     const playerName = document.getElementById("playerName");
-    playerName.textContent = `${player.nombre}`;
+    playerName.textContent = `${Game.jugadores[turnoActual].nombre}`;
 
     const playerCoins = document.getElementById("playerCoins");
-    playerCoins.textContent = ` ${player.monedas}`;
+    playerCoins.textContent = ` ${Game.jugadores[turnoActual].monedas}`;
     const badge1 = document.getElementById("badge1");
     badge1.style.filter = "brightness(25%)";
     const badge2 = document.getElementById("badge2");
@@ -164,6 +190,19 @@ function PaginaOnePlayer( player){
     badge7.style.filter = "brightness(25%)";
     const badge8 = document.getElementById("badge8");
     badge8.style.filter = "brightness(25%)";
+
+    const frontera_pink = document.getElementById("Pink_Frontier");
+    const frontera_green = document.getElementById("Green_Frontier");
+    const frontera_blue= document.getElementById("Blue_Frontier");
+    const frontera_yellow = document.getElementById("Yellow_Frontier");
+    const frontera_red = document.getElementById("Red_Frontier");
+    const frontera_golden = document.getElementById("Golden_Frontier");
+    frontera_pink.style.filter = "brightness(25%)";
+    frontera_green.style.filter = "brightness(25%)";
+    frontera_blue.style.filter = "brightness(25%)";
+    frontera_yellow.style.filter = "brightness(25%)";
+    frontera_red.style.filter = "brightness(25%)";
+    frontera_golden.style.filter = "brightness(25%)";
 
     const Pokemon1 = document.getElementById("pokemon1");
     const pokemon1_Name = document.getElementById("pkm1Name");
@@ -208,52 +247,52 @@ function PaginaOnePlayer( player){
     Pokemon5.classList.add('No-Pokemon');
     Pokemon6.classList.add('No-Pokemon');
 
-    for(var i =0; i< player.pokemons.length ;  i ++ ){
+    for(var i =0; i< Game.jugadores[turnoActual].pokemons.length ;  i ++ ){
         console.log("i =" + i);
         switch (i) {
             case 0:
                
 
-                pokemon1_Name.textContent = `${player.pokemons[0].nombre}`;
-                pokemon1_Type.textContent = `${player.pokemons[0].tipo}`;
-                pokemon1_Level.textContent = `${player.pokemons[0].nivel}`;
-                pokemon1_Status.textContent = `${player.pokemons[0].estatus}`;
+                pokemon1_Name.textContent = `${Game.jugadores[turnoActual].pokemons[0].nombre}`;
+                pokemon1_Type.textContent = `${Game.jugadores[turnoActual].pokemons[0].tipo}`;
+                pokemon1_Level.textContent = `${Game.jugadores[turnoActual].pokemons[0].nivel}`;
+                pokemon1_Status.textContent = `${Game.jugadores[turnoActual].pokemons[0].estatus}`;
                 Pokemon1.classList.remove('No-Pokemon');
                 break;
             case 1:
-                pokemon2_Name.textContent = `${player.pokemons[1].nombre}`;
-                pokemon2_Type.textContent = `${player.pokemons[1].tipo}`;
-                pokemon2_Level.textContent = `${player.pokemons[1].nivel}`;
-                pokemon2_Status.textContent = `${player.pokemons[1].estatus}`;
+                pokemon2_Name.textContent = `${Game.jugadores[turnoActual].pokemons[1].nombre}`;
+                pokemon2_Type.textContent = `${Game.jugadores[turnoActual].pokemons[1].tipo}`;
+                pokemon2_Level.textContent = `${Game.jugadores[turnoActual].pokemons[1].nivel}`;
+                pokemon2_Status.textContent = `${Game.jugadores[turnoActual].pokemons[1].estatus}`;
                 Pokemon2.classList.remove('No-Pokemon');
                 break;
             case 2:
-                pokemon3_Name.textContent = `${player.pokemons[2].nombre}`;
-                pokemon3_Type.textContent = `${player.pokemons[2].tipo}`;
-                pokemon3_Level.textContent = `${player.pokemons[2].nivel}`;
-                pokemon3_Status.textContent = `${player.pokemons[2].estatus}`;
+                pokemon3_Name.textContent = `${Game.jugadores[turnoActual].pokemons[2].nombre}`;
+                pokemon3_Type.textContent = `${Game.jugadores[turnoActual].pokemons[2].tipo}`;
+                pokemon3_Level.textContent = `${Game.jugadores[turnoActual].pokemons[2].nivel}`;
+                pokemon3_Status.textContent = `${Game.jugadores[turnoActual].pokemons[2].estatus}`;
                 Pokemon3.classList.remove('No-Pokemon');
                 break;
             case 3:
-                pokemon4_Name.textContent = `${player.pokemons[3].nombre}`;
-                pokemon4_Type.textContent = `${player.pokemons[3].tipo}`;
-                pokemon4_Level.textContent = `${player.pokemons[3].nivel}`;
-                pokemon4_Status.textContent = `${player.pokemons[3].estatus}`;
+                pokemon4_Name.textContent = `${Game.jugadores[turnoActual].pokemons[3].nombre}`;
+                pokemon4_Type.textContent = `${Game.jugadores[turnoActual].pokemons[3].tipo}`;
+                pokemon4_Level.textContent = `${Game.jugadores[turnoActual].pokemons[3].nivel}`;
+                pokemon4_Status.textContent = `${Game.jugadores[turnoActual].pokemons[3].estatus}`;
                 Pokemon4.classList.remove('No-Pokemon');
                 break;
             case 4:
-                pokemon5_Name.textContent = `${player.pokemons[4].nombre}`;
-                pokemon5_Type.textContent = `${player.pokemons[4].tipo}`;
-                pokemon5_Level.textContent = `${player.pokemons[4].nivel}`;
-                pokemon5_Status.textContent = `${player.pokemons[4].estatus}`;
+                pokemon5_Name.textContent = `${Game.jugadores[turnoActual].pokemons[4].nombre}`;
+                pokemon5_Type.textContent = `${Game.jugadores[turnoActual].pokemons[4].tipo}`;
+                pokemon5_Level.textContent = `${Game.jugadores[turnoActual].pokemons[4].nivel}`;
+                pokemon5_Status.textContent = `${Game.jugadores[turnoActual].pokemons[4].estatus}`;
                 Pokemon5.classList.remove('No-Pokemon');
                 break;
 
             case 5:
-                pokemon6_Name.textContent = `${player.pokemons[5].nombre}`;
-                pokemon6_Type.textContent = `${player.pokemons[5].tipo}`;
-                pokemon6_Level.textContent = `${player.pokemons[5].nivel}`;
-                pokemon6_Status.textContent = `${player.pokemons[5].estatus}`;
+                pokemon6_Name.textContent = `${Game.jugadores[turnoActual].pokemons[5].nombre}`;
+                pokemon6_Type.textContent = `${Game.jugadores[turnoActual].pokemons[5].tipo}`;
+                pokemon6_Level.textContent = `${Game.jugadores[turnoActual].pokemons[5].nivel}`;
+                pokemon6_Status.textContent = `${Game.jugadores[turnoActual].pokemons[5].estatus}`;
                 Pokemon6.classList.remove('No-Pokemon');
                 break;
 
@@ -264,128 +303,147 @@ function PaginaOnePlayer( player){
    
     
 
-    if (player.badge1 == true){
+    if (Game.jugadores[turnoActual].badge1 == true){
         badge1.style.filter = "brightness(100%)";
     }
-    if (player.badge2 == true){
+    if (Game.jugadores[turnoActual].badge2 == true){
         badge2.style.filter = "brightness(100%)";
     }
-    if (player.badge3 == true){
+    if (Game.jugadores[turnoActual].badge3 == true){
         badge3.style.filter = "brightness(100%)";
     }
-    if (player.badge4 == true){
+    if (Game.jugadores[turnoActual].badge4 == true){
         badge4.style.filter = "brightness(100%)";
     }
-    if (player.badge5 == true){
+    if (Game.jugadores[turnoActual].badge5 == true){
         badge5.style.filter = "brightness(100%)";
     }
-    if (player.badge6 == true){
+    if (Game.jugadores[turnoActual].badge6 == true){
         badge6.style.filter = "brightness(100%)";
     }
-    if (player.badge7 == true){
+    if (Game.jugadores[turnoActual].badge7 == true){
         badge7.style.filter = "brightness(100%)";
     }
-    if (player.badge8 == true){
+    if (Game.jugadores[turnoActual].badge8 == true){
         badge8.style.filter = "brightness(100%)";
     }
 
-
-
+    if(Game.jugadores[turnoActual].frontierPink == true){
+        frontera_pink.style.filter = "brightness(100%)";
+    }
+    if(Game.jugadores[turnoActual].frontierGreen == true){
+        frontera_green.style.filter = "brightness(100%)";
+    }
+    if(Game.jugadores[turnoActual].frontierBlue == true){
+        frontera_blue.style.filter = "brightness(100%)";
+    }
+    if(Game.jugadores[turnoActual].frontierYellow == true){
+        frontera_yellow.style.filter = "brightness(100%)";
+    }
+    if(Game.jugadores[turnoActual].frontierRed == true){
+        frontera_red.style.filter = "brightness(100%)";
+    }
+    if(Game.jugadores[turnoActual].frontierGolden == true){
+        frontera_golden.style.filter = "brightness(100%)";
+    }
+   
     
 }
 
-function removePokemonTeam(Player, button){
-    console.log(Player);
+function removePokemonTeam(Game, button){
+    var turnoActual= Game.turnoActual;
+    console.log( Game.jugadores[turnoActual]);
     
     switch(button){
 
             case "button1":
                 const nombre = document.getElementById("pkm1Name");
                 console.log(nombre.textContent);
-                Player.pokemons.splice(0,1);
+                Game.jugadores[turnoActual].pokemons.splice(0,1);
                 console.log( nombre + " Pokemon was removed");
-                console.log(Player.pokemons);
-                PaginaOnePlayer(Player);
+                console.log(Game.jugadores[turnoActual].pokemons);
+                PaginaOnePlayer(Game);
                 break ;
             case "button2":
                 const nombre2 = document.getElementById("pkm2Name");
                 console.log(nombre2.textContent);
-                Player.pokemons.splice(1,1);
+                Game.jugadores[turnoActual].pokemons.splice(1,1);
                 console.log( nombre2 + " Pokemon was removed");
-                console.log(Player.pokemons);
-                PaginaOnePlayer(Player);
+                console.log(Game.jugadores[turnoActual].pokemons);
+                PaginaOnePlayer(Game);
                 break ;
             case "button3":
                 const nombre3 = document.getElementById("pkm3Name");
                 console.log(nombre3.textContent);
-                Player.pokemons.splice(2,1);
+                Game.jugadores[turnoActual].pokemons.splice(2,1);
                 console.log( nombre3 + " Pokemon was removed");
-                console.log(Player.pokemons);
-                PaginaOnePlayer(Player);
+                console.log(Game.jugadores[turnoActual].pokemons);
+                PaginaOnePlayer(Game);
                 break ;
             case "button4":
                 const nombre4 = document.getElementById("pkm4Name");
                 console.log(nombre4.textContent);
-                Player.pokemons.splice(3,1);
+                Game.jugadores[turnoActual].pokemons.splice(3,1);
                 console.log( nombre4 + " Pokemon was removed");
-                console.log(Player.pokemons);
-                PaginaOnePlayer(Player);
+                console.log(Game.jugadores[turnoActual].pokemons);
+                PaginaOnePlayer(Game);
                 break ;
             case "button5":
                 const nombre5 = document.getElementById("pkm5Name");
                 console.log(nombre5.textContent);
-                Player.pokemons.splice(4,1);
+                Game.jugadores[turnoActual].pokemons.splice(4,1);
                 console.log( nombre5 + " Pokemon was removed");
-                console.log(Player.pokemons);
-                PaginaOnePlayer(Player);
+                console.log(Game.jugadores[turnoActual].pokemons);
+                PaginaOnePlayer(Game);
                 break; 
             case "button6":
                 const nombre6 = document.getElementById("pkm6Name");
                 console.log(nombre6.textContent);
-                Player.pokemons.splice(5,1);
+                Game.jugadores[turnoActual].pokemons.splice(5,1);
                 console.log( nombre6 + " Pokemon was removed");
-                console.log(Player.pokemons);
-                PaginaOnePlayer(Player);
+                console.log(Game.jugadores[turnoActual].pokemons);
+                PaginaOnePlayer(Game);
                 break; 
             
 
 
     }
 }
-function addLevelTeam(Player, button){
+function addLevelTeam(Game, button){
+    var turnoActual = Game.turnoActual;
     switch(button){
         case "button1":
-            Player.pokemons[0].subirNivel();
-            console.log(Player.pokemons[0].nombre + " Subio a nivel "+ Player.pokemons[0].nivel);
-            PaginaOnePlayer(Player);
+            Game.jugadores[turnoActual].pokemons[0].subirNivel();
+            console.log(Game.jugadores[turnoActual].pokemons[0].nombre + " Subio a nivel "+ Game.jugadores[turnoActual].pokemons[0].nivel);
+            PaginaOnePlayer(Game);
             break;
         case "button2":
-            Player.pokemons[1].subirNivel();
-            console.log(Player.pokemons[1].nombre + " Subio a nivel "+ Player.pokemons[1].nivel);
-            PaginaOnePlayer(Player);
+            Game.jugadores[turnoActual].pokemons[1].subirNivel();
+            console.log(Game.jugadores[turnoActual].pokemons[1].nombre + " Subio a nivel "+ Game.jugadores[turnoActual].pokemons[1].nivel);
+            PaginaOnePlayer(Game);
             break;
         case "button3":
-            Player.pokemons[2].subirNivel();
-            console.log(Player.pokemons[2].nombre + " Subio a nivel "+ Player.pokemons[2].nivel);
-            PaginaOnePlayer(Player);
+            Game.jugadores[turnoActual].pokemons[2].subirNivel();
+            console.log(Game.jugadores[turnoActual].pokemons[2].nombre + " Subio a nivel "+ Game.jugadores[turnoActual].pokemons[2].nivel);
+            PaginaOnePlayer(Game);
             break;
 
         case "button4":
-            Player.pokemons[3].subirNivel();
-            console.log(Player.pokemons[3].nombre + " Subio a nivel "+ Player.pokemons[3].nivel);
-            PaginaOnePlayer(Player);
+            Game.jugadores[turnoActual].pokemons[3].subirNivel();
+            console.log(Game.jugadores[turnoActual].pokemons[3].nombre + " Subio a nivel "+ Game.jugadores[turnoActual].pokemons[3].nivel);
+            PaginaOnePlayer(Game);
             break;
 
         case "button5":
-            Player.pokemons[4].subirNivel();
-            console.log(Player.pokemons[4].nombre + " Subio a nivel "+ Player.pokemons[4].nivel);
-            PaginaOnePlayer(Player);
+            Game.jugadores[turnoActual].pokemons[4].subirNivel();
+            console.log(Game.jugadores[turnoActual].pokemons[4].nombre + " Subio a nivel "+ Game.jugadores[turnoActual].pokemons[4].nivel);
+            PaginaOnePlayer(Game);
             break;
 
         case "button6":
-            Player.pokemons[5].subirNivel();
-            console.log(Player.pokemons[5].nombre + " Subio a nivel "+ Player.pokemons[5].nivel);
-            PaginaOnePlayer(Player);
+            Game.jugadores[turnoActual].pokemons[5].subirNivel();
+            console.log(Game.jugadores[turnoActual].pokemons[5].nombre + " Subio a nivel "+ Game.jugadores[turnoActual].pokemons[5].nivel);
+            PaginaOnePlayer(Game);
             break;
     }
 
@@ -497,27 +555,40 @@ function comprarItem(Player, item,price){
 }
 
 
-function loss1_3(Player){
-    Player.monedas = Math.floor(Player.monedas - (Player.monedas/3));
-    console.log("Quedan en total " + Player.monedas + "monedas");
-    PaginaOnePlayer(Player);
+function loss1_3(Game){
+    var turnoActual = Game.turnoActual;
+    Game.jugadores[turnoActual].monedas = Math.floor(Game.jugadores[turnoActual].monedas - (Game.jugadores[turnoActual].monedas/3));
+    console.log("Quedan en total " + Game.jugadores[turnoActual].monedas + "monedas");
+    PaginaOnePlayer(Game);
 }
 
-function loss1_2(Player){
-    Player.monedas = Math.floor(Player.monedas - (Player.monedas/2));
-    console.log("Quedan en total " + Player.monedas + "monedas");
-    PaginaOnePlayer(Player);
+function loss1_2(Game){
+    var turnoActual = Game.turnoActual;
+    Game.jugadores[turnoActual].monedas = Math.floor(Game.jugadores[turnoActual].monedas - (Game.jugadores[turnoActual].monedas/2));
+    console.log("Quedan en total " + Game.jugadores[turnoActual].monedas + "monedas");
+    PaginaOnePlayer(Game);
 }
+function showPlayerCard() {
+    const cards = document.querySelectorAll(".player-face");
+    console.log (cards);
+    for (var i = 0 ; i<cards.length;i++ ){
+        cards[i].addEventListener('click',()=>{
+            console.log(cards[i].id);
+        });
+    }
+  }
 
-
-async function addPokemonTeam(Player){
+async function addPokemonTeam(Game){
     var pokemonadded = false;
-    console.log ("Agregar Poklemon " + Player.nombre);
+    var turnoActual = Game.turnoActual;
+    console.log ("Agregar Poklemon " + Game.jugadores[turnoActual].nombre);
     const menuAddPokemon = document.getElementById("mainAddPokemon");
     const pokedexWindow = document.getElementById("pokedexMain");
     const pokemonfoundWindow = document.getElementById("PokemonFound");
     const search = document.getElementById("SearchPokedex");
     menuAddPokemon.style.display="block";
+    const grayed_GB = document.getElementById("grayed_BG");
+    grayed_GB.style.display = "flex";
     pokedexWindow.style.display= "flex";
     pokemonfoundWindow.style.display ="none";
     const pokedex = document.getElementById("Pokedex");
@@ -552,10 +623,11 @@ async function addPokemonTeam(Player){
                  confirm.addEventListener('click',()=>{
                 if(pokemonadded == false){
                 const PokeNew = new Pokemon(resultado[0],resultado[1],resultado[2],"Normal");
-                Player.agregarPokemon(PokeNew);
+                Game.jugadores[turnoActual].agregarPokemon(PokeNew);
                 menuAddPokemon.style.display="none";
+                grayed_GB.style.display = "none";
                 pokedex.value="";
-                PaginaOnePlayer(Player);
+                PaginaOnePlayer(Game);
                 pokemonadded = true;
                  }
                else{
@@ -605,7 +677,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     const MainBOX = document.getElementById("MainBOX");
 
-   
+    const grayed_GB = document.getElementById("grayed_BG");
     console.log("Cargando juego");
     const Game = new Juego();
 
@@ -712,10 +784,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
         FichasMenu.style.display="none";
         OnePlayerMenu.style.display="block";
         Game.jugadores[Game.turnoActual].sumarMonedas(1);
-        PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+       
         console.log(Game.jugadores[Game.turnoActual]);
         MainBOX.style.backgroundImage="url('./images/wallpaper.jpg')";
         audio2.pause();
+
+
+        // allPlayers = document.getElementById("all-player");
+        // for(var i = 0; i< Game.jugadores.length ; i++){
+        // console.log("Cargabdo players ");
+        // const newDiv = document.createElement("div");
+        // newDiv.innerHTML = Game.jugadores[i].nombre;
+        // newDiv.classList.add("player-face");
+        // newDiv.setAttribute("id",'card-' + i.toString());
+        // allPlayers.appendChild(newDiv);}
+
+
+        PaginaOnePlayer(Game);
         }
         else{
             console.log("Faltan jugadores");
@@ -725,25 +810,34 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const nextButton = document.getElementById("NextPlayer");
     nextButton.addEventListener('click', ()=>{
         Game.turnoActual+=1;
-        
         if (Game.turnoActual >= Game.jugadores.length ){
             Game.turnoActual=0;
             Game.ronda+=1;
             console.log("ronda " + Game.ronda);
             Game.jugadores[Game.turnoActual].sumarMonedas(1);
-            PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+            PaginaOnePlayer(Game);
             console.log("******PLAYER***********")
             console.log(Game.jugadores);
             console.log("turno" + Game.jugadores[Game.turnoActual].nombre);
         }else{
             Game.jugadores[Game.turnoActual].sumarMonedas(1);
-            PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+            PaginaOnePlayer(Game);
             console.log("turno" + Game.jugadores[Game.turnoActual].nombre);
-        }
-       
-        
-        
+        } 
     })
+    const BackButton = document.getElementById("BackPlayer");
+    BackButton.addEventListener('click',()=>{
+        Game.jugadores[Game.turnoActual].sumarMonedas(-1);
+        Game.turnoActual-=1;
+        if (Game.turnoActual <0 ){
+            Game.turnoActual= Game.jugadores.length -1;
+            Game.ronda-=1;
+            PaginaOnePlayer(Game);
+        }
+        else{
+            PaginaOnePlayer(Game);
+        }
+    });
     //Remove buttons
     const ButtonX1 = document.getElementById("pk1Remove");
     const ButtonX2 = document.getElementById("pk2Remove");
@@ -753,22 +847,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const ButtonX6 = document.getElementById("pk6Remove");
 
     ButtonX1.addEventListener('click', ()=>{
-        removePokemonTeam(Game.jugadores[Game.turnoActual], "button1");
+        removePokemonTeam(Game, "button1");
     })
     ButtonX2.addEventListener('click', ()=>{
-        removePokemonTeam(Game.jugadores[Game.turnoActual], "button2");
+        removePokemonTeam(Game, "button2");
     })
     ButtonX3.addEventListener('click', ()=>{
-        removePokemonTeam(Game.jugadores[Game.turnoActual], "button3");
+        removePokemonTeam(Game, "button3");
     })
     ButtonX4.addEventListener('click', ()=>{
-        removePokemonTeam(Game.jugadores[Game.turnoActual], "button4");
+        removePokemonTeam(Game, "button4");
     })
     ButtonX5.addEventListener('click', ()=>{
-        removePokemonTeam(Game.jugadores[Game.turnoActual], "button5");
+        removePokemonTeam(Game, "button5");
     })
     ButtonX6.addEventListener('click', ()=>{
-        removePokemonTeam(Game.jugadores[Game.turnoActual], "button6");
+        removePokemonTeam(Game, "button6");
     })
 
     //ADD LEVEL
@@ -781,22 +875,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const pkm6Level= document.getElementById("pkm6Plus");
 
     pkm1Level.addEventListener('click',()=>{
-        addLevelTeam(Game.jugadores[Game.turnoActual],"button1");
+        addLevelTeam(Game,"button1");
     })
     pkm2Level.addEventListener('click',()=>{
-        addLevelTeam(Game.jugadores[Game.turnoActual],"button2");
+        addLevelTeam(Game,"button2");
     })
     pkm3Level.addEventListener('click',()=>{
-        addLevelTeam(Game.jugadores[Game.turnoActual],"button3");
+        addLevelTeam(Game,"button3");
     })
     pkm4Level.addEventListener('click',()=>{
-        addLevelTeam(Game.jugadores[Game.turnoActual],"button4");
+        addLevelTeam(Game,"button4");
     })
     pkm5Level.addEventListener('click',()=>{
-        addLevelTeam(Game.jugadores[Game.turnoActual],"button5");
+        addLevelTeam(Game,"button5");
     })
     pkm6Level.addEventListener('click',()=>{
-        addLevelTeam(Game.jugadores[Game.turnoActual],"button6");
+        addLevelTeam(Game,"button6");
     })
 
     //BADGES
@@ -812,95 +906,158 @@ document.addEventListener("DOMContentLoaded", function(event) {
     badge1.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge1 == false){
         Game.jugadores[Game.turnoActual].badge1 = true;
-        PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+        PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge1 = false;
-            PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+            PaginaOnePlayer(Game);
         }
     });
 
     badge2.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge2 == false){
         Game.jugadores[Game.turnoActual].badge2 = true;
-        PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+        PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge2 = false;
-            PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+            PaginaOnePlayer(Game);
         }
     });
 
     badge3.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge3 == false){
         Game.jugadores[Game.turnoActual].badge3 = true;
-        PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+        PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge3 = false;
-            PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+            PaginaOnePlayer(Game);
         }
     });
 
     badge4.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge4 == false){
         Game.jugadores[Game.turnoActual].badge4 = true;
-        PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+        PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge4 = false;
-            PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+            PaginaOnePlayer(Game);
         }
     });
 
     badge5.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge5 == false){
         Game.jugadores[Game.turnoActual].badge5 = true;
-        PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+        PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge5 = false;
-            PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+            PaginaOnePlayer(Game);
         }
     });
 
     badge6.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge6 == false){
         Game.jugadores[Game.turnoActual].badge6 = true;
-        PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+        PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge6 = false;
-            PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+            PaginaOnePlayer(Game);
         }
     });
 
     badge7.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge7 == false){
         Game.jugadores[Game.turnoActual].badge7 = true;
-        PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+        PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge7 = false;
-            PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+            PaginaOnePlayer(Game);
         }
     });
 
     badge8.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge8 == false){
         Game.jugadores[Game.turnoActual].badge8 = true;
-        PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+        PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge8 = false;
-            PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+            PaginaOnePlayer(Game);
         }
+    });
+
+    //Frontera 
+
+    const pinkFlag = document.getElementById("Pink_Frontier");
+    const greenFlag = document.getElementById("Green_Frontier");
+    const blueFlag = document.getElementById("Blue_Frontier");
+    const yellowFlag = document.getElementById("Yellow_Frontier");
+    const redFlag = document.getElementById("Red_Frontier");
+    const goldenFlag = document.getElementById("Golden_Frontier");
+
+    pinkFlag.addEventListener('click',()=>{
+        if (Game.jugadores[Game.turnoActual].frontierPink == false){
+            Game.jugadores[Game.turnoActual].frontierPink = true;
+            PaginaOnePlayer(Game);
+            }else{
+                Game.jugadores[Game.turnoActual].frontierPink = false;
+                PaginaOnePlayer(Game);}
+    });
+
+    greenFlag.addEventListener('click',()=>{
+        if (Game.jugadores[Game.turnoActual].frontierGreen == false){
+            Game.jugadores[Game.turnoActual].frontierGreen = true;
+            PaginaOnePlayer(Game);
+            }else{
+                Game.jugadores[Game.turnoActual].frontierGreen = false;
+                PaginaOnePlayer(Game);}
+    });
+
+    blueFlag.addEventListener('click',()=>{
+        if (Game.jugadores[Game.turnoActual].frontierBlue == false){
+            Game.jugadores[Game.turnoActual].frontierBlue = true;
+            PaginaOnePlayer(Game);
+            }else{
+                Game.jugadores[Game.turnoActual].frontierBlue = false;
+                PaginaOnePlayer(Game);}
+    });
+
+    yellowFlag.addEventListener('click',()=>{
+        if (Game.jugadores[Game.turnoActual].frontierYellow == false){
+            Game.jugadores[Game.turnoActual].frontierYellow = true;
+            PaginaOnePlayer(Game);
+            }else{
+                Game.jugadores[Game.turnoActual].frontierYellow = false;
+                PaginaOnePlayer(Game);}
+    });
+
+    redFlag.addEventListener('click',()=>{
+        if (Game.jugadores[Game.turnoActual].frontierRed == false){
+            Game.jugadores[Game.turnoActual].frontierRed = true;
+            PaginaOnePlayer(Game);
+            }else{
+                Game.jugadores[Game.turnoActual].frontierRed = false;
+                PaginaOnePlayer(Game);}
+    });
+
+    goldenFlag.addEventListener('click',()=>{
+        if (Game.jugadores[Game.turnoActual].frontierGolden == false){
+            Game.jugadores[Game.turnoActual].frontierGolden = true;
+            PaginaOnePlayer(Game);
+            }else{
+                Game.jugadores[Game.turnoActual].frontierGolden = false;
+                PaginaOnePlayer(Game);}
     });
 
     //Add Pokemon
     const addButton = document.getElementById("addPokemon");
     addButton.addEventListener('click',()=>{
-        addPokemonTeam(Game.jugadores[Game.turnoActual]);
+        addPokemonTeam(Game);
     })
 
     //BUY ITEM
@@ -910,11 +1067,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const OpenMarket = document.getElementById("PokeMarket");
     closeButton.addEventListener('click', ()=>{
         MarketWindow.style.display="none";
+        grayed_GB.style.display ="none";
     });
 
     OpenMarket.addEventListener('click',()=>{
         deselectItems(allItems);
         MarketWindow.style.display="flex";
+        grayed_GB.style.display="flex";
     })
     
 
@@ -966,8 +1125,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
             buyButton.addEventListener('click', ()=>{
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
+                    grayed_GB.style.display="none";
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -985,7 +1146,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1003,7 +1164,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1021,7 +1182,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1039,7 +1200,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1057,7 +1218,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1075,7 +1236,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1093,7 +1254,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1111,7 +1272,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1129,7 +1290,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1146,7 +1307,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1163,7 +1324,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1181,7 +1342,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1199,7 +1360,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1217,7 +1378,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1235,7 +1396,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1253,7 +1414,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1272,7 +1433,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1291,7 +1452,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1310,7 +1471,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
-                    PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+                    PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
                 }});
@@ -1329,19 +1490,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const mainCoinWindos = document.getElementById("MainMenuCoins");
 
     closeCoins.addEventListener('click',()=>{
-        mainCoinWindos.style.display= "none"
+        mainCoinWindos.style.display= "none";
+        grayed_GB.style.display = "none";
     })
 
     iconMonedas.addEventListener('click',()=>{
         mainCoinWindos.style.display="flex";
+        grayed_GB.style.display="flex";
     })
     less_1_3coins.addEventListener('click', ()=>{
-        loss1_3(Game.jugadores[Game.turnoActual]);
+        loss1_3(Game);
     })
 
     plus_1coins.addEventListener('click',()=>{
         Game.jugadores[Game.turnoActual].sumarMonedas(1);
-        PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+        PaginaOnePlayer(Game);
     })
 
     less_1coins.addEventListener('click',()=>{
@@ -1349,26 +1512,51 @@ document.addEventListener("DOMContentLoaded", function(event) {
         if(Game.jugadores[Game.turnoActual].monedas <= 0){
             Game.jugadores[Game.turnoActual].monedas=0;
         }
-        PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+        PaginaOnePlayer(Game);
     })
 
     plus_5coins.addEventListener('click', ()=>{
         Game.jugadores[Game.turnoActual].sumarMonedas(5);
-        PaginaOnePlayer(Game.jugadores[Game.turnoActual]);
+        PaginaOnePlayer(Game);
     })
     less_1_2coins.addEventListener('click',()=>{
-        loss1_2(Game.jugadores[Game.turnoActual]);
+        loss1_2(Game);
     })
 
-    // allPlayers = document.getElementById("all-player");
-    // for(var i = 0; i< Game.jugadores.length ; i++){
-    //     console.log("Cargabdo players ");
-    //     const newDiv = document.createElement("div");
-    //     newDiv.innerHTML = Game.jugadores[i].nombre;
-    //     allPlayers.appendChild(newDiv);
-    // }
+
+    /*Pokemon muertos  */
+    const pokemon1_Name = document.getElementById("pkm1Name");
+    const pokemon2_Name = document.getElementById("pkm2Name");
+    const pokemon3_Name = document.getElementById("pkm3Name");
+    const pokemon4_Name = document.getElementById("pkm4Name");
+    const pokemon5_Name = document.getElementById("pkm5Name");
+    const pokemon6_Name = document.getElementById("pkm6Name");
+
+
+    pokemon1_Name.addEventListener('click',()=>{
+        pokemon1_Name.classList.toggle("name-dead");
+    });
+    pokemon2_Name.addEventListener('click',()=>{
+        pokemon2_Name.classList.toggle("name-dead");
+    });
+    pokemon3_Name.addEventListener('click',()=>{
+        pokemon3_Name.classList.toggle("name-dead");
+    });
+    pokemon4_Name.addEventListener('click',()=>{
+        pokemon4_Name.classList.toggle("name-dead");
+    });
+    pokemon5_Name.addEventListener('click',()=>{
+        pokemon5_Name.classList.toggle("name-dead");
+    });
+    pokemon6_Name.addEventListener('click',()=>{
+        pokemon6_Name.classList.toggle("name-dead");
+    });
+
     
 
+    
+    
+    
 
 
     

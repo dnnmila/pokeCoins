@@ -18,7 +18,15 @@
     src: url("./fonts/Mario-Party-Hudson-Font.ttf");
   }
   
+.grayed-bg{
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: #6a8dd46d;
+    z-index: 2;
+    position: absolute;
 
+}
 .main-box{
     display: flex;
     width: 100vw;
@@ -216,6 +224,13 @@
     width: 30%;
     font-size: 1.5rem;
 }
+
+.name-dead{
+    width: 30%;
+    font-size: 1.5rem;
+    color: rgb(142, 139, 139);
+    text-decoration: line-through;
+}
 .type{
     width: 15%;
 }
@@ -291,12 +306,16 @@ font-size: 1.5rem;
 #all-player{
     display: flex;
     width: 100%;
-    height: 15vh;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    margin-top: 5rem;
     position: fixed;
-    bottom: 0%;
+    bottom: 2%;
+}
+
+
+.player-face:hover{
+    cursor: pointer;
+    
 }
 .one-player-footer{
     display: flex;
@@ -309,7 +328,7 @@ font-size: 1.5rem;
     bottom: 7%;
 }
 .Market-one-player{
-    width: 33%;
+    width: 25%;
     text-align: center;
 }
 #PokeMarket{
@@ -320,7 +339,7 @@ font-size: 1.5rem;
     cursor: pointer;
 }
 .Battle-one-player{
-    width: 33%;
+    width: 25%;
     text-align: center;
 }
 #PokeBattle{
@@ -331,7 +350,7 @@ font-size: 1.5rem;
     cursor: pointer;
 }
 .Next-one-player{
-    width: 33%;
+    width: 25%;
     text-align: center;
 }
 #NextPlayer{
@@ -343,6 +362,24 @@ font-size: 1.5rem;
     -webkit-text-stroke: 3px rgb(15, 92, 170);
 }
 #NextPlayer:hover{
+    cursor: pointer;
+    color: rgb(236, 236, 227);
+    -webkit-text-stroke: 3px rgb(197, 24, 12);
+}
+
+.Back-one-player{
+    width: 25%;
+    text-align: center;
+}
+#BackPlayer{
+    background-color: #2f333600;
+    font-family: "poke-font";
+    font-size: 1.5rem;
+    border: none;
+    color: rgb(236, 236, 227);
+    -webkit-text-stroke: 3px rgb(15, 92, 170);
+}
+#BackPlayer:hover{
     cursor: pointer;
     color: rgb(236, 236, 227);
     -webkit-text-stroke: 3px rgb(197, 24, 12);
@@ -740,4 +777,30 @@ font-size: 1.5rem;
     background-color:rgb(201, 39, 39);
     transform: scale(1.5);
     cursor: pointer;
+}
+
+.fronteras{
+    display: flex;
+    height: 50vh;
+    position: absolute;
+    top: 25%;
+}
+.frontera-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.frontera img{
+    width: 5rem;
+    height: 4rem;
+    filter: brightness(30%);
+    margin-left: -1rem;
+}
+
+
+
+.frontera img:hover{
+    cursor: pointer;
+    transform: scale(1.5);
 }
