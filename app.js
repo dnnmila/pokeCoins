@@ -248,7 +248,7 @@ function PaginaOnePlayer( Game){
     Pokemon6.classList.add('No-Pokemon');
 
     for(var i =0; i< Game.jugadores[turnoActual].pokemons.length ;  i ++ ){
-        console.log("i =" + i);
+       
         switch (i) {
             case 0:
                
@@ -651,6 +651,20 @@ async function addPokemonTeam(Game){
 }
 
 
+function sentData(Game){
+    var numPlaayers = Game.jugadores.length;
+    localStorage.setItem('numPlayers', numPlaayers);
+
+    var name1 = Game.jugadores[0].nombre;
+    var name2 = Game.jugadores[1].nombre;
+    var monedas1 = Game.jugadores[0].monedas;
+
+    localStorage.setItem('nombre1',name1);
+    localStorage.setItem('nombre2',name2);
+    localStorage.setItem('monedas1',monedas1);
+
+
+}
 
 document.addEventListener("DOMContentLoaded", function(event) {
     //código a ejecutar cuando existe la certeza de que el DOM está listo para recibir acciones
@@ -810,6 +824,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const nextButton = document.getElementById("NextPlayer");
     nextButton.addEventListener('click', ()=>{
         Game.turnoActual+=1;
+        sentData(Game);
         if (Game.turnoActual >= Game.jugadores.length ){
             Game.turnoActual=0;
             Game.ronda+=1;
@@ -906,10 +921,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     badge1.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge1 == false){
         Game.jugadores[Game.turnoActual].badge1 = true;
+        Game.jugadores[Game.turnoActual].sumarMonedas(5);
         PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge1 = false;
+            Game.jugadores[Game.turnoActual].restarMonedas(5);
+
             PaginaOnePlayer(Game);
         }
     });
@@ -917,10 +935,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     badge2.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge2 == false){
         Game.jugadores[Game.turnoActual].badge2 = true;
+        Game.jugadores[Game.turnoActual].sumarMonedas(5);
+
         PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge2 = false;
+            Game.jugadores[Game.turnoActual].restarMonedas(5);
             PaginaOnePlayer(Game);
         }
     });
@@ -928,10 +949,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     badge3.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge3 == false){
         Game.jugadores[Game.turnoActual].badge3 = true;
+        Game.jugadores[Game.turnoActual].sumarMonedas(5);
         PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge3 = false;
+            Game.jugadores[Game.turnoActual].restarMonedas(5);
             PaginaOnePlayer(Game);
         }
     });
@@ -939,10 +962,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     badge4.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge4 == false){
         Game.jugadores[Game.turnoActual].badge4 = true;
+        Game.jugadores[Game.turnoActual].sumarMonedas(5);
         PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge4 = false;
+            Game.jugadores[Game.turnoActual].restarMonedas(5);
             PaginaOnePlayer(Game);
         }
     });
@@ -950,10 +975,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     badge5.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge5 == false){
         Game.jugadores[Game.turnoActual].badge5 = true;
+        Game.jugadores[Game.turnoActual].sumarMonedas(5);
         PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge5 = false;
+            Game.jugadores[Game.turnoActual].restarMonedas(5);
             PaginaOnePlayer(Game);
         }
     });
@@ -961,10 +988,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     badge6.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge6 == false){
         Game.jugadores[Game.turnoActual].badge6 = true;
+        Game.jugadores[Game.turnoActual].sumarMonedas(5);
         PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge6 = false;
+            Game.jugadores[Game.turnoActual].restarMonedas(5);
             PaginaOnePlayer(Game);
         }
     });
@@ -972,10 +1001,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     badge7.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge7 == false){
         Game.jugadores[Game.turnoActual].badge7 = true;
+        Game.jugadores[Game.turnoActual].sumarMonedas(5);
         PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge7 = false;
+            Game.jugadores[Game.turnoActual].restarMonedas(5);
             PaginaOnePlayer(Game);
         }
     });
@@ -983,10 +1014,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     badge8.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge8 == false){
         Game.jugadores[Game.turnoActual].badge8 = true;
+        Game.jugadores[Game.turnoActual].sumarMonedas(5);
         PaginaOnePlayer(Game);
         }
         else{
             Game.jugadores[Game.turnoActual].badge8 = false;
+            Game.jugadores[Game.turnoActual].restarMonedas(5);
             PaginaOnePlayer(Game);
         }
     });
@@ -1125,9 +1158,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             buyButton.addEventListener('click', ()=>{
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
-                    grayed_GB.style.display="none";
                     MarketWindow.style.display="none";
-                    
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1146,6 +1178,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1164,6 +1197,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1182,6 +1216,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1200,6 +1235,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1218,6 +1254,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1236,6 +1273,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1254,6 +1292,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1272,6 +1311,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1290,6 +1330,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1307,6 +1348,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1324,6 +1366,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1342,6 +1385,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1360,6 +1404,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1378,6 +1423,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1396,6 +1442,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1414,6 +1461,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1433,6 +1481,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1452,6 +1501,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1471,6 +1521,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 if(Game.jugadores[Game.turnoActual].monedas >= price_selected){
                     comprarItem(Game.jugadores[Game.turnoActual],item_selected,price_selected);
                     MarketWindow.style.display="none";
+                    grayed_GB.style.display="none";
                     PaginaOnePlayer(Game);
                     Comprado = true;}
                 else{console.log("Error not Money");
@@ -1558,7 +1609,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
     
 
-
     
 
     
@@ -1568,7 +1618,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
     
 });
-
 
 
 
