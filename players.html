@@ -3,43 +3,401 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dbStyle.css">
     <title>Document</title>
 </head>
 <body>
    
 
     <div class="mainbox" id="mainWindow">
-        <div class="title"></div>
+        
         <div class="DashBoard" id="DashBoard">
-            <div id="numPlayers"></div>
+            
 
-            <div id="tablero">
-               <div id="tablero-title"> 
-                    <div id="nombre1">nombre</div>
-                    <div id="monedas">$3</div>
-                    <div id="posicion">#1</div>
+            <div id="P1_tablero" class="tablero">
+               <div id="P1_tablero-title" class="tablero-title"> 
+                    <div id="P1_nombre" class="nombre"></div>
+                    <div id="P1_monedas" class="monedas"></div>
+                    <img src="./images/Coin.png" alt="" class="coins">
+                    <div id="P1_posicion" class="posicion "></div>
                </div> 
-               <div id="medallas">
-                <div id="medalla1">M1</div>
-                <div id="medalla2">M2</div>
-                <div id="medalla3">M3</div>
-                <div id="medalla4">M4</div>
-                <div id="medalla5">M5</div>
-                <div id="medalla6">M6</div>
-                <div id="medalla8">M7</div>
-                <div id="medalla8">M8</div>
+               <div id="P1_medallas" class="medallas">
+                <img src="./images/badges/badge1.png" alt="" id="P1_medalla1" class="medalla">
+                <img src="./images/badges/badge2.png" alt="" id="P1_medalla2" class="medalla">
+                <img src="./images/badges/badge3.png" alt="" id="P1_medalla3" class="medalla">
+                <img src="./images/badges/badge4.png" alt="" id="P1_medalla4" class="medalla">
+                <img src="./images/badges/badge5.png" alt="" id="P1_medalla5" class="medalla">
+                <img src="./images/badges/badge6.png" alt="" id="P1_medalla6" class="medalla">
+                <img src="./images/badges/badge7.png" alt="" id="P1_medalla7" class="medalla">
+                <img src="./images/badges/badge8.png" alt="" id="P1_medalla8" class="medalla">
                </div>
-               <div id="lista-pokemons">
-                 <div id="pokemon1">
-                    <div id="imagenpkm1">img</div>
-                    <div id="nombrePkm1">nombre1</div>
-                    <div id="levelPkm1">5 +1</div>
-                    <div id="Statuspkm1">Normal</div>   
+               <div id="P1_lista-pokemons" class="lista-pokemosn">
+                 <div id="P1_pokemon1" class="pokemon">
+                    <div id="P1_nombrePkm1" class="pokemon-name"></div>
+                    <div id="P1_levelPkm1" class="pokemon-level"></div> 
+                    
+                 </div>
+
+                 <div id="P1_pokemon2" class="pokemon">
+                    <div id="P1_nombrePkm2" class="pokemon-name"></div>
+                    <div id="P1_levelPkm2" class="pokemon-level"></div>
+                 </div>
+
+                 <div id="P1_pokemon3" class="pokemon">
+                    <div id="P1_nombrePkm3" class="pokemon-name"></div>
+                    <div id="P1_levelPkm3" class="pokemon-level"></div>  
+                 </div>
+                 <div id="P1_pokemon4" class="pokemon">
+                    <div id="P1_nombrePkm4" class="pokemon-name"></div>
+                    <div id="P1_levelPkm4" class="pokemon-level"></div>  
+                 </div>
+                 <div id="P1_pokemon5" class="pokemon">
+                    <div id="P1_nombrePkm5" class="pokemon-name"></div>
+                    <div id="P1_levelPkm5" class="pokemon-level"></div>  
+                 </div>
+                 <div id="P1_pokemon6" class="pokemon">
+                    <div id="P1_nombrePkm6" class="pokemon-name"></div>
+                    <div id="P1_levelPkm6" class="pokemon-level"></div>  
                  </div>
                  
                </div>
             </div>
-        </div>
+            
+            <div id="P2_tablero" class="tablero">
+                <div id="P2_tablero-title" class="tablero-title"> 
+                     <div id="P2_nombre" class="nombre"></div>
+                     <div id="P2_monedas" class="monedas"></div>
+                     <img src="./images/Coin.png" alt="" class="coins">
+                     <div id="P2_posicion" class="posicion "></div>
+                </div> 
+                <div id="P2_medallas" class="medallas">
+                 <img src="./images/badges/badge1.png" alt="" id="P2_medalla1" class="medalla">
+                 <img src="./images/badges/badge2.png" alt="" id="P2_medalla2" class="medalla">
+                 <img src="./images/badges/badge3.png" alt="" id="P2_medalla3" class="medalla">
+                 <img src="./images/badges/badge4.png" alt="" id="P2_medalla4" class="medalla">
+                 <img src="./images/badges/badge5.png" alt="" id="P2_medalla5" class="medalla">
+                 <img src="./images/badges/badge6.png" alt="" id="P2_medalla6" class="medalla">
+                 <img src="./images/badges/badge7.png" alt="" id="P2_medalla7" class="medalla">
+                 <img src="./images/badges/badge8.png" alt="" id="P2_medalla8" class="medalla">
+                </div>
+                <div id="P2_lista-pokemons" class="lista-pokemosn">
+                  <div id="P2_pokemon1" class="pokemon">
+                     <div id="P2_nombrePkm1" class="pokemon-name"></div>
+                     <div id="P2_levelPkm1" class="pokemon-level"></div> 
+                  </div>
+ 
+                  <div id="P2_pokemon2" class="pokemon">
+                     <div id="P2_nombrePkm2" class="pokemon-name"></div>
+                     <div id="P2_levelPkm2" class="pokemon-level"></div>
+                  </div>
+ 
+                  <div id="P2_pokemon3" class="pokemon">
+                     <div id="P2_nombrePkm3" class="pokemon-name"></div>
+                     <div id="P2_levelPkm3" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P2_pokemon4" class="pokemon">
+                     <div id="P2_nombrePkm4" class="pokemon-name"></div>
+                     <div id="P2_levelPkm4" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P2_pokemon5" class="pokemon">
+                     <div id="P2_nombrePkm5" class="pokemon-name"></div>
+                     <div id="P2_levelPkm5" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P2_pokemon6" class="pokemon">
+                     <div id="P2_nombrePkm6" class="pokemon-name"></div>
+                     <div id="P2_levelPkm6" class="pokemon-level"></div>  
+                  </div>
+                  
+                </div>
+             </div>
+
+             <div id="P3_tablero" class="tablero">
+                <div id="P3_tablero-title" class="tablero-title"> 
+                     <div id="P3_nombre" class="nombre"></div>
+                     <div id="P3_monedas" class="monedas"></div>
+                     <img src="./images/Coin.png" alt="" class="coins">
+                     <div id="P3_posicion" class="posicion "></div>
+                </div> 
+                <div id="P3_medallas" class="medallas">
+                 <img src="./images/badges/badge1.png" alt="" id="P3_medalla1" class="medalla">
+                 <img src="./images/badges/badge2.png" alt="" id="P3_medalla2" class="medalla">
+                 <img src="./images/badges/badge3.png" alt="" id="P3_medalla3" class="medalla">
+                 <img src="./images/badges/badge4.png" alt="" id="P3_medalla4" class="medalla">
+                 <img src="./images/badges/badge5.png" alt="" id="P3_medalla5" class="medalla">
+                 <img src="./images/badges/badge6.png" alt="" id="P3_medalla6" class="medalla">
+                 <img src="./images/badges/badge7.png" alt="" id="P3_medalla7" class="medalla">
+                 <img src="./images/badges/badge8.png" alt="" id="P3_medalla8" class="medalla">
+                </div>
+                <div id="P3_lista-pokemons" class="lista-pokemosn">
+                  <div id="P3_pokemon1" class="pokemon">
+                     <div id="P3_nombrePkm1" class="pokemon-name"></div>
+                     <div id="P3_levelPkm1" class="pokemon-level"></div> 
+                  </div>
+ 
+                  <div id="P3_pokemon2" class="pokemon">
+                     <div id="P3_nombrePkm2" class="pokemon-name"></div>
+                     <div id="P3_levelPkm2" class="pokemon-level"> </div>
+                  </div>
+ 
+                  <div id="P3_pokemon3" class="pokemon">
+                     <div id="P3_nombrePkm3" class="pokemon-name"></div>
+                     <div id="P3_levelPkm3" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P3_pokemon4" class="pokemon">
+                     <div id="P3_nombrePkm4" class="pokemon-name"></div>
+                     <div id="P3_levelPkm4" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P3_pokemon5" class="pokemon">
+                     <div id="P3_nombrePkm5" class="pokemon-name"></div>
+                     <div id="P3_levelPkm5" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P3_pokemon6" class="pokemon">
+                     <div id="P3_nombrePkm6" class="pokemon-name"></div>
+                     <div id="P3_levelPkm6" class="pokemon-level"></div>  
+                  </div>
+                  
+                </div>
+             </div>
+
+             <div id="P4_tablero" class="tablero">
+                <div id="P4_tablero-title" class="tablero-title"> 
+                     <div id="P4_nombre" class="nombre"></div>
+                     <div id="P4_monedas" class="monedas"></div>
+                     <img src="./images/Coin.png" alt="" class="coins">
+                     <div id="P4_posicion" class="posicion "></div>
+                </div> 
+                <div id="P4_medallas" class="medallas">
+                 <img src="./images/badges/badge1.png" alt="" id="P4_medalla1" class="medalla">
+                 <img src="./images/badges/badge2.png" alt="" id="P4_medalla2" class="medalla">
+                 <img src="./images/badges/badge3.png" alt="" id="P4_medalla3" class="medalla">
+                 <img src="./images/badges/badge4.png" alt="" id="P4_medalla4" class="medalla">
+                 <img src="./images/badges/badge5.png" alt="" id="P4_medalla5" class="medalla">
+                 <img src="./images/badges/badge6.png" alt="" id="P4_medalla6" class="medalla">
+                 <img src="./images/badges/badge7.png" alt="" id="P4_medalla7" class="medalla">
+                 <img src="./images/badges/badge8.png" alt="" id="P4_medalla8" class="medalla">
+                </div>
+                <div id="P4_lista-pokemons" class="lista-pokemosn">
+                  <div id="P4_pokemon1" class="pokemon">
+                     <div id="P4_nombrePkm1" class="pokemon-name"></div>
+                     <div id="P4_levelPkm1" class="pokemon-level"></div> 
+                  </div>
+ 
+                  <div id="P4_pokemon2" class="pokemon">
+                     <div id="P4_nombrePkm2" class="pokemon-name"></div>
+                     <div id="P4_levelPkm2" class="pokemon-level"></div>
+                  </div>
+ 
+                  <div id="P4_pokemon3" class="pokemon">
+                     <div id="P4_nombrePkm3" class="pokemon-name"></div>
+                     <div id="P4_levelPkm3" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P4_pokemon4" class="pokemon">
+                     <div id="P4_nombrePkm4" class="pokemon-name"></div>
+                     <div id="P4_levelPkm4" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P4_pokemon5" class="pokemon">
+                     <div id="P4_nombrePkm5" class="pokemon-name"></div>
+                     <div id="P4_levelPkm5" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P4_pokemon6" class="pokemon">
+                     <div id="P4_nombrePkm6" class="pokemon-name"></div>
+                     <div id="P4_levelPkm6" class="pokemon-level"></div>  
+                  </div>
+                  
+                </div>
+             </div>
+
+             <div id="P5_tablero" class="tablero">
+                <div id="P5_tablero-title" class="tablero-title"> 
+                     <div id="P5_nombre" class="nombre"></div>
+                     <div id="P5_monedas" class="monedas"></div>
+                     <img src="./images/Coin.png" alt="" class="coins">
+                     <div id="P5_posicion" class="posicion "></div>
+                </div> 
+                <div id="P5_medallas" class="medallas">
+                 <img src="./images/badges/badge1.png" alt="" id="P5_medalla1" class="medalla">
+                 <img src="./images/badges/badge2.png" alt="" id="P5_medalla2" class="medalla">
+                 <img src="./images/badges/badge3.png" alt="" id="P5_medalla3" class="medalla">
+                 <img src="./images/badges/badge4.png" alt="" id="P5_medalla4" class="medalla">
+                 <img src="./images/badges/badge5.png" alt="" id="P5_medalla5" class="medalla">
+                 <img src="./images/badges/badge6.png" alt="" id="P5_medalla6" class="medalla">
+                 <img src="./images/badges/badge7.png" alt="" id="P5_medalla7" class="medalla">
+                 <img src="./images/badges/badge8.png" alt="" id="P5_medalla8" class="medalla">
+                </div>
+                <div id="P5_lista-pokemons" class="lista-pokemosn">
+                  <div id="P5_pokemon1" class="pokemon">
+                     <div id="P5_nombrePkm1" class="pokemon-name"></div>
+                     <div id="P5_levelPkm1" class="pokemon-level"></div> 
+                  </div>
+ 
+                  <div id="P5_pokemon2" class="pokemon">
+                     <div id="P5_nombrePkm2" class="pokemon-name"></div>
+                     <div id="P5_levelPkm2" class="pokemon-level"></div>
+                  </div>
+ 
+                  <div id="P5_pokemon3" class="pokemon">
+                     <div id="P5_nombrePkm3" class="pokemon-name"></div>
+                     <div id="P5_levelPkm3" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P5_pokemon4" class="pokemon">
+                     <div id="P5_nombrePkm4" class="pokemon-name"></div>
+                     <div id="P5_levelPkm4" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P5_pokemon5" class="pokemon">
+                     <div id="P5_nombrePkm5" class="pokemon-name"></div>
+                     <div id="P5_levelPkm5" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P5_pokemon6" class="pokemon">
+                     <div id="P5_nombrePkm6" class="pokemon-name"></div>
+                     <div id="P5_levelPkm6" class="pokemon-level"></div>  
+                  </div>
+                  
+                </div>
+             </div>
+
+             <div id="P6_tablero" class="tablero">
+                <div id="P6_tablero-title" class="tablero-title"> 
+                     <div id="P6_nombre" class="nombre"></div>
+                     <div id="P6_monedas" class="monedas"></div>
+                     <img src="./images/Coin.png" alt="" class="coins">
+                     <div id="P6_posicion" class="posicion "></div>
+                </div> 
+                <div id="P6_medallas" class="medallas">
+                 <img src="./images/badges/badge1.png" alt="" id="P6_medalla1" class="medalla">
+                 <img src="./images/badges/badge2.png" alt="" id="P6_medalla2" class="medalla">
+                 <img src="./images/badges/badge3.png" alt="" id="P6_medalla3" class="medalla">
+                 <img src="./images/badges/badge4.png" alt="" id="P6_medalla4" class="medalla">
+                 <img src="./images/badges/badge5.png" alt="" id="P6_medalla5" class="medalla">
+                 <img src="./images/badges/badge6.png" alt="" id="P6_medalla6" class="medalla">
+                 <img src="./images/badges/badge7.png" alt="" id="P6_medalla7" class="medalla">
+                 <img src="./images/badges/badge8.png" alt="" id="P6_medalla8" class="medalla">
+                </div>
+                <div id="P6_lista-pokemons" class="lista-pokemosn">
+                  <div id="P6_pokemon1" class="pokemon">
+                     <div id="P6_nombrePkm1" class="pokemon-name"></div>
+                     <div id="P6_levelPkm1" class="pokemon-level"></div> 
+                  </div>
+ 
+                  <div id="P6_pokemon2" class="pokemon">
+                     <div id="P6_nombrePkm2" class="pokemon-name"></div>
+                     <div id="P6_levelPkm2" class="pokemon-level"></div>
+                  </div>
+ 
+                  <div id="P6_pokemon3" class="pokemon">
+                     <div id="P6_nombrePkm3" class="pokemon-name"></div>
+                     <div id="P6_levelPkm3" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P6_pokemon4" class="pokemon">
+                     <div id="P6_nombrePkm4" class="pokemon-name"></div>
+                     <div id="P6_levelPkm4" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P6_pokemon5" class="pokemon">
+                     <div id="P6_nombrePkm5" class="pokemon-name"></div>
+                     <div id="P6_levelPkm5" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P6_pokemon6" class="pokemon">
+                     <div id="P6_nombrePkm6" class="pokemon-name"></div>
+                     <div id="P6_levelPkm6" class="pokemon-level"></div>  
+                  </div>
+                  
+                </div>
+             </div>
+
+             <div id="P7_tablero" class="tablero">
+                <div id="P7_tablero-title" class="tablero-title"> 
+                     <div id="P7_nombre" class="nombre"></div>
+                     <div id="P7_monedas" class="monedas"></div>
+                     <img src="./images/Coin.png" alt="" class="coins">
+                     <div id="P7_posicion" class="posicion "></div>
+                </div> 
+                <div id="P7_medallas" class="medallas">
+                 <img src="./images/badges/badge1.png" alt="" id="P7_medalla1" class="medalla">
+                 <img src="./images/badges/badge2.png" alt="" id="P7_medalla2" class="medalla">
+                 <img src="./images/badges/badge3.png" alt="" id="P7_medalla3" class="medalla">
+                 <img src="./images/badges/badge4.png" alt="" id="P7_medalla4" class="medalla">
+                 <img src="./images/badges/badge5.png" alt="" id="P7_medalla5" class="medalla">
+                 <img src="./images/badges/badge6.png" alt="" id="P7_medalla6" class="medalla">
+                 <img src="./images/badges/badge7.png" alt="" id="P7_medalla7" class="medalla">
+                 <img src="./images/badges/badge8.png" alt="" id="P7_medalla8" class="medalla">
+                </div>
+                <div id="P7_lista-pokemons" class="lista-pokemosn">
+                  <div id="P7_pokemon1" class="pokemon">
+                     <div id="P7_nombrePkm1" class="pokemon-name"></div>
+                     <div id="P7_levelPkm1" class="pokemon-level"></div> 
+                  </div>
+ 
+                  <div id="P7_pokemon2" class="pokemon">
+                     <div id="P7_nombrePkm2" class="pokemon-name"></div>
+                     <div id="P7_levelPkm2" class="pokemon-level"></div>
+                  </div>
+ 
+                  <div id="P7_pokemon3" class="pokemon">
+                     <div id="P7_nombrePkm3" class="pokemon-name"></div>
+                     <div id="P7_levelPkm3" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P7_pokemon4" class="pokemon">
+                     <div id="P7_nombrePkm4" class="pokemon-name"></div>
+                     <div id="P7_levelPkm4" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P7_pokemon5" class="pokemon">
+                     <div id="P7_nombrePkm5" class="pokemon-name"></div>
+                     <div id="P7_levelPkm5" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P7_pokemon6" class="pokemon">
+                     <div id="P7_nombrePkm6" class="pokemon-name"></div>
+                     <div id="P7_levelPkm6" class="pokemon-level"></div>  
+                  </div>
+                  
+                </div>
+             </div>
+
+             <div id="P8_tablero" class="tablero">
+                <div id="P8_tablero-title" class="tablero-title"> 
+                     <div id="P8_nombre" class="nombre"></div>
+                     <div id="P8_monedas" class="monedas"></div>
+                     <img src="./images/Coin.png" alt="" class="coins">
+                     <div id="P8_posicion" class="posicion "></div>
+                </div> 
+                <div id="P8_medallas" class="medallas">
+                 <img src="./images/badges/badge1.png" alt="" id="P8_medalla1" class="medalla">
+                 <img src="./images/badges/badge2.png" alt="" id="P8_medalla2" class="medalla">
+                 <img src="./images/badges/badge3.png" alt="" id="P8_medalla3" class="medalla">
+                 <img src="./images/badges/badge4.png" alt="" id="P8_medalla4" class="medalla">
+                 <img src="./images/badges/badge5.png" alt="" id="P8_medalla5" class="medalla">
+                 <img src="./images/badges/badge6.png" alt="" id="P8_medalla6" class="medalla">
+                 <img src="./images/badges/badge7.png" alt="" id="P8_medalla7" class="medalla">
+                 <img src="./images/badges/badge8.png" alt="" id="P8_medalla8" class="medalla">
+                </div>
+                <div id="P8_lista-pokemons" class="lista-pokemosn">
+                  <div id="P8_pokemon1" class="pokemon">
+                     <div id="P8_nombrePkm1" class="pokemon-name"></div>
+                     <div id="P8_levelPkm1" class="pokemon-level"></div> 
+                  </div>
+ 
+                  <div id="P8_pokemon2" class="pokemon">
+                     <div id="P8_nombrePkm2" class="pokemon-name"></div>
+                     <div id="P8_levelPkm2" class="pokemon-level"></div>
+                  </div>
+ 
+                  <div id="P8_pokemon3" class="pokemon">
+                     <div id="P8_nombrePkm3" class="pokemon-name"></div>
+                     <div id="P8_levelPkm3" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P8_pokemon4" class="pokemon">
+                     <div id="P8_nombrePkm4" class="pokemon-name"></div>
+                     <div id="P8_levelPkm4" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P8_pokemon5" class="pokemon">
+                     <div id="P8_nombrePkm5" class="pokemon-name"></div>
+                     <div id="P8_levelPkm5" class="pokemon-level"></div>  
+                  </div>
+                  <div id="P8_pokemon6" class="pokemon">
+                     <div id="P8_nombrePkm6" class="pokemon-name"></div>
+                     <div id="P8_levelPkm6" class="pokemon-level"></div>  
+                  </div>
+                  
+                </div>
+             </div>
         <div class="footer"></div>
     </div>
 
