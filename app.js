@@ -13,6 +13,8 @@ class Player{
         this.badge6 = false; 
         this.badge7 = false; 
         this.badge8 = false; 
+        this.elite = false;
+        this.campion = false;
         this.frontierPink = false;
         this.frontierGreen = false;
         this.frontierYellow = false;
@@ -83,13 +85,30 @@ class Player{
         if( this.badge4 == true){
             this.puntos += 40;}
         if( this.badge5 == true){
-            this.puntos += 60;}
+            this.puntos += 50;}
         if( this.badge6 == true){
-            this.puntos += 70;}
+            this.puntos += 60;}
         if( this.badge7 == true){
-            this.puntos += 80;}
+            this.puntos += 70;}
         if( this.badge8 == true){
-            this.puntos += 100;}
+            this.puntos += 80;}
+        if( this.elite == true){
+            this.puntos += 50;}
+        if( this.campion == true){
+            this.puntos += 200;}
+        if( this.frontierPink == true){
+            this.puntos += 10;}
+        if( this.frontierGreen == true){
+            this.puntos += 10;}
+        if( this.frontierYellow == true){
+            this.puntos += 10;}
+        if( this.frontierBlue == true){
+            this.puntos += 10;}
+        if( this.frontierRed == true){
+            this.puntos += 10;}
+        if( this.frontierGolden == true){
+            this.puntos += 10;}
+
 
         this.puntos += this.monedas;
 
@@ -220,6 +239,10 @@ function PaginaOnePlayer( Game){
     badge7.style.filter = "brightness(25%)";
     const badge8 = document.getElementById("badge8");
     badge8.style.filter = "brightness(25%)";
+    const elite = document.getElementById("Elite");
+    elite.style.filter = "brightness(25%)";
+    const campion = document.getElementById("Campion");
+    campion.style.filter = "brightness(25%)";
 
     const frontera_pink = document.getElementById("Pink_Frontier");
     const frontera_green = document.getElementById("Green_Frontier");
@@ -362,6 +385,14 @@ function PaginaOnePlayer( Game){
     }
     if (Game.jugadores[turnoActual].badge8 == true){
         badge8.style.filter = "brightness(100%)";
+    }
+
+    if (Game.jugadores[turnoActual].elite == true){
+        elite.style.filter = "brightness(100%)";
+    }
+
+    if (Game.jugadores[turnoActual].campion == true){
+        campion.style.filter = "brightness(100%)";
     }
 
     if(Game.jugadores[turnoActual].frontierPink == true){
@@ -994,6 +1025,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const badge6 = document.getElementById("badge6");
     const badge7 = document.getElementById("badge7");
     const badge8 = document.getElementById("badge8");
+    const elite = document.getElementById("Elite");
+    const campion = document.getElementById("Campion");
 
     badge1.addEventListener('click',()=>{
         if (Game.jugadores[Game.turnoActual].badge1 == false){
@@ -1096,6 +1129,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
         else{
             Game.jugadores[Game.turnoActual].badge8 = false;
             Game.jugadores[Game.turnoActual].restarMonedas(5);
+            PaginaOnePlayer(Game);
+        }
+    });
+
+    elite.addEventListener('click',()=>{
+        if (Game.jugadores[Game.turnoActual].elite == false){
+        Game.jugadores[Game.turnoActual].elite = true;
+        Game.jugadores[Game.turnoActual].sumarMonedas(5);
+        PaginaOnePlayer(Game);
+        }
+        else{
+            Game.jugadores[Game.turnoActual].elite = false;
+            PaginaOnePlayer(Game);
+        }
+    });
+
+    campion.addEventListener('click',()=>{
+        if (Game.jugadores[Game.turnoActual].campion == false){
+        Game.jugadores[Game.turnoActual].campion = true;
+        PaginaOnePlayer(Game);
+        }
+        else{
+            Game.jugadores[Game.turnoActual].campion = false;
             PaginaOnePlayer(Game);
         }
     });
