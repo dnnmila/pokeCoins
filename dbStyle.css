@@ -20,9 +20,11 @@
     display: flex;
     flex-wrap: wrap;
     background-image: url("./images/pxfuel.jpg");
+    background-size: cover;
     justify-content: center;
   }
 .tablero{
+    position: relative;
     width: 32vw;
     display: none;
     flex-direction: column;
@@ -121,3 +123,10 @@
     width: 30%;
 }
 
+.cronometro{
+    display: flex;
+    position: absolute;
+    bottom: 5%;
+    font-family: "poke-font";
+    color: rgb(174, 40, 3);
+}

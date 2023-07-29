@@ -23,6 +23,11 @@ class Player{
         this.frontierGolden = false;
         this.posicion = 0;
         this.puntos =0;
+        this.segundos = 0;
+        this.minutos =0;
+        this.horas = 0;
+
+
         
     }
 
@@ -164,6 +169,9 @@ class Juego{
         this.jugadores = []
         this.turnoActual = 0;
         this.ronda = 1;
+        this.segundos = 0;
+        this.minutos = 0;
+        this.horas = 0;
     }
 
     siguienteRonda (){
@@ -765,7 +773,11 @@ function sentData(Game) {
         var nombre = jugador.nombre;
         var monedas = jugador.monedas;
         var posicion =jugador.posicion;
-  
+        var segundos = jugador.segundos;
+        var minutos = jugador.minutos;
+        var horas = jugador.horas;
+        var elite = jugador.elite;
+        var campion = jugador.campion;  
             for (var j = 0; j < 8; j++) {
                 var medallaKey = `P${jugadorIndex}_medalla${j + 1}`;
                 var medallaValue = jugador[`badge${j + 1}`];
@@ -775,6 +787,11 @@ function sentData(Game) {
       localStorage.setItem(`nombre${jugadorIndex}`, nombre);
       localStorage.setItem(`monedas${jugadorIndex}`, monedas);
       localStorage.setItem(`posicion${jugadorIndex}`, posicion);
+      localStorage.setItem(`segundos${jugadorIndex}`, segundos);
+      localStorage.setItem(`minutos${jugadorIndex}`, minutos);
+      localStorage.setItem(`horas${jugadorIndex}`, horas);
+      localStorage.setItem(`elite${jugadorIndex}`, elite);
+      localStorage.setItem(`campion${jugadorIndex}`, campion);
   
       var pokemons = [...jugador.pokemons];
       if (jugador.pokemons.length < 6) {
@@ -788,6 +805,44 @@ function sentData(Game) {
       var pokemonsKey = `P${jugadorIndex}pokemons`;
       localStorage.setItem(pokemonsKey, JSON.stringify(pokemons));
     }
+  }
+
+  function startTimer(Game) {
+    var tiempoInical = Date.now();
+    timerInterval = setInterval(function() {
+    actualizarCronometro(tiempoInical);
+    var turnoActual = Game.turnoActual;
+      Game.jugadores[turnoActual].segundos++;
+  
+      // Si han pasado 60 segundos, aumentar los minutos y resetear los segundos
+      if (Game.jugadores[turnoActual].segundos === 60) {
+        Game.jugadores[turnoActual].segundos = 0;
+        Game.jugadores[turnoActual].minutos++;
+      }
+  
+      // Si han pasado 60 minutos, aumentar las horas y resetear los minutos
+      if (Game.jugadores[turnoActual].minutos === 60) {
+        Game.jugadores[turnoActual].minutos = 0;
+        Game.jugadores[turnoActual].horas++;
+      }
+  
+      // Actualizar la interfaz con el tiempo del jugador activo
+    
+    }, 1000); // El timer se ejecutará cada 1000 milisegundos (1 segundo)
+  }
+  
+  function stopTimer() {
+    clearInterval(timerInterval);
+  }
+
+  function actualizarCronometro(tiempoInicial) {
+    
+    var tiempoTranscurrido = Date.now() - tiempoInicial;
+    var segundos = Math.floor(tiempoTranscurrido / 1000) % 60;
+    var minutos = Math.floor(tiempoTranscurrido / 1000 / 60) % 60;
+  
+    var tiempoMostrar = `${(minutos)}:${(segundos)}`;
+    document.getElementById('cronometro').textContent = tiempoMostrar;
   }
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -925,6 +980,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         MainBOX.style.backgroundImage="url('./images/wallpaper.jpg')";
         audio2.pause();
         PaginaOnePlayer(Game);
+        startTimer(Game);
         }
         else{
             console.log("Faltan jugadores");
@@ -933,9 +989,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     const nextButton = document.getElementById("NextPlayer");
     nextButton.addEventListener('click', ()=>{
+        stopTimer();
+        console.log( Game.jugadores[Game.turnoActual].nombre);
+        console.log( "Segundos: " + Game.jugadores[Game.turnoActual].segundos);
+        console.log( "Minutos: " + Game.jugadores[Game.turnoActual].minutos);
+        console.log( "Horas: " + Game.jugadores[Game.turnoActual].horas);
+
         Game.turnoActual+=1;
         Game.jugadores= asignarPosicion(Game);
         sentData(Game);
+        startTimer(Game);
         if (Game.turnoActual >= Game.jugadores.length ){
             Game.turnoActual=0;
             Game.ronda+=1;

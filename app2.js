@@ -79,6 +79,19 @@ function recibirArregloDesdeJSON(jsonString) {
             }}
   }
 
+  function rendertiempo(jugadores){
+    for( var player=0; player< jugadores; player++){
+        var segundos = localStorage.getItem(`segundos${player+1}`);
+        var minutos = localStorage.getItem(`minutos${player+1}`);
+        var horas = localStorage.getItem(`horas${player+1}`);
+        console.log(segundos);
+        console.log(minutos);
+        console.log(horas);
+
+        const cronometro = document.getElementById(`cronometro${player+1}`).textContent= "Time: " +  horas + " : " +  minutos + " : " + segundos;
+        }
+  }
+
   function renderPokemons(jugadores){
     for(var player=0; player<jugadores;player++){
         var pokemonsJson = localStorage.getItem(`P${player+1}pokemons`);
@@ -87,14 +100,14 @@ function recibirArregloDesdeJSON(jsonString) {
             if (Pokemons[i].nombre !== '-') {
               const elementName = document.getElementById(`P${player+1}_nombrePkm${i + 1}`);
               const elementLevel = document.getElementById(`P${player+1}_levelPkm${i + 1}`);
-              elementName.textContent = Pokemons[i].nombre;
+              elementName.textContent =  ` ${i+1}._  ${Pokemons[i].nombre}` ;
               if(Pokemons[i].estatus == "Muerto"){
                 elementName.classList.add("name-dead");
               }
               else{
                 elementName.classList.remove("name-dead");
               }
-              elementLevel.textContent = `${Pokemons[i].base} \t \t + ${Pokemons[i].extra}`;
+              elementLevel.textContent = ` ${Pokemons[i].base}  + ${Pokemons[i].extra}`;
             }
           }
     }
@@ -163,6 +176,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         const Position8 = document.getElementById('P8_posicion').textContent =  "# "+P8posicion;
 
        
+
+            rendertiempo(NumPlayers)
             renderPokemons(NumPlayers);
             cambiarMedallas(NumPlayers);
             /* pendientes 5-8 */

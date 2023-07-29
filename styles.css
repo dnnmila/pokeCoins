@@ -812,3 +812,14 @@ font-size: 1.5rem;
     cursor: pointer;
     transform: scale(1.5);
 }
+
+#cronometro{
+    display: flex;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    font-family: "poke-font";
+    font-size: 2rem;
+    color: #084dc6;
+
+}
