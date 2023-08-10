@@ -28,6 +28,18 @@ def conectar_bd():
 class Pokemon(BaseModel):
     pokedex: str
     Name: str
+    Level :int
+    Type: str
+    Status : str
+    Atk1 : str
+    Atk2 :str
+    NextEvo : int
+    Evo:str
+
+
+class Attack(BaseModel):
+    IdAtk: str
+    Name: str
 
 @app.get('/pokemons')
 def obtener_pokemons():
@@ -47,3 +59,24 @@ def obtener_pokemon(pokedex: str):
         return pokemon
     else:
         return {'error': 'No se encontró el Pokémon'}, 404
+    
+
+@app.get('/attacks')
+def obtener_attacks():
+    conn = conectar_bd()
+    cursor = conn.execute('SELECT * FROM attacks')
+    attacks = cursor.fetchall()
+    conn.close()
+    return attacks
+
+
+@app.get('/attacks/{IdAtk}')
+def obtener_attack(IdAtk: str):
+    conn = conectar_bd()
+    cursor = conn.execute('SELECT * FROM attacks WHERE IDATK = ?', (IdAtk,))
+    attack = cursor.fetchone()
+    conn.close()
+    if attack:
+        return attack
+    else:
+        return {'error': 'No se encontró el attack'}, 404

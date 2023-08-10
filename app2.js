@@ -88,7 +88,7 @@ function recibirArregloDesdeJSON(jsonString) {
         console.log(minutos);
         console.log(horas);
 
-        const cronometro = document.getElementById(`cronometro${player+1}`).textContent= "Time: " +  horas + " : " +  minutos + " : " + segundos;
+        const cronometro = document.getElementById(`cronometro${player+1}`).textContent= "Time: " +  horas + " hr : " +  minutos + " min: " + segundos+ " seg ";
         }
   }
 
@@ -100,6 +100,7 @@ function recibirArregloDesdeJSON(jsonString) {
             if (Pokemons[i].nombre !== '-') {
               const elementName = document.getElementById(`P${player+1}_nombrePkm${i + 1}`);
               const elementLevel = document.getElementById(`P${player+1}_levelPkm${i + 1}`);
+              const elementImg = document.getElementById(`P${player+1}_img_Pkm${i + 1}`);
               elementName.textContent =  ` ${i+1}._  ${Pokemons[i].nombre}` ;
               if(Pokemons[i].estatus == "Muerto"){
                 elementName.classList.add("name-dead");
@@ -108,6 +109,8 @@ function recibirArregloDesdeJSON(jsonString) {
                 elementName.classList.remove("name-dead");
               }
               elementLevel.textContent = ` ${Pokemons[i].base}  + ${Pokemons[i].extra}`;
+              elementImg.style.backgroundImage = `url("./images/POKEMON/0${Pokemons[i].pokedex}.png")`;
+             
             }
           }
     }

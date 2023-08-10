@@ -73,6 +73,7 @@
             </div>
           
         <div class="One-Pokemon No-Pokemon " id="pokemon1">
+            <div class="img-pokemon" id="imgPkm1"> </div>
             <div class="name" id="pkm1Name"> nombre</div>
             <div class="type" id="pkm1Type"> typo</div>
             <div class="level" id="pkm1Level"> nivel</div>
@@ -82,6 +83,7 @@
         </div>
 
         <div class="One-Pokemon No-Pokemon" id="pokemon2">
+            <div class="img-pokemon" id="imgPkm2"> </div>
             <div class="name" id="pkm2Name"> nombre</div>
             <div class="type" id="pkm2Type"> typo</div>
             <div class="level" id="pkm2Level"> nivel</div>
@@ -91,6 +93,7 @@
         </div>
 
         <div class="One-Pokemon No-Pokemon" id="pokemon3">
+            <div class="img-pokemon" id="imgPkm3"> </div>
             <div class="name" id="pkm3Name"> nombre</div>
             <div class="type" id="pkm3Type"> typo</div>
             <div class="level" id="pkm3Level"> nivel</div>
@@ -100,6 +103,7 @@
         </div>
 
         <div class="One-Pokemon No-Pokemon " id="pokemon4">
+            <div class="img-pokemon" id="imgPkm4"> </div>
             <div class="name" id="pkm4Name"> nombre</div>
             <div class="type" id="pkm4Type"> typo</div>
             <div class="level" id="pkm4Level"> nivel</div>
@@ -109,6 +113,7 @@
         </div>
 
         <div class="One-Pokemon No-Pokemon" id="pokemon5">
+            <div class="img-pokemon" id="imgPkm5"> </div>
             <div class="name" id="pkm5Name"> </div>
             <div class="type" id="pkm5Type"> </div>
             <div class="level" id="pkm5Level"> </div>
@@ -118,6 +123,7 @@
         </div>
 
         <div class="One-Pokemon  No-Pokemon" id="pokemon6">
+            <div class="img-pokemon" id="imgPkm6"> </div>
             <div class="name" id="pkm6Name"> </div>
             <div class="type" id="pkm6Type"> </div>
             <div class="level" id="pkm6Level"> </div>
@@ -193,6 +199,7 @@
     </div>
 
     <div class="Add-Pokemon-windows" id="mainAddPokemon">
+        <div id="closeAddPokemon"><img src="./images/ICON.png" alt=""></div>
         <div class="main-add-Pokemon" >
             <div id="pokedexMain">
                 <label for="Pokedex">Pokedex #:</label>
@@ -203,6 +210,7 @@
                 
 
                 <div id="PokemonFound">
+                    <div class="Pokemon-Found-image" id="pokemonfound_img"></div>
                     <div class="pokemonfound_name"> Name: <span id="pokemonfound_name"> Togekiss </span> </div>
                     <div class="pokemonfound_type"> Type: <span id="pokemonfound_type"> Fairy</span></div>
                     <div class="pokemonfound_level">Level: <span id="pokemonfound_level"> 2 </span> </div>
@@ -210,6 +218,73 @@
                 </div>
         </div>
        
+    </div>
+
+
+    <div class="battleWindow" id="MainBattle">
+        <div id="closeBattle"><img src="./images/ICON.png" alt=""></div> 
+        <div class="Title_battle">Battle</div> 
+        <div class="MenuBattle">
+            <div class="trainer">
+                <div class="imgBattle"> Trainer </div>
+            </div>
+            <div class="Wild">
+                <div class="imgBattle">Wild Pokemon</div>
+            </div>
+            <div class="GymLeader">
+                <div class="imgBattle"> Gym Leader </div>
+            </div>
+            <div class="FinalLeader">
+                <div class="FinalBattle"> Final Battle </div>
+            </div>
+        </div>
+        <div class="MenuTrainner">
+            <div id="trainnerBattle1" class="trainer_Name"> Trainer 1</div>
+            <div id="trainnerBattle2" class="trainer_Name"> Trainer 2</div>
+            <div id="trainnerBattle3" class="trainer_Name"> Trainer 3</div>
+            <div id="trainnerBattle4" class="trainer_Name"> Trainer 4</div>
+            <div id="trainnerBattle5" class="trainer_Name"> Trainer 5</div>
+            <div id="trainnerBattle6" class="trainer_Name"> Trainer 6</div>
+
+        </div>
+
+        <div class="MenuWildPokemon">
+               <div id="Wild_pokedexMain">
+                <label for="Wild_Pokedex">Pokedex #:</label>
+                <input type="number" id="Wild_Pokedex" name="Wild_pokedex" max="1000" >
+                <button id="Wild_SearchPokedex"> Search</button>
+                <div id="Wild_Not_Found"> Pokemon not found!!!</div>
+                </div>
+                
+
+                <div id="Wild_PokemonFound">
+                    <div class="pokemonfound_name"> Name: <span id="Wild_pokemonfound_name"> Togekiss </span> </div>
+                    <div class="pokemonfound_type"> Type: <span id="Wild_pokemonfound_type"> Fairy</span></div>
+                    <div class="pokemonfound_level">Level: <span id="Wil_dpokemonfound_level"> 2 </span> </div>
+                    <button id="Wild_ConfirmPokemon" type="submit"> Confirm</button>
+                </div>
+        </div>
+
+        <div class="Menu_Gym_Leadder">
+            <div id="Gym_Leader1" class="leader_Name"> Gym Leader 1</div>
+            <div id="Gym_Leader2" class="leader_Name"> Gym Leader 2</div>
+            <div id="Gym_Leader3" class="leader_Name"> Gym Leader 3</div>
+            <div id="Gym_Leader4" class="leader_Name"> Gym Leader 4</div>
+            <div id="Gym_Leader5" class="leader_Name"> Gym Leader 5</div>
+            <div id="Gym_Leader6" class="leader_Name"> Gym Leader 6</div>
+            <div id="Gym_Leader7" class="leader_Name"> Gym Leader 7</div>
+            <div id="Gym_Leader8" class="leader_Name"> Gym Leader 8</div>
+        </div>
+
+        <div class="Menu_Final_Leadder">
+            <div id="Final_Leader1" class="leader_Name"> Elite  1</div>
+            <div id="Final_Leader2" class="leader_Name"> Elite  1</div>
+            <div id="Final_Leader3" class="leader_Name"> Elite  1</div>
+            <div id="Final_Leader4" class="leader_Name"> Elite  1</div>
+            <div id="Final_Leader5" class="leader_Name"> Campeon </div>
+        </div>
+
+
     </div>
 
     </div>

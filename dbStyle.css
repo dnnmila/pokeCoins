@@ -19,7 +19,7 @@
   #DashBoard{
     display: flex;
     flex-wrap: wrap;
-    background-image: url("./images/pxfuel.jpg");
+    background-image: url("./images/pokefondo.jpg");
     background-size: cover;
     justify-content: center;
   }
@@ -44,6 +44,14 @@
     justify-content:space-evenly;
     height: 20%;
 }
+
+.Pokemon-image{
+    height: 4vh;
+    width: 3vw;
+    background-size: contain;
+    margin-left: 1rem;
+    background-repeat: no-repeat;
+}
 .nombre{
     display: flex;
     width: 40%;
@@ -60,10 +68,10 @@
 .monedas{
     display: flex;
     width: 15%;
-    font-family: "gb-font";
+    font-family: "poke-coins";
     color: rgb(238, 238, 231);
-    -webkit-text-stroke: 3px rgb(223, 52, 40);
-    font-size:2rem;
+    -webkit-text-stroke: 3px rgb(40, 77, 223);
+    font-size:3.5rem;
     justify-content: right;
 }
 .coins{
@@ -76,7 +84,7 @@
     display: flex;
     width: 30%;
     font-family: "poke-font";
-    color: rgb(138, 44, 214);
+    color: rgb(214, 70, 44);
     -webkit-text-stroke: 3px rgb(8, 16, 50);
     font-size: 3rem;
     justify-content: right;
@@ -116,7 +124,7 @@
     display: flex;
     width: 70%;
     text-align: left;
-    margin-left: 6rem;
+    margin-left: 1rem;
     
 }
 .pokemon-level{
@@ -126,7 +134,8 @@
 .cronometro{
     display: flex;
     position: absolute;
-    bottom: 5%;
+    bottom: 0%;
+    right: 30%;
     font-family: "poke-font";
     color: rgb(174, 40, 3);
 }

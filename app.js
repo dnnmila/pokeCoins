@@ -127,19 +127,19 @@ class Player{
 }
 
 class Pokemon {
-    constructor(nombre, tipo , nivel,estatus){
+    constructor(pokedex,nombre, tipo , nivel,attack1,attack2,LevelToEvo,evolution){
+        this.pokedex = pokedex;
         this.nombre = nombre;
         this.tipo = tipo;
         this.nivel = nivel;
         this.extra = 0;
         this.base = nivel;
-        this.estatus = estatus;
-        this.attack1 ="";
-        this.attack2 = "";
+        this.estatus = "Normal";
+        this.attack1 =attack1;
+        this.attack2 = attack2;
         this.attached = "";
-        this.evolution = "";
-        this.LevelToEvo = "";
-        this.effecto = "";
+        this.evolution = evolution;
+        this.LevelToEvo = LevelToEvo;
     }
 
     cambioEstatus(nuevoEstatus){
@@ -153,11 +153,12 @@ class Pokemon {
 }
 
 class Attack {
-    constructor(nombre,tipo,strength,effect,dice){
+    constructor(nombre,tipo,strength,effect,activate,dice){
         this.nombre = nombre;
         this.tipo = tipo;
         this.strength = strength;
         this.effect = effect;
+        this.activate = activate;
         this.dice =dice;
     }
 }
@@ -191,8 +192,8 @@ function crearJugador(nombre, modenasInicio ,turno){
     return new Player(nombre,modenasInicio,turno);
 }
 
-function crearPokemon(nombre, tipo , nivel , estatus){
-    return new Pokemon(nombre, tipo,nivel,estatus);
+function crearPokemon(pokedex,nombre, tipo , nivel , estatus){
+    return new Pokemon(pokedex,nombre, tipo,nivel,estatus);
 }
 
 async function buscarPokemon(numeroPokedex) {
@@ -206,21 +207,59 @@ async function buscarPokemon(numeroPokedex) {
               throw new Error('Error en la solicitud');
             }
             const data = await response.json();
+            const pokedex = data[1];
             const tipoPokemon =data[4];
             const nombrePokemon = data[2];
             const levelPokemon =data[3];
+            const nextLevel = data[8];
+            const Evolution = data[9];
+            
+        
+
+            const dataAtk1 = await getAttack(data[6]);
+            const Attack1 = new Attack(dataAtk1[0],dataAtk1[1],dataAtk1[2],dataAtk1[3],dataAtk1[4],dataAtk1[5]);
+            const dataAtk2 = await getAttack(data[7]);
+            const Attack2 = new Attack(dataAtk2[0],dataAtk2[1],dataAtk2[2],dataAtk2[3],dataAtk2[4],dataAtk2[5]);
+
+            
             //console.log(`El nombre del Pokémon con número de Pokédex ${numeroPokedex} es: ${nombrePokemon}`);
             // Devolver el nombre del Pokémon
-            return [nombrePokemon,tipoPokemon,levelPokemon];
+            return [pokedex,nombrePokemon,tipoPokemon,levelPokemon,Attack1,Attack2,nextLevel,Evolution];
             
           } catch (error) {
             console.error('Error:', error);
             return undefined // Opcional: Manejar el error devolviendo un valor predeterminado
           }
       
-       
-      
   }
+
+  async function getAttack(idAtk) {
+
+    const url = `http://localhost:8000/attacks/${idAtk}`;
+
+    try {
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+          throw new Error('Error en la solicitud');
+        }
+        const data0 = await response.json();
+        const nombre =data0[1];
+        const tipo = data0[2];
+        const power =data0[3];
+        const effect =data0[4];
+        const activate =data0[5];
+        const dice =data0[6];
+        //console.log(`El nombre del Pokémon con número de Pokédex ${numeroPokedex} es: ${nombrePokemon}`);
+        // Devolver el nombre del Pokémon
+        return [nombre,tipo,power,effect,activate,dice];
+        
+      } catch (error) {
+        console.error('Error:', error);
+        return undefined // Opcional: Manejar el error devolviendo un valor predeterminado
+      }
+  
+}
 
 function PaginaOnePlayer( Game){
     showPlayerCard();
@@ -314,12 +353,20 @@ function PaginaOnePlayer( Game){
     pokemon5_Name.classList.remove("name-dead");
     pokemon6_Name.classList.remove("name-dead");
 
-    for(var i =0; i< Game.jugadores[turnoActual].pokemons.length ;  i ++ ){
+    const buttonAdd = document.getElementById("addPokemon");
+    if (Game.jugadores[turnoActual].pokemons.length == 6){
+        buttonAdd.style.display="none";
+    }else{
+        buttonAdd.style.display="block";
+    }
+
+    for(var i =0; i < Game.jugadores[turnoActual].pokemons.length ;  i ++ ){
        
         switch (i) {
             case 0:
                
-
+                const imagen1 = document.getElementById('imgPkm1');
+                imagen1.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[turnoActual].pokemons[0].pokedex}.png")`;
                 pokemon1_Name.textContent = `${Game.jugadores[turnoActual].pokemons[0].nombre}`;
                 pokemon1_Type.textContent = `${Game.jugadores[turnoActual].pokemons[0].tipo}`;
                 pokemon1_Level.textContent = `${Game.jugadores[turnoActual].pokemons[0].nivel}`;
@@ -327,6 +374,8 @@ function PaginaOnePlayer( Game){
                 Pokemon1.classList.remove('No-Pokemon');
                 break;
             case 1:
+                const imagen2 = document.getElementById('imgPkm2');
+                imagen2.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[turnoActual].pokemons[1].pokedex}.png")`;
                 pokemon2_Name.textContent = `${Game.jugadores[turnoActual].pokemons[1].nombre}`;
                 pokemon2_Type.textContent = `${Game.jugadores[turnoActual].pokemons[1].tipo}`;
                 pokemon2_Level.textContent = `${Game.jugadores[turnoActual].pokemons[1].nivel}`;
@@ -334,6 +383,8 @@ function PaginaOnePlayer( Game){
                 Pokemon2.classList.remove('No-Pokemon');
                 break;
             case 2:
+                const imagen3 = document.getElementById('imgPkm3');
+                imagen3.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[turnoActual].pokemons[2].pokedex}.png")`;
                 pokemon3_Name.textContent = `${Game.jugadores[turnoActual].pokemons[2].nombre}`;
                 pokemon3_Type.textContent = `${Game.jugadores[turnoActual].pokemons[2].tipo}`;
                 pokemon3_Level.textContent = `${Game.jugadores[turnoActual].pokemons[2].nivel}`;
@@ -341,6 +392,8 @@ function PaginaOnePlayer( Game){
                 Pokemon3.classList.remove('No-Pokemon');
                 break;
             case 3:
+                const imagen4 = document.getElementById('imgPkm4');
+                imagen4.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[turnoActual].pokemons[3].pokedex}.png")`;
                 pokemon4_Name.textContent = `${Game.jugadores[turnoActual].pokemons[3].nombre}`;
                 pokemon4_Type.textContent = `${Game.jugadores[turnoActual].pokemons[3].tipo}`;
                 pokemon4_Level.textContent = `${Game.jugadores[turnoActual].pokemons[3].nivel}`;
@@ -348,6 +401,8 @@ function PaginaOnePlayer( Game){
                 Pokemon4.classList.remove('No-Pokemon');
                 break;
             case 4:
+                const imagen5 = document.getElementById('imgPkm5');
+                imagen5.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[turnoActual].pokemons[4].pokedex}.png")`;
                 pokemon5_Name.textContent = `${Game.jugadores[turnoActual].pokemons[4].nombre}`;
                 pokemon5_Type.textContent = `${Game.jugadores[turnoActual].pokemons[4].tipo}`;
                 pokemon5_Level.textContent = `${Game.jugadores[turnoActual].pokemons[4].nivel}`;
@@ -356,6 +411,8 @@ function PaginaOnePlayer( Game){
                 break;
 
             case 5:
+                const imagen6 = document.getElementById('imgPkm6');
+                imagen6.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[turnoActual].pokemons[5].pokedex}.png")`;
                 pokemon6_Name.textContent = `${Game.jugadores[turnoActual].pokemons[5].nombre}`;
                 pokemon6_Type.textContent = `${Game.jugadores[turnoActual].pokemons[5].tipo}`;
                 pokemon6_Level.textContent = `${Game.jugadores[turnoActual].pokemons[5].nivel}`;
@@ -692,28 +749,31 @@ async function addPokemonTeam(Game){
             var pokedex_str =  zfill(pokedex.value ,3);
             console.log("#"+ pokedex_str);
             const resultado = await buscarPokemon(pokedex_str);
-            if (resultado[0] === undefined){
+            console.log(resultado);
+            if (resultado[1] === undefined){
                
                 notFound.style.display="block";
                 console.log("Pokemon WAS not Found");
                 
             }
             else{
+                const imagenFound = document.getElementById('pokemonfound_img');
                 const nombrefound = document.getElementById("pokemonfound_name");
                 const tipofound = document.getElementById("pokemonfound_type");
                 const levelfound = document.getElementById("pokemonfound_level");
                 pokedexWindow.style.display= "none";
                 pokemonfoundWindow.style.display ="flex";
-
-                nombrefound.textContent = ` ${resultado[0]}`;
-                tipofound.textContent = ` ${resultado[1]}`;
-                levelfound.textContent = ` ${resultado[2]}`;
+                imagenFound.style.backgroundImage = `url("./images/POKEMON/0${resultado[0]}.png")`;
+                nombrefound.textContent = ` ${resultado[1]}`;
+                tipofound.textContent = ` ${resultado[2]}`;
+                levelfound.textContent = ` ${resultado[3]}`;
 
                 const confirm = document.getElementById("ConfirmPokemon");
                  confirm.addEventListener('click',()=>{
                 if(pokemonadded == false){
-                const PokeNew = new Pokemon(resultado[0],resultado[1],resultado[2],"Normal");
+                const PokeNew = new Pokemon(resultado[0],resultado[1],resultado[2],resultado[3],resultado[4],resultado[5],resultado[6],resultado[7]);
                 Game.jugadores[turnoActual].agregarPokemon(PokeNew);
+                console.log(PokeNew);
                 menuAddPokemon.style.display="none";
                 grayed_GB.style.display = "none";
                 pokedex.value="";
@@ -807,6 +867,17 @@ function sentData(Game) {
     }
   }
 
+  function sentPokemon(Game){
+    localStorage.setItem('trainner1', Game.jugadores[0].nombre);
+    localStorage.setItem('trainner2', Game.jugadores[1].nombre);
+    const pokemon1Json = JSON.stringify(Game.jugadores[0].pokemons[0]);
+    localStorage.setItem('pokemon1', pokemon1Json);
+    const pokemon2Json = JSON.stringify(Game.jugadores[1].pokemons[0]);
+    localStorage.setItem('pokemon2', pokemon2Json);
+
+
+  }
+
   function startTimer(Game) {
     var tiempoInical = Date.now();
     timerInterval = setInterval(function() {
@@ -844,6 +915,8 @@ function sentData(Game) {
     var tiempoMostrar = `${(minutos)}:${(segundos)}`;
     document.getElementById('cronometro').textContent = tiempoMostrar;
   }
+
+
 
 document.addEventListener("DOMContentLoaded", function(event) {
     //código a ejecutar cuando existe la certeza de que el DOM está listo para recibir acciones
@@ -1287,6 +1360,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addButton.addEventListener('click',()=>{
         addPokemonTeam(Game);
     })
+    const closeAddPoke = document.getElementById("closeAddPokemon");
+    const menuAddPokemon = document.getElementById("mainAddPokemon");
+    closeAddPoke.addEventListener('click', ()=>{
+        menuAddPokemon.style.display="none";
+        grayed_GB.style.display ="none";
+    });
 
     //BUY ITEM
 
@@ -1829,6 +1908,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
             Game.jugadores[Game.turnoActual].pokemons[5].estatus = "Normal";
             PaginaOnePlayer(Game);}
     });
+
+
+    const BattleButton = document.getElementById("PokeBattle");
+
+    BattleButton.addEventListener('click', ()=>{
+        sentPokemon(Game);
+        console.log("Pokemons Enviados");
+    })
 
     
 

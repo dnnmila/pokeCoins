@@ -213,7 +213,7 @@
     width: 100%;
     justify-content: center;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 0rem;
     
 }
 .One-Pokemon{
@@ -224,9 +224,16 @@
     font-family: "gb-font";
     font-size: 1rem;
     color: #2F3336;
+    align-items: center;
 }
 .No-Pokemon{
     display: none;
+}
+.img-pokemon{
+    height: 8vh;
+    width: 8vh;
+    background-size: contain;
+    margin-right: 1rem;
 }
 .name{
     width: 30%;
@@ -331,9 +338,8 @@ font-size: 1.5rem;
     height: 15vh;
     justify-content: center;
     align-items: center;
-    margin-top: 5rem;
     position: fixed;
-    bottom: 5%;
+    bottom: 0%;
 }
 .Market-one-player{
     width: 30%;
@@ -548,6 +554,26 @@ font-size: 1.5rem;
  
 
 
+ #closeAddPokemon{
+    font-size: 3rem;
+    position: absolute;
+    top: 18%;
+    right: 13%;
+    z-index: 4;
+}
+#closeAddPokemon img{
+    width: 4rem;
+    height: 4rem;
+}
+#closeAddPokemon img:hover{
+    width: 6rem;
+    height: 6rem;
+}
+#closeAddPokemon:hover{
+    cursor: pointer;
+}
+
+
  #closeCOINS{
     font-size: 3rem;
     position: absolute;
@@ -565,6 +591,59 @@ font-size: 1.5rem;
 #closeCOINS:hover{
     cursor: pointer;
 }
+
+/*Battle PHASE */
+.battleWindow{
+    background-image: url("./images/PKMBG2.jpg");
+    background-size: cover;
+    z-index: 3;
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 70%;
+    height: 60%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border :solid 3px #084dc6;
+}
+
+.Title_battle{
+    font-family: "poke-font";
+    color: rgb(227, 212, 212);
+    -webkit-text-stroke: 3px rgb(241, 13, 13);
+    font-size: 3rem;
+    margin-top: -5rem;
+    margin-bottom: 5rem;
+ }
+.MenuBattle{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    font-size: 1.5rem;
+    justify-content: space-evenly;
+}
+
+#closeBattle{
+    font-size: 3rem;
+    position: absolute;
+    top: -7%;
+    right: -2%;
+}
+#closeBattle img{
+    width: 4rem;
+    height: 4rem;
+}
+#closcloseBattleeCOINS img:hover{
+    width: 6rem;
+    height: 6rem;
+}
+#closeBattle:hover, .imgBattle:hover{
+    cursor: pointer;
+}
+
 /*Market  PHASE */
 
 .Buy-market-window{
@@ -705,6 +784,17 @@ font-size: 1.5rem;
     justify-content: center;
   
     text-align: left;
+
+}
+
+.Pokemon-Found-image{
+    width: 12vw;
+    height: 20vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    justify-self: center;
+    margin: auto;
+    display: flex;
 
 }
 
