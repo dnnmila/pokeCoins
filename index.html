@@ -80,6 +80,7 @@
             <div class="status" id="pkm1Status">estatus</div>
             <div class="plus-level" > <button id="pkm1Plus">+</button></div>
             <div class="remove" id="pk1Remove"><button>X</button></div>
+            <div class="evolve" id="evolution1"></div>
         </div>
 
         <div class="One-Pokemon No-Pokemon" id="pokemon2">
@@ -90,6 +91,7 @@
             <div class="status" id="pkm2Status">estatus</div>
             <div class="plus-level"> <button id="pkm2Plus">+</button></div>
             <div class="remove" id="pk2Remove"><button>X</button></div>
+            <div class="evolve" id="evolution2"></div>
         </div>
 
         <div class="One-Pokemon No-Pokemon" id="pokemon3">
@@ -100,6 +102,7 @@
             <div class="status" id="pkm3Status">estatus</div>
             <div class="plus-level"> <button id="pkm3Plus">+</button></div>
             <div class="remove" id="pk3Remove"><button>X</button></div>
+            <div class="evolve" id="evolution3"></div>
         </div>
 
         <div class="One-Pokemon No-Pokemon " id="pokemon4">
@@ -110,6 +113,7 @@
             <div class="status" id="pkm4Status">estatus</div>
             <div class="plus-level"> <button id="pkm4Plus">+</button></div>
             <div class="remove" id="pk4Remove"><button>X</button></div>
+            <div class="evolve" id="evolution4"></div>
         </div>
 
         <div class="One-Pokemon No-Pokemon" id="pokemon5">
@@ -120,6 +124,7 @@
             <div class="status" id="pkm5Status"></div>
             <div class="plus-level"> <button id="pkm5Plus">+</button></div>
             <div class="remove" id="pk5Remove"><button>X</button></div>
+            <div class="evolve" id="evolution5"></div>
         </div>
 
         <div class="One-Pokemon  No-Pokemon" id="pokemon6">
@@ -130,6 +135,7 @@
             <div class="status" id="pkm6Status"></div>
             <div class="plus-level"> <button id="pkm6Plus">+</button></div>
             <div class="remove" id="pk6Remove"><button>X</button></div>
+            <div class="evolve" id="evolution6"></div>
         </div>
 
     </div>
@@ -225,64 +231,154 @@
         <div id="closeBattle"><img src="./images/ICON.png" alt=""></div> 
         <div class="Title_battle">Battle</div> 
         <div class="MenuBattle">
-            <div class="trainer">
+            <div class="battle_option" id="Pokemon_battle">
                 <div class="imgBattle"> Trainer </div>
             </div>
-            <div class="Wild">
+            <div class="battle_option" id="Trainer_battle">
                 <div class="imgBattle">Wild Pokemon</div>
             </div>
-            <div class="GymLeader">
+            <div class="battle_option" id="Leader_battle">
                 <div class="imgBattle"> Gym Leader </div>
             </div>
-            <div class="FinalLeader">
-                <div class="FinalBattle"> Final Battle </div>
+        </div>
+
+
+        <div class="Battle_arena">
+            <div class="arena_title"> P1 Select Attack</div>
+            <div class="arena_totals">
+                <div class="arena_total" id="arena_total1">5</div>
+                <div class="arena_total"> -</div>
+                <div class="arena_total" id="arena_total2">7</div>
             </div>
-        </div>
-        <div class="MenuTrainner">
-            <div id="trainnerBattle1" class="trainer_Name"> Trainer 1</div>
-            <div id="trainnerBattle2" class="trainer_Name"> Trainer 2</div>
-            <div id="trainnerBattle3" class="trainer_Name"> Trainer 3</div>
-            <div id="trainnerBattle4" class="trainer_Name"> Trainer 4</div>
-            <div id="trainnerBattle5" class="trainer_Name"> Trainer 5</div>
-            <div id="trainnerBattle6" class="trainer_Name"> Trainer 6</div>
 
-        </div>
+            <div class="arena_pokemons">
+                <div class="arena_pokemon" id="arena_pokemon1"></div>
+                <div class="arena_pokemon" id="arena_pokemon2"></div>
+            </div>
 
-        <div class="MenuWildPokemon">
-               <div id="Wild_pokedexMain">
-                <label for="Wild_Pokedex">Pokedex #:</label>
-                <input type="number" id="Wild_Pokedex" name="Wild_pokedex" max="1000" >
-                <button id="Wild_SearchPokedex"> Search</button>
-                <div id="Wild_Not_Found"> Pokemon not found!!!</div>
+            <div class="Pokemon_suma1" id="Pokemon1_suma">
+                <div class="Nivel">
+                    <div class="Nivel_label"> Nivel </div>
+                    <div class="Nivel_label" id="P1Nivel_label"> </div>
                 </div>
+                <span>+</span>
+                <div class="Attack_suma">
+                    <div class="Attack_suma_label"> Attack</div>
+                    <div class="Attack_suma_label" id="P1Attack_suma_label"> </div>
+                </div>
+                <span>+</span>
+                <div class="Bonus_suma">
+                    <div class="Bonus_label"> Bonus</div>
+                    <div class="Bonus_label" id="P1Bonus_label"> </div>
+                </div>
+                <span>+</span>
+                <div class="Dice_suma">
+                    <div class="Dice_suma_label"> Dice</div>
+                    <div class="Dice_suma_label" id="P1Dice_suma_label"> </div>
+                </div>
+                <span>+</span>
+                <div class="Extra_suma">
+                    <div class="Extra_suma_label"> Extra</div>
+                    <div class="Extra_suma_label" id="P1Extra_suma_label"> </div>
+                </div>
+            </div>
+
+            <div class="Pokemon_suma2" id="Pokemon2_suma">
+                <div class="Nivel">
+                    <div class="Nivel_label"> Nivel </div>
+                    <div class="Nivel_label" id="P2Nivel_label"> </div>
+                </div>
+                <span>+</span>
+                <div class="Attack_suma">
+                    <div class="Attack_suma_label"> Attack</div>
+                    <div class="Attack_suma_label" id="P2Attack_suma_label"> </div>
+                </div>
+                <span>+</span>
+                <div class="Bonus_suma">
+                    <div class="Bonus_label"> Bonus</div>
+                    <div class="Bonus_label" id="P2Bonus_label"> </div>
+                </div>
+                <span>+</span>
+                <div class="Dice_suma">
+                    <div class="Dice_suma_label"> Dice</div>
+                    <div class="Dice_suma_label" id="P2Dice_suma_label"> </div>
+                </div>
+                <span>+</span>
+                <div class="Extra_suma">
+                    <div class="Extra_suma_label"> Extra</div>
+                    <div class="Extra_suma_label" id="P2Extra_suma_label"> </div>
+                </div>
+            </div>
+
+            
+                <div class="P1_arena_dices" id="P1_dices">
+                    <div class="dice dice1" id="P1_dice1"></div>
+                    <div class="dice dice2" id="P1_dice2"></div>
+                    <div class="dice dice3" id="P1_dice3"></div>
+                    <div class="dice dice4" id="P1_dice4"></div>
+                    <div class="dice dice5" id="P1_dice5"></div>
+                    <div class="dice dice6" id="P1_dice6"></div>
+                </div>
+                <div class="P2_arena_dices" id="P2_dices">
+                    <div class="dice dice6" id="P2_dice6"></div>
+                    <div class="dice dice5" id="P2_dice5"></div>
+                    <div class="dice dice4" id="P2_dice4"></div>
+                    <div class="dice dice3" id="P2_dice3"></div>
+                    <div class="dice dice2" id="P2_dice2"></div>
+                    <div class="dice dice1" id="P2_dice1"></div>
+                </div>
+            
+
+            
+                <div class="P1_arena_status" id="P1_status">
+                    <div class="arena_status paralized" id="P1_paralized"></div>
+                    <div class="arena_status sleep" id="P1_sleep"></div>
+                    <div class="arena_status frozen" id="P1_frozen"></div>
+                    <div class="arena_status burned" id="P1_burned"></div>
+                    <div class="arena_status confused" id="P1_confused"></div>
+                </div>
+
+                <div class="P2_arena_status" id="P2_status">
+                    <div class="arena_status paralized" id="P2_paralized"></div>
+                    <div class="arena_status sleep" id="P2_sleep"></div>
+                    <div class="arena_status frozen" id="P2_frozen"></div>
+                    <div class="arena_status burned" id="P2_burned"></div>
+                    <div class="arena_status confused" id="P2_confused"></div>
+                </div>
+
+                <div class="P1_arena_Attacks" id="P1_Attacks">
+                    <div class="Attack  " id="P1_attack1"> 
+                        <div class="attack_name" id="P1_attack1_name"> Attack  1 </div> <div class="attack_power" id="P1_attack1_power">3</div> <div class="bonus " id="P1_atk1_bonus"> </div>
+                     </div>
+                     <div class="Attack " id="P1_attack2"> 
+                        <div class="attack_name" id="P1_attack2_name" > Attack  1 </div> <div class="attack_power" id="P1_attack2_power">3</div> <div class="bonus" id="P1_atk2_bonus"> </div>
+                     </div>
+                     <div class="Attack " id="P1_attack3"> 
+                        <div class="attack_name" id="P1_attack3_name"> Attack  1 </div> <div class="attack_power" id="P1_attack3_power">3</div> <div class="bonus " id="P1_atk3_bonus"> </div>
+                     </div>
+                </div>
+
                 
-
-                <div id="Wild_PokemonFound">
-                    <div class="pokemonfound_name"> Name: <span id="Wild_pokemonfound_name"> Togekiss </span> </div>
-                    <div class="pokemonfound_type"> Type: <span id="Wild_pokemonfound_type"> Fairy</span></div>
-                    <div class="pokemonfound_level">Level: <span id="Wil_dpokemonfound_level"> 2 </span> </div>
-                    <button id="Wild_ConfirmPokemon" type="submit"> Confirm</button>
+                <div class="P2_arena_Attacks" id="P2_Attacks">
+                    <div class="Attack " id="P2_attack1"> 
+                        <div class="attack_name" id="P2_attack1_name"> Attack  1 </div> <div class="attack_power" id="P2_attack1_power">3</div> <div class="bonus2" id="P2_atk1_bonus"> </div>
+                     </div>
+                     <div class="Attack " id="P2_attack2"> 
+                        <div class="attack_name" id="P2_attack2_name" > Attack  1 </div> <div class="attack_power" id="P2_attack2_power">3</div> <div class="bonus2 " id="P2_atk2_bonus"> </div>
+                     </div>
+                     <div class="Attack " id="P2_attack3"> 
+                        <div class="attack_name" id="P2_attack3_name"> Attack  1 </div> <div class="attack_power" id="P2_attack3_power">3</div> <div class="bonus2" id="P2_atk3_bonus"></div>
+                     </div>
                 </div>
-        </div>
+            
 
-        <div class="Menu_Gym_Leadder">
-            <div id="Gym_Leader1" class="leader_Name"> Gym Leader 1</div>
-            <div id="Gym_Leader2" class="leader_Name"> Gym Leader 2</div>
-            <div id="Gym_Leader3" class="leader_Name"> Gym Leader 3</div>
-            <div id="Gym_Leader4" class="leader_Name"> Gym Leader 4</div>
-            <div id="Gym_Leader5" class="leader_Name"> Gym Leader 5</div>
-            <div id="Gym_Leader6" class="leader_Name"> Gym Leader 6</div>
-            <div id="Gym_Leader7" class="leader_Name"> Gym Leader 7</div>
-            <div id="Gym_Leader8" class="leader_Name"> Gym Leader 8</div>
         </div>
+      
 
-        <div class="Menu_Final_Leadder">
-            <div id="Final_Leader1" class="leader_Name"> Elite  1</div>
-            <div id="Final_Leader2" class="leader_Name"> Elite  1</div>
-            <div id="Final_Leader3" class="leader_Name"> Elite  1</div>
-            <div id="Final_Leader4" class="leader_Name"> Elite  1</div>
-            <div id="Final_Leader5" class="leader_Name"> Campeon </div>
-        </div>
+       
+
+       
+
 
 
     </div>
