@@ -17,6 +17,10 @@
     font-family: poke-coins;
     src: url("./fonts/Mario-Party-Hudson-Font.ttf");
   }
+@font-face {
+    font-family: attack-font;
+    src: url("./fonts/NanumPenScript-Regular.ttf");
+  }
   
 .grayed-bg{
     width: 100%;
@@ -159,7 +163,7 @@
     -webkit-text-stroke: 3px rgb(40, 82, 223);
 }
 .Medallas{
-    width: 50%;
+    width: 60%;
     display: flex;
     align-items: center;
     justify-content: right;
@@ -171,14 +175,22 @@
  margin-right: 1rem;
  filter: brightness(30%);
 }
-#badge1:hover,#badge2:hover,#badge3:hover,#badge4:hover,#badge5:hover,#badge6:hover,#badge7:hover,#badge8:hover{
+#Elite{
+    margin-left:  2rem;
+}
+#Elite, #Campion{
+    width: 6rem;
+    margin-right: 1rem;
+    filter: brightness(30%);
+}
+#badge1:hover,#badge2:hover,#badge3:hover,#badge4:hover,#badge5:hover,#badge6:hover,#badge7:hover,#badge8:hover,#Elite:hover, #Campion:hover{
     cursor: pointer;
     transform: scale(1.5);
     filter: brightness(100%);
 
 }
 .coins-one-player{
-    width: 20%;
+    width: 12%;
     display: flex;
     justify-content: right;
     align-items: center;
@@ -205,7 +217,7 @@
     width: 100%;
     justify-content: center;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 0rem;
     
 }
 .One-Pokemon{
@@ -216,9 +228,16 @@
     font-family: "gb-font";
     font-size: 1rem;
     color: #2F3336;
+    align-items: center;
 }
 .No-Pokemon{
     display: none;
+}
+.img-pokemon{
+    height: 8vh;
+    width: 8vh;
+    background-size: contain;
+    margin-right: 1rem;
 }
 .name{
     width: 30%;
@@ -323,9 +342,8 @@ font-size: 1.5rem;
     height: 15vh;
     justify-content: center;
     align-items: center;
-    margin-top: 5rem;
     position: fixed;
-    bottom: 5%;
+    bottom: 0%;
 }
 .Market-one-player{
     width: 30%;
@@ -540,6 +558,26 @@ font-size: 1.5rem;
  
 
 
+ #closeAddPokemon{
+    font-size: 3rem;
+    position: absolute;
+    top: 18%;
+    right: 13%;
+    z-index: 4;
+}
+#closeAddPokemon img{
+    width: 4rem;
+    height: 4rem;
+}
+#closeAddPokemon img:hover{
+    width: 6rem;
+    height: 6rem;
+}
+#closeAddPokemon:hover{
+    cursor: pointer;
+}
+
+
  #closeCOINS{
     font-size: 3rem;
     position: absolute;
@@ -557,6 +595,374 @@ font-size: 1.5rem;
 #closeCOINS:hover{
     cursor: pointer;
 }
+
+/*Battle PHASE */
+.battleWindow{
+    background-image: url("./images/arenaPokemon.jpg_large");
+    background-position-y: bottom;
+    background-size: cover;
+    z-index: 3;
+    display: none;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90vw;
+    height: 90vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border :solid 3px #084dc6;
+}
+
+.Title_battle{
+    font-family: "poke-font";
+    color: rgb(227, 212, 212);
+    -webkit-text-stroke: 3px rgb(241, 13, 13);
+    font-size: 3rem;
+    margin-top: -3rem;
+    
+ }
+.MenuBattle{
+    display: none;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    font-size: 1.5rem;
+    justify-content: space-evenly;
+}
+
+#closeBattle{
+    font-size: 3rem;
+    position: absolute;
+    top: -3%;
+    right: -2%;
+}
+#closeBattle img{
+    width: 4rem;
+    height: 4rem;
+}
+#closcloseBattleeCOINS img:hover{
+    width: 6rem;
+    height: 6rem;
+}
+#closeBattle:hover, .imgBattle:hover{
+    cursor: pointer;
+}
+
+.Battle_arena{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+ 
+}
+.P1_arena_dices{
+    display: none;
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    width: 40%;
+    justify-content: space-between;
+}
+.P2_arena_dices{
+    display: none;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    width: 40%;
+    justify-content: space-between;
+}
+.dice{
+    background-size: contain;
+    width: 5vw;
+    height: 8vh;
+    background-repeat: no-repeat;
+    filter: brightness(30%);
+}
+.dice:hover{
+    filter: brightness(100%);
+    transform: scale(1.5);
+    cursor: pointer;
+}
+.dice1{
+    background-image: url("./images/dices/dice1.png");
+    
+}
+.dice2{
+    background-image: url("./images/dices/dice2.png");
+}
+.dice3{
+    background-image: url("./images/dices/dice3.png");
+}
+.dice4{
+    background-image: url("./images/dices/dice4.png");
+}
+.dice5{
+    background-image: url("./images/dices/dice5.png");
+}
+.dice6{
+    background-image: url("./images/dices/dice6.png");
+}
+
+.P1_arena_status{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    height: 50%;
+    justify-content: space-between;
+    top: 20%;
+    left: 2%;
+}
+.P2_arena_status{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    height: 50%;
+    justify-content: space-between;
+    top: 20%;
+    right: 2%;
+}
+
+.arena_status{
+    background-size: contain;
+    height: 6vh;
+    width: 3vw;
+    background-repeat: no-repeat;
+    filter: brightness(30%);
+    
+}
+.arena_status:hover{
+    cursor: pointer;
+    filter: brightness(100%);
+    transform: scale(1.5);
+    
+}
+
+.paralized{
+    background-image: url("./images/status/paralized.png");
+}
+.sleep{
+    background-image: url("./images/status/sleep.png");
+}
+.frozen{
+    background-image: url("./images/status/frozen.png");
+}
+.burned{
+    background-image: url("./images/status/burned.png");
+}
+.confused{
+    background-image: url("./images/status/confused.png");
+}
+
+.arena_pokemon{
+    height: 35vh;
+    width: 18vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 25%;
+    
+}
+#arena_pokemon1{
+    background-image: url("./images/POKEMON/0094.png");
+    left: 25%;
+}
+#arena_pokemon2{
+    background-image: url("./images/POKEMON/0350.png");
+    right: 20%;
+}
+
+.arena_totals{
+    display: flex;
+    width: 20%;
+    position: absolute;
+    left: 40%;
+    justify-content: space-between;
+    top: -10%;
+    text-align: center;
+
+}
+.arena_total{
+    font-family: "poke-font";
+    color: red;
+    font-size: 5rem;
+}
+
+
+.P1_arena_Attacks{
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 25%;
+    left: 2%;
+}
+.P2_arena_Attacks{
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 25%;
+    right: 2%;
+}
+
+.Attack{
+    border-style: solid;
+    border-color: #444444;
+    background-color: beige;
+    width: 12rem;
+    height: 5vh;
+    padding-left: 1rem;
+    align-items: center;
+    display: flex;
+    font-family:"attack-font";
+    font-size: 2rem;
+    
+}
+.Attack:hover{
+    cursor: pointer;
+    transform: scale(1.5);
+}
+.attack_name{
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.bonus{
+    position: absolute;
+    right: -3rem;
+    font-size: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 2vw;
+    height: 3.5vh;
+    align-items: center;
+    display: flex;
+    
+}
+.bonus2{
+    position: absolute;
+    left: -3rem;
+    font-size: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 2vw;
+    height: 3.5vh;
+    align-items: center;
+    display: flex;
+}
+.bonus_plus{
+    color: white;
+    border-style: solid;
+    background-color: #18b058;
+}
+.bonus_minus{
+    color: white;
+    border-style: solid;
+    background-color:  #cf3131;
+}
+
+.NORMAL{
+    border-color: #9099A1;
+    color: #9099A1;
+}
+.GRASS{
+    border-color: #63BB5B;
+    color: #63BB5B;
+}
+.FIRE{
+    border-color: #FF9C54;
+    color: #FF9C54
+}
+.WATER{
+    border-color: #4D90D5;
+    color: #4D90D5;
+}
+.FIGHTING{
+    border-color: #CE4069;
+    color: #CE4069;
+}
+.FLYING{
+    border-color: #8FA8DD;
+    color: #8FA8DD;
+}
+.POISON{
+    border-color: #AB6AC8;
+    color: #AB6AC8;
+}
+.GROUND{
+    border-color: #D97746;
+    color: #D97746;
+}
+.ROCK{
+    border-color: #C7B78B;
+    color: #C7B78B;
+}
+.GHOST{
+    border-color: #5269AC;
+    color: #5269AC;
+}
+.ELECTRIC{
+    border-color: #F3D23B;
+    color: #F3D23B;
+}
+.PSYCHIC{
+    border-color: #F97176;
+    color: #F97176;
+}
+.DRAGON{
+    border-color: #0A6DC4;
+    color: #0A6DC4;
+}
+.DARK{
+    border-color: #5A5366;
+    color: #5A5366;
+}
+.STEAL{
+    border-color: #5A8EA1;
+    color: #5A8EA1;
+}
+.FAIRY{
+    border-color: #EC8FE6;
+    color: #EC8FE6;
+}
+.ICE{
+    border-color: #74CEC0;
+    color: #74CEC0;
+}
+.BUG{
+    border-color: #90C12C;
+    color: #90C12C;
+}
+
+.Pokemon_suma1{
+    display: flex;
+    font-family: "attack-font";
+    font-size: 2rem;
+    position: absolute;
+    top: 65%;
+    left: 15%;
+    width: 30%;
+    justify-content: space-between;
+    text-align: center;    
+}
+
+.Pokemon_suma2{
+    display: flex;
+    font-family: "attack-font";
+    font-size: 2rem;
+    position: absolute;
+    top: 65%;
+    right: 15%;
+    width: 30%;
+    justify-content: space-between;
+    text-align: center;    
+}
+
+
+
+
 /*Market  PHASE */
 
 .Buy-market-window{
@@ -700,6 +1106,17 @@ font-size: 1.5rem;
 
 }
 
+.Pokemon-Found-image{
+    width: 12vw;
+    height: 20vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    justify-self: center;
+    margin: auto;
+    display: flex;
+
+}
+
 .pokemonfound_name, .pokemonfound_type,.pokemonfound_level{
     font-size: 2rem;
     font-family: "gb-font";
@@ -804,3 +1221,35 @@ font-size: 1.5rem;
     cursor: pointer;
     transform: scale(1.5);
 }
+
+#cronometro{
+    display: flex;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    font-family: "poke-font";
+    font-size: 2rem;
+    color: #084dc6;
+
+}
+
+.evolve{
+    display: none;
+    background-image: url("./images/Evolution_icon.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 5vw;
+    height: 5vh;
+    position: absolute;
+    right: 5%;
+}
+.evolve:hover{
+    cursor: pointer;
+    transform: scale(1.5);
+}
+
+#pokemon-titles{
+    margin-left: 6rem;
+}
+
+
