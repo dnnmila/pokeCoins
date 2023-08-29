@@ -1032,10 +1032,40 @@ function sentData(Game) {
 /* BATTLE FUCTION */
 
 function battle_pokemon(Pokemon1,Pokemon2){
-    var P1Bonus1 = checkBonusType(Pokemon1.attack1.tipo,Pokemon2.tipo);
-    var P1Bonus2 = checkBonusType(Pokemon1.attack2.tipo,Pokemon2.tipo);
-    var P2Bonus1 = checkBonusType(Pokemon2.attack1.tipo,Pokemon1.tipo);
-    var P2Bonus2 = checkBonusType(Pokemon2.attack2.tipo,Pokemon1.tipo);
+    var Tipo1= Pokemon1.tipo;
+    var Tipo2= Pokemon2.tipo;
+    var Nivel1 = Pokemon1.nivel;
+    var Nivel2 = Pokemon2.nivel;
+    var Estatus1 = Pokemon1.estatus;
+    var Estatus2 = Pokemon2.estatus;
+    var Attached1= Pokemon1.attached;
+    var Attached2= Pokemon2.attached;
+    var P1_Atkl = Pokemon1.attack1;
+    var P1_Atk2 = Pokemon1.attack2;
+    var P2_Atkl = Pokemon2.attack1;
+    var P2_Atk2 = Pokemon2.attack2;
+    var AttackSelected1 = "";
+    var AttackSelected2 = "";
+    var Total1=0;
+    var Total2=0;
+    var Dice1=0;
+    var Dice2=0;
+    var Bonus1=0;
+    var Bonus2 =0;
+    var Atk1_Power=0;
+    var Atk2_Power=0;
+    var Extra1=0;
+    var Extra2=0
+    var Bonus1_selected=0;
+    var Bonus2_selected=0;
+
+
+
+
+    var P1Bonus1 = checkBonusType(P1_Atkl.tipo,Tipo2);
+    var P1Bonus2 = checkBonusType(P1_Atk2.tipo ,Tipo2);
+    var P2Bonus1 = checkBonusType(P2_Atkl.tipo,Tipo1);
+    var P2Bonus2 = checkBonusType(P2_Atk2 .tipo,Tipo1);
 
     var P1_atk1_bonusLabel = document.getElementById("P1_atk1_bonus");
     P1_atk1_bonusLabel.textContent="";
@@ -1073,10 +1103,10 @@ function battle_pokemon(Pokemon1,Pokemon2){
     const P2_Atk1_button = document.getElementById("P2_attack1");
     const P2_Atk2_button = document.getElementById("P2_attack2");
     const P2_Atk3_button = document.getElementById("P2_attack3");
-    actualizarClasesTipo(P1_Atk1_button,Pokemon1.attack1.tipo);
-    actualizarClasesTipo(P1_Atk2_button,Pokemon1.attack2.tipo);
-    actualizarClasesTipo(P2_Atk1_button,Pokemon2.attack1.tipo);
-    actualizarClasesTipo(P2_Atk2_button,Pokemon2.attack2.tipo);
+    actualizarClasesTipo(P1_Atk1_button,P1_Atkl.tipo);
+    actualizarClasesTipo(P1_Atk2_button,P1_Atk2.tipo);
+    actualizarClasesTipo(P2_Atk1_button,P2_Atkl.tipo);
+    actualizarClasesTipo(P2_Atk2_button,P2_Atk2.tipo);
     P1_Atk1_button.style.display="flex";
     P1_Atk2_button.style.display="flex";
     P2_Atk1_button.style.display="none";
@@ -1097,13 +1127,10 @@ function battle_pokemon(Pokemon1,Pokemon2){
 
      
 
-    
+     Total1= Nivel1; 
+     Total2= Nivel2;
 
-     var P1_total= Pokemon1.nivel;
-     var Dice1=0;
-     var P2_total = Pokemon2.nivel;
-     var Dice2=0;
-     actualizarTotales(P1_total,P2_total);
+    actualizarTotales(Total1,Total2);
     const Image1 = document.getElementById("arena_pokemon1");
     const Image2 = document.getElementById("arena_pokemon2");
     Image1.style.backgroundImage = `url("./images/POKEMON/0${Pokemon1.pokedex}.png")`;
@@ -1119,10 +1146,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
     const P2_atk2_name = document.getElementById("P2_attack2_name").textContent = Pokemon2.attack2.nombre;
     const P2_atk2_strength = document.getElementById("P2_attack2_power").textContent = Pokemon2.attack2.strength;
     
-    var P1AttackSelected;
-    var P2AttackSelected;
-    var P1Bonus=0;
-    var P2Bonus=0;
+   
 
 
     function displayPt2(){
@@ -1140,54 +1164,66 @@ function battle_pokemon(Pokemon1,Pokemon2){
     }
 
     P1_Atk1_button.addEventListener('click',()=>{
-        P1AttackSelected = Pokemon1.attack1;
-        P1_total = Pokemon1.nivel + Pokemon1.attack1.strength + P1Bonus1;
-        console.log("P1 Totla" + P1_total);
+        AttackSelected1 = P1_Atkl;
+        Bonus1 = P1Bonus1;
+        Bonus1_selected  = P1Bonus1;
+        Atk1_Power= AttackSelected1 .strength;
+        Total1 = Nivel1 + Atk1_Power + Bonus1;
+        console.log("P1 Totla: " + Total1);
         P1_Atk1_button.style.display="none";
         P1_Atk2_button.style.display="none";
         P1_Atk3_button.style.display="none";
         P2_Atk1_button.style.display="flex";
         P2_Atk2_button.style.display="flex";
-        actualizarTotales(P1_total,P2_total);
-        P1Bonus=P1Bonus1;
+        actualizarTotales(Total1,Total2);
 
     })
 
     P1_Atk2_button.addEventListener('click',()=>{
-        P1AttackSelected = Pokemon1.attack2;
-        P1_total = Pokemon1.nivel + Pokemon1.attack2.strength + P1Bonus2;
-        console.log("P1 Totla" + P1_total);
+        AttackSelected1 = P1_Atk2;
+        Bonus1 = P1Bonus2;
+        Bonus1_selected  = P1Bonus2;
+        Atk1_Power= AttackSelected1 .strength;
+        Total1 = Nivel1 + Atk1_Power + Bonus1;
+        console.log("P1 Total: " + Total1);
         P1_Atk1_button.style.display="none";
         P1_Atk2_button.style.display="none";
         P1_Atk3_button.style.display="none";
         P2_Atk1_button.style.display="flex";
         P2_Atk2_button.style.display="flex";
-        actualizarTotales(P1_total,P2_total);
-        P1Bonus=P1Bonus2;
+        actualizarTotales(Total1,Total2);
+   
     })
 
     P2_Atk1_button.addEventListener('click',()=>{
-        P2AttackSelected = Pokemon2.attack1;
-        P2_total = Pokemon2.nivel + Pokemon2.attack1.strength +P2Bonus1 ;
-        console.log("P2 Totla" + P2_total);
+        AttackSelected2 = P2_Atkl;
+        Bonus2 = P2Bonus1;
+        Bonus2_selected  = P2Bonus1;
+        Atk2_Power= AttackSelected2 .strength;
+        Total2 = Nivel2 + Atk2_Power + Bonus2;
+        console.log("P2 Total: " + Total2);
         P2_Atk1_button.style.display="none";
         P2_Atk2_button.style.display="none";
         P2_Atk3_button.style.display="none";
-        actualizarTotales(P1_total,P2_total);
+        actualizarTotales(Total1,Total2);
         displayPt2();
-        P2Bonus=P2Bonus1;
+        updateTotales(Total1,Total2,Pokemon1,Pokemon2,Dice1,Dice2,Bonus1,Bonus2);
+
     })
 
     P2_Atk2_button.addEventListener('click',()=>{
-        P2AttackSelected = Pokemon2.attack2;
-        P2_total = Pokemon2.nivel + Pokemon2.attack2.strength + P2Bonus2;
-        console.log("P2 Totla" + P2_total);
+        AttackSelected2 = P2_Atk2;
+        Bonus2 = P2Bonus2;
+        Bonus2_selected  = P2Bonus2;
+        Atk2_Power= AttackSelected2 .strength;
+        Total2 = Nivel2 + Atk2_Power + Bonus2;
+        console.log("P2 Total: " + Total2);
         P2_Atk1_button.style.display="none";
         P2_Atk2_button.style.display="none";
         P2_Atk3_button.style.display="none";
-        actualizarTotales(P1_total,P2_total);
+        actualizarTotales(Total1,Total2);
         displayPt2();
-        P2Bonus=P2Bonus2;
+        updateTotales(Total1,Total2,Pokemon1,Pokemon2,Dice1,Dice2,Bonus1,Bonus2);
     })
 
 
@@ -1204,67 +1240,123 @@ function battle_pokemon(Pokemon1,Pokemon2){
     P2_burned = document.getElementById("P2_burned");
     P2_confused = document.getElementById("P2_confused");
 
-    function CalcularTotales(nivel,attack,status1, status2,P1dice,P2dice,Bonus){
-        if (status1 == "Paralized" || status1== "Sleep" ||  status1 == "Frozen"){
-            if(status2 =="Confused"){
-                return nivel + P1dice +P2dice;
+    function CalcularTotales(player){
+        if (player == "P1"){
+            if (Estatus1 == "Paralized" || Estatus1== "Sleep" ||  Estatus1 == "Frozen"){
+                Atk1_Power= 0;
+                Bonus1 = 0;
+                Total1 = Nivel1 + Atk1_Power + Dice1 +Extra1;
+                console.log("Paralized , total : " + Total1);
             }
-            else{
-                return nivel + P1dice;
+            if (Estatus1== "Burned"){
+                Atk1_Power= AttackSelected1 .strength;
+                Bonus1 = Bonus1_selected;
+                Total1 = (Nivel1 + Atk1_Power + Bonus1 + Dice1 + Extra1)-1;
+                console.log("Burned Total 1: " + Total1);
+            }
+            if(Estatus1== "Confused"){
+                if (Dice1 == 1  || Dice1 == 3   || Dice1 == 5){
+                    Extra2 = Dice1;
+                    Atk1_Power= AttackSelected1 .strength;
+                    Bonus1 = Bonus1_selected;
+                    Total1 = Nivel1 + Atk1_Power + Bonus1 + Dice1 + Extra1;
+                    console.log("confused Total 1: " + Total1);
+                }
+                else{
+                    Extra2 =0;
+                    Atk1_Power= AttackSelected1 .strength;
+                    Bonus1 = Bonus1_selected;
+                    Total1 = Nivel1 + Atk1_Power + Bonus1 + Dice1 + Extra1;
+                    console.log("confused Total 1: " + Total1);
+                }
+               
+            }
+
+            if (Estatus1== "Normal"){
+                Atk1_Power= AttackSelected1 .strength;
+                Bonus1 = Bonus1_selected;
+                Total1 = Nivel1 + Atk1_Power + Bonus1 + Dice1 + Extra1;
+                console.log("Burned Total 1: " + Total1);
             }}
-        if (status1== "Burned"){
-            if(status2 == "Confused"){
-                return nivel -1 + attack + Bonus + P1dice + P2dice ;
-            }
-            else{
-                return nivel -1 + attack +Bonus + P1dice;
-            } }
-        if (status1 == "Normal"){
-            if(status2 == "Confused"){
-                return nivel + attack + Bonus + P1dice + P2dice;
-            }
-            else{
-                return nivel + attack + Bonus + P1dice;
-            }}
+        if (player == "P2"){
+                if (Estatus2 == "Paralized" || Estatus2== "Sleep" ||  Estatus2 == "Frozen"){
+                    Atk2_Power= 0;
+                    Bonus2=0;
+                    Total2 = Nivel2 + Atk2_Power + Dice2 + Extra2;
+                    console.log("Paralized , total 2 : " + Total2);
+                }
+                if (Estatus2== "Burned"){  
+                    Atk2_Power= AttackSelected2 .strength;
+                    Bonus2 = Bonus2_selected;
+                    Total2 = (Nivel2 + Atk2_Power + Bonus2 + Dice2 + Extra2)-1;
+                    console.log("Burned Total 1: " + Total2);
+                }
+                if(Estatus2== "Confused"){
+                    if (Dice2 == 1  || Dice2 == 3   || Dice2 == 5){
+                        Extra1 = Dice2;
+                        Atk2_Power= AttackSelected2 .strength;
+                        Bonus2 = Bonus2_selected;
+                        Total2 = Nivel2 + Atk2_Power + Bonus2 + Dice2 + Extra2;
+                        console.log("confused Total 2: " + Total2);
+                    }
+                    else{
+                        Extra1 = 0;
+                        Atk2_Power= AttackSelected2 .strength;
+                        Bonus2 = Bonus2_selected;
+                        Total2 = Nivel2 + Atk2_Power + Bonus2 + Dice2 + Extra2;
+                        console.log("confused Total 2: " + Total2);
+
+                    }
+                   
+                }
+    
+                if (Estatus2== "Normal"){
+                    Atk2_Power= AttackSelected2 .strength;
+                    Bonus2 = Bonus2_selected;
+                    Total2 = Nivel2 + Atk2_Power + Bonus2 + Dice2 + Extra2;
+                    console.log("Burned Total 1: " + Total1);
+                }}
+       
+       
     }
 
-    function updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus){
-            P1_total = CalcularTotales(Pokemon1.nivel,P1AttackSelected.strength,Pokemon1.estatus,Pokemon2.estatus,Dice1,Dice2,P1Bonus);
-            P2_total = CalcularTotales(Pokemon2.nivel,P2AttackSelected.strength,Pokemon2.estatus,Pokemon1.estatus,Dice2,Dice1,P2Bonus);
-            actualizarTotales(P1_total,P2_total);
+    function updateTotales(){
+            CalcularTotales("P1");
+            CalcularTotales("P2");
+            actualizarTotales(Total1,Total2);
 
-            var Nivel_suma = document.getElementById("P1Nivel_label").textContent = Pokemon1.nivel;
-            var Attack_suma = document.getElementById("P1Attack_suma_label").textContent = P1AttackSelected.strength;
-            var Bonus_suma = document.getElementById("P1Bonus_label").textContent = P1Bonus;
+            var Nivel_suma = document.getElementById("P1Nivel_label").textContent = Nivel1;
+            var Attack_suma = document.getElementById("P1Attack_suma_label").textContent = Atk1_Power;
+            var Bonus_suma = document.getElementById("P1Bonus_label").textContent = Bonus1;
             var Dice_suma = document.getElementById("P1Dice_suma_label").textContent = Dice1;
-            var Extra_suma = document.getElementById("P1Extra_suma_label").textContent = "0";
+            var Extra_suma = document.getElementById("P1Extra_suma_label").textContent = Extra1;
 
-            var Nivel_suma2 = document.getElementById("P2Nivel_label").textContent = Pokemon2.nivel;
-            var Attack_suma2 = document.getElementById("P2Attack_suma_label").textContent = P2AttackSelected.strength;
-            var Bonus_suma2 = document.getElementById("P2Bonus_label").textContent = P2Bonus;
+            var Nivel_suma2 = document.getElementById("P2Nivel_label").textContent = Nivel2;
+            var Attack_suma2 = document.getElementById("P2Attack_suma_label").textContent = Atk2_Power;
+            var Bonus_suma2 = document.getElementById("P2Bonus_label").textContent = Bonus2;
             var Dice_suma2 = document.getElementById("P2Dice_suma_label").textContent = Dice2;
-            var Extra_suma2 = document.getElementById("P2Extra_suma_label").textContent = "0";
+            var Extra_suma2 = document.getElementById("P2Extra_suma_label").textContent = Extra2;
 
 
 
 
 
-            console.log("Pokemon1 Status " + Pokemon1.estatus + " Nivel " + Pokemon1.nivel + " Attack " + P1AttackSelected.strength + " Bonus " + P1Bonus + " Dice " + Dice1 + " Total " + P1_total);
-            console.log("Pokemon2 Status " + Pokemon2.estatus + " Nivel " + Pokemon2.nivel + " Attack " + P2AttackSelected.strength + " Bonus " + P2Bonus + " Dice " + Dice2 + " Total " + P2_total);
+            console.log("Pokemon1 Status " + Estatus1 + " Nivel " + Nivel1 + " Attack " + Atk1_Power + " Bonus " + Bonus1 + " Dice " + Dice1 + " Total " + Total1);
+            console.log("Pokemon2 Status " + Estatus2 + " Nivel " + Nivel2 + " Attack " + Atk2_Power + " Bonus " + Bonus2 + " Dice " + Dice2 + " Total " + Total2);
         }
 
     
 
     P1_paralized.addEventListener('click',()=>{
-        if(Pokemon1.estatus != "Paralized"){
+        if(Estatus1 != "Paralized"){
             P1_paralized.style.filter = "brightness(100%)";
             P1_sleep.style.filter = "brightness(30%)";
             P1_frozen.style.filter = "brightness(30%)";
             P1_burned.style.filter = "brightness(30%)";
             P1_confused.style.filter = "brightness(30%)";
-            Pokemon1.estatus = "Paralized";
-            console.log(Pokemon1.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus1 = "Paralized";
+            console.log(Estatus1);
+            updateTotales();
             
         }
         else{
@@ -1273,21 +1365,21 @@ function battle_pokemon(Pokemon1,Pokemon2){
             P1_frozen.style.filter = "brightness(30%)";
             P1_burned.style.filter = "brightness(30%)";
             P1_confused.style.filter = "brightness(30%)";
-            Pokemon1.estatus = "Normal";
-            console.log(Pokemon1.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus1 = "Normal";
+            console.log(Estatus1);
+            updateTotales();
         }
     })
     P1_sleep.addEventListener('click',()=>{
-        if(Pokemon1.estatus != "Sleep"){
+        if(Estatus1 != "Sleep"){
             P1_paralized.style.filter = "brightness(30%)";
             P1_sleep.style.filter = "brightness(100%)";
             P1_frozen.style.filter = "brightness(30%)";
             P1_burned.style.filter = "brightness(30%)";
             P1_confused.style.filter = "brightness(30%)";
-            Pokemon1.estatus = "Sleep";
-            console.log(Pokemon1.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus1 = "Sleep";
+            console.log(Estatus1);
+            updateTotales();
         }
         else{
             P1_paralized.style.filter = "brightness(30%)";
@@ -1295,21 +1387,21 @@ function battle_pokemon(Pokemon1,Pokemon2){
             P1_frozen.style.filter = "brightness(30%)";
             P1_burned.style.filter = "brightness(30%)";
             P1_confused.style.filter = "brightness(30%)";
-            Pokemon1.estatus = "Normal";
-            console.log(Pokemon1.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus1 = "Normal";
+            console.log(Estatus1);
+            updateTotales();
         }
     })
     P1_frozen.addEventListener('click',()=>{
-        if(Pokemon1.estatus != "Frozen"){
+        if(Estatus1 != "Frozen"){
             P1_paralized.style.filter = "brightness(30%)";
             P1_sleep.style.filter = "brightness(30%)";
             P1_frozen.style.filter = "brightness(100%)";
             P1_burned.style.filter = "brightness(30%)";
             P1_confused.style.filter = "brightness(30%)";
-            Pokemon1.estatus = "Frozen";
-            console.log(Pokemon1.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus1 = "Frozen";
+            console.log(Estatus1);
+            updateTotales();
         }
         else{
             P1_paralized.style.filter = "brightness(30%)";
@@ -1317,21 +1409,21 @@ function battle_pokemon(Pokemon1,Pokemon2){
             P1_frozen.style.filter = "brightness(30%)";
             P1_burned.style.filter = "brightness(30%)";
             P1_confused.style.filter = "brightness(30%)";
-            Pokemon1.estatus = "Normal";
-            console.log(Pokemon1.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus1 = "Normal";
+            console.log(Estatus1);
+            updateTotales();
         }
     })
     P1_burned.addEventListener('click',()=>{
-        if(Pokemon1.estatus != "Burned"){
+        if(Estatus1 != "Burned"){
             P1_paralized.style.filter = "brightness(30%)";
             P1_sleep.style.filter = "brightness(30%)";
             P1_frozen.style.filter = "brightness(30%)";
             P1_burned.style.filter = "brightness(100%)";
             P1_confused.style.filter = "brightness(30%)";
-            Pokemon1.estatus = "Burned";
-            console.log(Pokemon1.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus1 = "Burned";
+            console.log(Estatus1);
+            updateTotales();
         }
         else{
             P1_paralized.style.filter = "brightness(30%)";
@@ -1339,21 +1431,21 @@ function battle_pokemon(Pokemon1,Pokemon2){
             P1_frozen.style.filter = "brightness(30%)";
             P1_burned.style.filter = "brightness(30%)";
             P1_confused.style.filter = "brightness(30%)";
-            Pokemon1.estatus = "Normal";
-            console.log(Pokemon1.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus1 = "Normal";
+            console.log(Estatus1);
+            updateTotales();
         }
     })
     P1_confused.addEventListener('click',()=>{
-        if(Pokemon1.estatus != "Confused"){
+        if(Estatus1 != "Confused"){
             P1_paralized.style.filter = "brightness(30%)";
             P1_sleep.style.filter = "brightness(30%)";
             P1_frozen.style.filter = "brightness(30%)";
             P1_burned.style.filter = "brightness(30%)";
             P1_confused.style.filter = "brightness(100%)";
-            Pokemon1.estatus = "Confused";
-            console.log(Pokemon1.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus1 = "Confused";
+            console.log(Estatus1);
+            updateTotales();
         }
         else{
             P1_paralized.style.filter = "brightness(30%)";
@@ -1361,22 +1453,22 @@ function battle_pokemon(Pokemon1,Pokemon2){
             P1_frozen.style.filter = "brightness(30%)";
             P1_burned.style.filter = "brightness(30%)";
             P1_confused.style.filter = "brightness(30%)";
-            Pokemon1.estatus = "Normal";
-            console.log(Pokemon1.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus1 = "Normal";
+            console.log(Estatus1);
+            updateTotales();
         }
     })
 
     P2_paralized.addEventListener('click',()=>{
-        if(Pokemon2.estatus != "Paralized"){
+        if(Estatus2 != "Paralized"){
             P2_paralized.style.filter = "brightness(100%)";
             P2_sleep.style.filter = "brightness(30%)";
             P2_frozen.style.filter = "brightness(30%)";
             P2_burned.style.filter = "brightness(30%)";
             P2_confused.style.filter = "brightness(30%)";
-            Pokemon2.estatus = "Paralized";
-            console.log(Pokemon2.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus2 = "Paralized";
+            console.log(Estatus2);
+            updateTotales();
         }
         else{
             P2_paralized.style.filter = "brightness(30%)";
@@ -1384,21 +1476,21 @@ function battle_pokemon(Pokemon1,Pokemon2){
             P2_frozen.style.filter = "brightness(30%)";
             P2_burned.style.filter = "brightness(30%)";
             P2_confused.style.filter = "brightness(30%)";
-            Pokemon2.estatus = "Normal";
-            console.log(Pokemon2.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus2 = "Normal";
+            console.log(Estatus2);
+            updateTotales();
         }
     })
     P2_sleep.addEventListener('click',()=>{
-        if(Pokemon2.estatus != "Sleep"){
+        if(Estatus2 != "Sleep"){
             P2_paralized.style.filter = "brightness(30%)";
             P2_sleep.style.filter = "brightness(100%)";
             P2_frozen.style.filter = "brightness(30%)";
             P2_burned.style.filter = "brightness(30%)";
             P2_confused.style.filter = "brightness(30%)";
-            Pokemon2.estatus = "Sleep";
-            console.log(Pokemon2.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus2 = "Sleep";
+            console.log(Estatus2);
+            updateTotales();
         }
         else{
             P2_paralized.style.filter = "brightness(30%)";
@@ -1406,21 +1498,21 @@ function battle_pokemon(Pokemon1,Pokemon2){
             P2_frozen.style.filter = "brightness(30%)";
             P2_burned.style.filter = "brightness(30%)";
             P2_confused.style.filter = "brightness(30%)";
-            Pokemon2.estatus = "Normal";
-            console.log(Pokemon2.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus2 = "Normal";
+            console.log(Estatus2);
+            updateTotales();
         }
     })
     P2_frozen.addEventListener('click',()=>{
-        if(Pokemon2.estatus != "Frozen"){
+        if(Estatus2 != "Frozen"){
             P2_paralized.style.filter = "brightness(30%)";
             P2_sleep.style.filter = "brightness(30%)";
             P2_frozen.style.filter = "brightness(100%)";
             P2_burned.style.filter = "brightness(30%)";
             P2_confused.style.filter = "brightness(30%)";
-            Pokemon2.estatus = "Frozen";
-            console.log(Pokemon2.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus2 = "Frozen";
+            console.log(Estatus2);
+            updateTotales();
         }
         else{
             P2_paralized.style.filter = "brightness(30%)";
@@ -1428,21 +1520,21 @@ function battle_pokemon(Pokemon1,Pokemon2){
             P2_frozen.style.filter = "brightness(30%)";
             P2_burned.style.filter = "brightness(30%)";
             P2_confused.style.filter = "brightness(30%)";
-            Pokemon2.estatus = "Normal";
-            console.log(Pokemon2.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus2 = "Normal";
+            console.log(Estatus2);
+            updateTotales();
         }
     })
     P2_burned.addEventListener('click',()=>{
-        if(Pokemon2.estatus != "Burned"){
+        if(Estatus2 != "Burned"){
             P2_paralized.style.filter = "brightness(30%)";
             P2_sleep.style.filter = "brightness(30%)";
             P2_frozen.style.filter = "brightness(30%)";
             P2_burned.style.filter = "brightness(100%)";
             P2_confused.style.filter = "brightness(30%)";
-            Pokemon2.estatus = "Burned";
-            console.log(Pokemon2.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus2 = "Burned";
+            console.log(Estatus2);
+            updateTotales();
         }
         else{
             P2_paralized.style.filter = "brightness(30%)";
@@ -1450,21 +1542,21 @@ function battle_pokemon(Pokemon1,Pokemon2){
             P2_frozen.style.filter = "brightness(30%)";
             P2_burned.style.filter = "brightness(30%)";
             P2_confused.style.filter = "brightness(30%)";
-            Pokemon2.estatus = "Normal";
-            console.log(Pokemon2.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus2 = "Normal";
+            console.log(Estatus2);
+            updateTotales();
         }
     })
     P2_confused.addEventListener('click',()=>{
-        if(Pokemon2.estatus != "Confused"){
+        if(Estatus2 != "Confused"){
             P2_paralized.style.filter = "brightness(30%)";
             P2_sleep.style.filter = "brightness(30%)";
             P2_frozen.style.filter = "brightness(30%)";
             P2_burned.style.filter = "brightness(30%)";
             P2_confused.style.filter = "brightness(100%)";
-            Pokemon2.estatus = "Confused";
-            console.log(Pokemon2.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus2 = "Confused";
+            console.log(Estatus2);
+            updateTotales();
         }
         else{
             P2_paralized.style.filter = "brightness(30%)";
@@ -1472,9 +1564,9 @@ function battle_pokemon(Pokemon1,Pokemon2){
             P2_frozen.style.filter = "brightness(30%)";
             P2_burned.style.filter = "brightness(30%)";
             P2_confused.style.filter = "brightness(30%)";
-            Pokemon2.estatus = "Normal";
-            console.log(Pokemon2.estatus);
-            updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+            Estatus2 = "Normal";
+            console.log(Estatus2);
+            updateTotales();
         }
     })
 
@@ -1507,7 +1599,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
 
     P1_dice1.addEventListener('click',()=>{
         Dice1 =1;
-        updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+        updateTotales();
         P1_dice1.style.filter = "brightness(100%)";
         P1_dice2.style.filter = "brightness(30%)";
         P1_dice3.style.filter = "brightness(30%)";
@@ -1517,7 +1609,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
     })
     P1_dice2.addEventListener('click',()=>{
         Dice1 =2;
-        updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+        updateTotales();
         P1_dice1.style.filter = "brightness(30%)";
         P1_dice2.style.filter = "brightness(100%)";
         P1_dice3.style.filter = "brightness(30%)";
@@ -1527,7 +1619,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
     })
     P1_dice3.addEventListener('click',()=>{
         Dice1 =3;
-        updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+        updateTotales();
         P1_dice1.style.filter = "brightness(30%)";
         P1_dice2.style.filter = "brightness(30%)";
         P1_dice3.style.filter = "brightness(100%)";
@@ -1537,7 +1629,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
     })
     P1_dice4.addEventListener('click',()=>{
         Dice1 =4;
-        updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+        updateTotales();
         P1_dice1.style.filter = "brightness(30%)";
         P1_dice2.style.filter = "brightness(30%)";
         P1_dice3.style.filter = "brightness(30%)";
@@ -1547,7 +1639,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
     })
     P1_dice5.addEventListener('click',()=>{
         Dice1 =5;
-        updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+        updateTotales();
         P1_dice1.style.filter = "brightness(30%)";
         P1_dice2.style.filter = "brightness(30%)";
         P1_dice3.style.filter = "brightness(30%)";
@@ -1557,7 +1649,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
     })
     P1_dice6.addEventListener('click',()=>{
         Dice1 =6;
-        updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+        updateTotales();
         P1_dice1.style.filter = "brightness(30%)";
         P1_dice2.style.filter = "brightness(30%)";
         P1_dice3.style.filter = "brightness(30%)";
@@ -1568,7 +1660,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
 
     P2_dice1.addEventListener('click',()=>{
         Dice2 =1;
-        updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+        updateTotales();
         P2_dice1.style.filter = "brightness(100%)";
         P2_dice2.style.filter = "brightness(30%)";
         P2_dice3.style.filter = "brightness(30%)";
@@ -1578,7 +1670,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
     })
     P2_dice2.addEventListener('click',()=>{
         Dice2 =2;
-        updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+        updateTotales();
         P2_dice1.style.filter = "brightness(30%)";
         P2_dice2.style.filter = "brightness(100%)";
         P2_dice3.style.filter = "brightness(30%)";
@@ -1588,7 +1680,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
     })
     P2_dice3.addEventListener('click',()=>{
         Dice2 =3;
-        updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+        updateTotales();
         P2_dice1.style.filter = "brightness(30%)";
         P2_dice2.style.filter = "brightness(30%)";
         P2_dice3.style.filter = "brightness(100%)";
@@ -1598,7 +1690,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
     })
     P2_dice4.addEventListener('click',()=>{
         Dice2 =4;
-        updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+        updateTotales();
         P2_dice1.style.filter = "brightness(30%)";
         P2_dice2.style.filter = "brightness(30%)";
         P2_dice3.style.filter = "brightness(30%)";
@@ -1608,7 +1700,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
     })
     P2_dice5.addEventListener('click',()=>{
         Dice2 =5;
-        updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+        updateTotales();
         P2_dice1.style.filter = "brightness(30%)";
         P2_dice2.style.filter = "brightness(30%)";
         P2_dice3.style.filter = "brightness(30%)";
@@ -1618,7 +1710,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
     })
     P2_dice6.addEventListener('click',()=>{
         Dice2 =6;
-        updateTotales(P1_total,P2_total,Pokemon1,Pokemon2,Dice1,Dice2,P1Bonus,P2Bonus);
+        updateTotales();
         P2_dice1.style.filter = "brightness(30%)";
         P2_dice2.style.filter = "brightness(30%)";
         P2_dice3.style.filter = "brightness(30%)";
@@ -1736,18 +1828,18 @@ function checkBonusType(Attack_type,PkmRival_type){
 
 document.addEventListener("DOMContentLoaded", function(event) {
     //código a ejecutar cuando existe la certeza de que el DOM está listo para recibir acciones
-        const audio = new Audio('./music/intro.mp3');
-        const audio2 = new Audio('./music/map.mp3');
+        // const audio = new Audio('./music/intro.mp3');
+        // const audio2 = new Audio('./music/map.mp3');
         document.addEventListener('click',()=>{
            
             
-            audio.currentTime = 1;
-            audio.play();
+            // audio.currentTime = 1;
+            // audio.play();
             buttonStartMenu.addEventListener('click',()=>{
                 startMenu.style.display="none";
                 
-                audio.pause();
-                audio2.play();
+                // audio.pause();
+                // audio2.play();
             })
         
         }, {once : true});
@@ -1867,7 +1959,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         OnePlayerMenu.style.display="block";
         Game.jugadores[Game.turnoActual].sumarMonedas(1);
         MainBOX.style.backgroundImage="url('./images/wallpaper.jpg')";
-        audio2.pause();
+        // audio2.pause();
         PaginaOnePlayer(Game);
         startTimer(Game);
         }
@@ -2727,7 +2819,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const BattleMainWindow = document.getElementById("MainBattle");
 
     BattleButton.addEventListener('click', ()=>{
-        battle_pokemon(Game.jugadores[0].pokemons[0],Game.jugadores[1].pokemons[0]);
+       // battle_pokemon(Game.jugadores[0].pokemons[0],Game.jugadores[1].pokemons[0]);
         BattleMainWindow.style.display="flex";
     })
     const closeBattleButton = document.getElementById("closeBattle");
@@ -2767,6 +2859,94 @@ document.addEventListener("DOMContentLoaded", function(event) {
     evolve6.addEventListener('click',()=>{
         evolvePokemon(Game,5);
     })
+
+
+
+
+
+
+    const battleTrainer_button = document.getElementById("Trainer_battle");
+    
+
+    battleTrainer_button.addEventListener('click', ()=>{
+        const MenuBatle = document.getElementById("MenuBattle");
+        MenuBatle.style.display="none";
+        const ListTrainers = document.getElementById("List_Trainers");
+
+        for(var i =0 ; i< Game.jugadores.length;i++){
+            if (i != Game.turnoActual){
+                const newDiv = document.createElement("div");
+                newDiv.setAttribute("id",`Trainer_${i+0}`);
+                
+                const nameDiv = document.createElement("div");
+                nameDiv.textContent= Game.jugadores[i].nombre;
+                nameDiv.classList.add("name_trainer")
+
+                const imageDiv = document.createElement("div");
+                imageDiv.style.backgroundImage = `url("./FICHAS/${Game.jugadores[i].nombre}.png")`;
+                imageDiv.classList.add("image_trainer");
+                imageDiv.setAttribute("id",`ImgTrainer_${i+0}`);
+
+                newDiv.appendChild(nameDiv);
+                newDiv.appendChild(imageDiv);
+                newDiv.classList.add("trainer_battle");
+
+                newDiv.addEventListener("click", (e) => {
+                    var id_img =e.target.id;
+                    showPokemons(id_img);
+                  });
+                ListTrainers.appendChild(newDiv);
+
+            }
+        }
+    });
+
+
+    function displayListPokemons(Game, player){
+        const listPokemons = document.getElementById("List_Pokemons");
+        const listTrainers = document.getElementById("List_Trainers");
+        listTrainers.style.display = "none";
+        listPokemons.style.display = "flex";
+        
+         for (var i =0; i < Game.jugadores[player].pokemons.length; i++){
+            console.log(Game.jugadores[player].pokemons[i]);
+            newDiv_Pokemon = document.createElement("div");
+            newDiv_Pokemon.id = `P2_Pokemon_${i+1}`;
+
+            const imageDiv_pkm = document.createElement("div");
+            imageDiv_pkm.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[player].pokemons[i].pokedex}.png")`;
+            imageDiv_pkm.classList.add("image_pkm_list");
+            imageDiv_pkm.setAttribute("id",`P2_Pokemon_${i+1}_image`);
+
+            listPokemons.appendChild(newDiv_Pokemon);
+            listPokemons.appendChild(imageDiv_pkm);
+         }
+        console.log(Game.jugadores[player].pokemons);
+    }
+    function showPokemons (id_img){
+        if (id_img = "ImgTrainer_0"){
+            displayListPokemons(Game,0);
+                    }
+        if (id_img = "ImgTrainer_1"){
+            displayListPokemons(Game,1);
+                    }
+        if (id_img = "ImgTrainer_2"){
+            displayListPokemons(Game,2);
+                    }
+        if (id_img = "ImgTrainer_3"){
+            displayListPokemons(Game,3);
+                    }
+        if (id_img = "ImgTrainer_4"){
+            displayListPokemons(Game,4);
+                    }
+        if (id_img = "ImgTrainer_5"){
+            displayListPokemons(Game,5);
+                    }
+    }
+
+    
+
+
 
 
     

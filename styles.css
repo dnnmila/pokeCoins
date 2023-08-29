@@ -405,7 +405,7 @@ font-size: 1.5rem;
 /*FICHAS*/
 
 #Mila{
-    background-image: url("/FICHAS/mila.png");
+    background-image: url("/FICHAS/Mila.png");
     background-size:contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -413,7 +413,7 @@ font-size: 1.5rem;
 }
 
 #Ablan{
-    background-image: url("/FICHAS/wuicho.png");
+    background-image: url("/FICHAS/Wuicho.png");
     background-size:contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -421,7 +421,7 @@ font-size: 1.5rem;
 }
 
 #Kennys{
-    background-image: url("/FICHAS/kennys.png");
+    background-image: url("/FICHAS/Kennys.png");
     background-size:contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -429,7 +429,7 @@ font-size: 1.5rem;
 }
 
 #Doc{
-    background-image: url("/FICHAS/doc.png");
+    background-image: url("/FICHAS/Doc.png");
     background-size:contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -437,7 +437,7 @@ font-size: 1.5rem;
 }
 
 #Kampis{
-    background-image: url("/FICHAS/kampis.png");
+    background-image: url("/FICHAS/Kampis.png");
     background-size:contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -445,7 +445,7 @@ font-size: 1.5rem;
 }
 
 #Tacho{
-    background-image: url("/FICHAS/tacho.png");
+    background-image: url("/FICHAS/Tacho.png");
     background-size:contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -453,7 +453,7 @@ font-size: 1.5rem;
 }
 
 #Mandito{
-    background-image: url("/FICHAS/mandito.png");
+    background-image: url("/FICHAS/Mandito.png");
     background-size:contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -461,7 +461,7 @@ font-size: 1.5rem;
 }
 
 #Entei{
-    background-image: url("/FICHAS/entei.png");
+    background-image: url("/FICHAS/Entei.png");
     background-size:contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -623,7 +623,7 @@ font-size: 1.5rem;
     
  }
 .MenuBattle{
-    display: none;
+    display: flex;
     align-items: center;
     width: 100%;
     justify-content: center;
@@ -648,11 +648,100 @@ font-size: 1.5rem;
 #closeBattle:hover, .imgBattle:hover{
     cursor: pointer;
 }
+.battle_option{
+    height: 20vh;
+    width: 15vw;
+    filter: brightness(30%);
+}
+
+.battle_option:hover{
+    cursor: pointer;
+    filter: brightness(100%);
+    transform: scale(1.5);
+}
+#Pokemon_battle{
+    background-image: url("./images/battle/WILD.png");
+    background-size: contain;
+    background-position-x: center;
+    background-repeat: no-repeat;
+
+}
+#Trainer_battle{
+    background-image: url("./images/battle/TRAINER.png");
+    background-size: contain;
+    background-position-x: center;
+    background-repeat: no-repeat;
+}
+#Leader_battle{
+    background-image:  url("./images/battle/LEADER.png");
+    background-size: contain;
+    background-position-x: center;
+    background-repeat: no-repeat;
+}
+
+.trainer_battle_menu{
+    display: none;
+}
+
+.Player1_Pokemons{
+    display: none;
+}
+
+.list_trainers{
+    display: flex;
+    width: 85%;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+}
+
+.trainer_battle{
+    
+}
+
+
+
+.trainer_battle :hover{
+ cursor: pointer;
+ transform: scale(1.5);
+}
+
+.name_trainer{
+    font-family: "attack-font";
+    
+}
+
+.image_trainer{
+    width: 10vw;
+    height: 30vh;
+    background-size: contain;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.List_Pokemons{
+    display: none;
+    width: 85%;
+    justify-content: space-evenly;
+    margin-left: -4rem;
+}
+
+.image_pkm_list{
+    width: 15vw;
+    height: 25vh;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
+
+
+
 
 .Battle_arena{
     width: 100%;
     height: 100%;
-    display: flex;
+    display: none;
     position: relative;
  
 }
@@ -1201,6 +1290,7 @@ font-size: 1.5rem;
     height: 50vh;
     position: absolute;
     top: 25%;
+    left: 0%;
 }
 .frontera-list{
     display: flex;

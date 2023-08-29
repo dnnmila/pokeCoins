@@ -230,16 +230,43 @@
     <div class="battleWindow" id="MainBattle">
         <div id="closeBattle"><img src="./images/ICON.png" alt=""></div> 
         <div class="Title_battle">Battle</div> 
-        <div class="MenuBattle">
+        <div class="MenuBattle" id="MenuBattle">
             <div class="battle_option" id="Pokemon_battle">
-                <div class="imgBattle"> Trainer </div>
+                <div class="imgBattle "> Trainer </div>
             </div>
             <div class="battle_option" id="Trainer_battle">
-                <div class="imgBattle">Wild Pokemon</div>
+                <div class="imgBattle ">Wild Pokemon</div>
             </div>
             <div class="battle_option" id="Leader_battle">
-                <div class="imgBattle"> Gym Leader </div>
+                <div class="imgBattle "> Gym Leader </div>
             </div>
+        </div>
+
+        <div class="trainer_battle_menu">
+            <div id="pokedexMain_battle">
+                 <label for="Pokedex_battle">Pokedex #:</label>
+                <input type="number" id="Pokedex_battle" name="pokedex_battle" max="1000" >
+                <button id="SearchPokedex_battle"> Search</button>
+                <div id="Not_Found_battle"> Pokemon not found!!!</div>
+            </div>
+            <div id="PokemonFound_battle">
+                <div class="Pokemon-Found-image" id="pokemonfound_img_battle"></div>
+                <div class="pokemonfound_name"> Name: <span id="pokemonfound_name_battle"> Togekiss </span> </div>
+                <div class="pokemonfound_type"> Type: <span id="pokemonfound_type_battle"> Fairy</span></div>
+                <div class="pokemonfound_level">Level: <span id="pokemonfound_level_battle"> 2 </span> </div>
+                <button id="ConfirmPokemon_battle" type="submit"> Battle</button>
+            </div>
+        </div>
+
+    
+
+        <div class="list_trainers" id="List_Trainers">
+           
+        </div>
+
+
+        <div class="List_Pokemons" id="List_Pokemons">
+           
         </div>
 
 
@@ -381,7 +408,7 @@
 
 
 
-    </div>
+        </div>
 
     </div>
 
