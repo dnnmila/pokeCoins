@@ -2900,7 +2900,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
         }
     });
-
+    
 
     function displayListPokemons(Game, player){
         const listPokemons = document.getElementById("List_Pokemons");
