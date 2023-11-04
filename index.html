@@ -65,9 +65,10 @@
         <div class="pokemons-table">
             <div class="One-Pokemon  " id="pokemon-titles">
                 <div class="name" > Name</div>
+                <div class="status" > Status</div>
                 <div class="type" > Type</div>
                 <div class="level" > Level</div>
-                <div class="status" > Status</div>
+             
                 <div class="plus-level" > +/- </div>
                 <div class="remove" >Remove</div>
             </div>
@@ -75,9 +76,9 @@
         <div class="One-Pokemon No-Pokemon " id="pokemon1">
             <div class="img-pokemon" id="imgPkm1"> </div>
             <div class="name" id="pkm1Name"> nombre</div>
+            <div class="status" id="pkm1Status">estatus</div>
             <div class="type" id="pkm1Type"> typo</div>
             <div class="level" id="pkm1Level"> nivel</div>
-            <div class="status" id="pkm1Status">estatus</div>
             <div class="plus-level" > <button id="pkm1Plus">+</button></div>
             <div class="remove" id="pk1Remove"><button>X</button></div>
             <div class="evolve" id="evolution1"></div>
@@ -86,9 +87,9 @@
         <div class="One-Pokemon No-Pokemon" id="pokemon2">
             <div class="img-pokemon" id="imgPkm2"> </div>
             <div class="name" id="pkm2Name"> nombre</div>
+            <div class="status" id="pkm2Status">estatus</div>
             <div class="type" id="pkm2Type"> typo</div>
             <div class="level" id="pkm2Level"> nivel</div>
-            <div class="status" id="pkm2Status">estatus</div>
             <div class="plus-level"> <button id="pkm2Plus">+</button></div>
             <div class="remove" id="pk2Remove"><button>X</button></div>
             <div class="evolve" id="evolution2"></div>
@@ -97,9 +98,9 @@
         <div class="One-Pokemon No-Pokemon" id="pokemon3">
             <div class="img-pokemon" id="imgPkm3"> </div>
             <div class="name" id="pkm3Name"> nombre</div>
+            <div class="status" id="pkm3Status">estatus</div>
             <div class="type" id="pkm3Type"> typo</div>
             <div class="level" id="pkm3Level"> nivel</div>
-            <div class="status" id="pkm3Status">estatus</div>
             <div class="plus-level"> <button id="pkm3Plus">+</button></div>
             <div class="remove" id="pk3Remove"><button>X</button></div>
             <div class="evolve" id="evolution3"></div>
@@ -108,9 +109,9 @@
         <div class="One-Pokemon No-Pokemon " id="pokemon4">
             <div class="img-pokemon" id="imgPkm4"> </div>
             <div class="name" id="pkm4Name"> nombre</div>
+            <div class="status" id="pkm4Status">estatus</div>
             <div class="type" id="pkm4Type"> typo</div>
             <div class="level" id="pkm4Level"> nivel</div>
-            <div class="status" id="pkm4Status">estatus</div>
             <div class="plus-level"> <button id="pkm4Plus">+</button></div>
             <div class="remove" id="pk4Remove"><button>X</button></div>
             <div class="evolve" id="evolution4"></div>
@@ -119,9 +120,10 @@
         <div class="One-Pokemon No-Pokemon" id="pokemon5">
             <div class="img-pokemon" id="imgPkm5"> </div>
             <div class="name" id="pkm5Name"> </div>
+            <div class="status" id="pkm5Status"></div>
             <div class="type" id="pkm5Type"> </div>
             <div class="level" id="pkm5Level"> </div>
-            <div class="status" id="pkm5Status"></div>
+           
             <div class="plus-level"> <button id="pkm5Plus">+</button></div>
             <div class="remove" id="pk5Remove"><button>X</button></div>
             <div class="evolve" id="evolution5"></div>
@@ -130,9 +132,10 @@
         <div class="One-Pokemon  No-Pokemon" id="pokemon6">
             <div class="img-pokemon" id="imgPkm6"> </div>
             <div class="name" id="pkm6Name"> </div>
+            <div class="status" id="pkm6Status"></div>
             <div class="type" id="pkm6Type"> </div>
             <div class="level" id="pkm6Level"> </div>
-            <div class="status" id="pkm6Status"></div>
+            
             <div class="plus-level"> <button id="pkm6Plus">+</button></div>
             <div class="remove" id="pk6Remove"><button>X</button></div>
             <div class="evolve" id="evolution6"></div>
@@ -232,13 +235,13 @@
         <div class="Title_battle" id="Titlte_Battle">Battle</div> 
         <div class="MenuBattle" id="MenuBattle">
             <div class="battle_option" id="Pokemon_battle">
-                <div class="imgBattle "> Trainer </div>
+                <div class="imgBattle ">  </div>
             </div>
             <div class="battle_option" id="Trainer_battle">
-                <div class="imgBattle ">Wild Pokemon</div>
+                <div class="imgBattle "></div>
             </div>
             <div class="battle_option" id="Leader_battle">
-                <div class="imgBattle "> Gym Leader </div>
+                <div class="imgBattle ">  </div>
             </div>
         </div>
 
@@ -272,6 +275,8 @@
         </div>
 
         <div class="List_MyPokemons" id="List_MyPokemons"></div>
+
+
         <div class="List_Pokemons" id="List_Pokemons">
             <div class="List_Pokemons_player" id="list_Pokemon_Pkm1"></div>
             <div class="List_Pokemons_player" id="list_Pokemon_Pkm2"></div>
@@ -279,13 +284,20 @@
             <div class="List_Pokemons_player" id="list_Pokemon_Pkm4"></div>
             <div class="List_Pokemons_player" id="list_Pokemon_Pkm5"></div>
             <div class="List_Pokemons_player" id="list_Pokemon_Pkm6"></div>
+
+            <div class="List_Pokemons_player_rival" id="list_Pokemon_Pkm1_rival"></div>
+            <div class="List_Pokemons_player_rival" id="list_Pokemon_Pkm2_rival"></div>
+            <div class="List_Pokemons_player_rival" id="list_Pokemon_Pkm3_rival"></div>
+            <div class="List_Pokemons_player_rival" id="list_Pokemon_Pkm4_rival"></div>
+            <div class="List_Pokemons_player_rival" id="list_Pokemon_Pkm5_rival"></div>
+            <div class="List_Pokemons_player_rival" id="list_Pokemon_Pkm6_rival"></div>
            
         </div>
 
 
         <div class="Battle_arena" id="Battle_arena">
             <div class="arena_title"> P1 Select Attack</div>
-            <div class="arena_totals">
+            <div class="arena_totals" id="arena_totales">
                 <div class="arena_total" id="arena_total1">5</div>
                 <div class="arena_total"> -</div>
                 <div class="arena_total" id="arena_total2">7</div>

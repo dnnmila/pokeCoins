@@ -690,15 +690,47 @@ font-size: 1.5rem;
 
 .list_trainers{
     display: flex;
-    width: 85%;
+    width: 95%;
     justify-content: space-between;
     margin-top: 1rem;
 
 }
-
-.trainer_battle{
-    
+.list_trainer_player{
+    width: 10vw;
+    height: 20vh;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
+
+.list_trainer_player:hover{
+transform: scale(1.5);
+cursor: pointer;
+}
+.List_Pokemons{
+    display: none;
+    width: 95%;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.List_Pokemons_player{
+    width: 10vw;
+    height: 20vh;
+    background-size: contain;
+    background-repeat: no-repeat; 
+}
+.List_Pokemons_player:hover{
+    transform: scale(1.5);
+cursor: pointer;
+}
+
+.List_Pokemons_player_rival{
+    display: none;
+    width: 10vw;
+    height: 20vh;
+    background-size: contain;
+    background-repeat: no-repeat; 
+}
+
 
 
 
@@ -876,6 +908,8 @@ font-size: 1.5rem;
     font-family: "poke-font";
     color: red;
     font-size: 5rem;
+    width: 6rem;
+    overflow: hidden;
 }
 
 

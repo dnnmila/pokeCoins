@@ -1035,6 +1035,11 @@ function battle_pokemon(Pokemon1,Pokemon2){
     const Battle_arena = document.getElementById("Battle_arena");
     const List_Pokemons = document.getElementById("List_Pokemons");
     const Titlte_Battle = document.getElementById("Titlte_Battle");
+    let Pokemon1_suma = document.getElementById("Pokemon1_suma");
+    let Pokemon2_suma = document.getElementById("Pokemon2_suma");
+    Pokemon1_suma.style.display="none";
+    Pokemon2_suma.style.display="none";
+
     List_Pokemons.style.display ="none";
     Titlte_Battle.style.display="none";
     Battle_arena.style.display="flex";
@@ -1124,8 +1129,15 @@ function battle_pokemon(Pokemon1,Pokemon2){
     
 
      function actualizarTotales (Total1, Total2){
-        var Total1_label = document.getElementById("arena_total1").textContent=Total1;
-        var Total2_label = document.getElementById("arena_total2").textContent=Total2;
+        let arena_totales = document.getElementById("arena_totales");
+        let Total1_label = document.getElementById("arena_total1");
+        let Total2_label = document.getElementById("arena_total2");
+        Total1_label.textContent="";
+        Total2_label.textContent="";
+        arena_totales.style.display="none";
+        Total1_label.textContent=Total1;
+        Total2_label.textContent=Total2;
+        arena_totales.style.display="flex";
         
      }
      function actualizarClasesTipo(elemento, tipo){
@@ -1161,6 +1173,9 @@ function battle_pokemon(Pokemon1,Pokemon2){
         P2_dices_buttons = document.getElementById("P2_dices").style.display="flex";
         P1_status_buttons = document.getElementById("P1_status").style.display="flex";
         P2_status_buttons = document.getElementById("P2_status").style.display="flex";
+        Pokemon1_suma.style.display="flex";
+        Pokemon2_suma.style.display="flex";
+
 
     }
     function hideDices(){
@@ -2824,15 +2839,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     const BattleButton = document.getElementById("PokeBattle");
     const BattleMainWindow = document.getElementById("MainBattle");
+    const Battle_arena = document.getElementById("Battle_arena");
+    const Menu_battle = document.getElementById("MenuBattle");
+    
 
     BattleButton.addEventListener('click', ()=>{
         //battle_pokemon(Game.jugadores[0].pokemons[0],Game.jugadores[1].pokemons[0]);
         BattleMainWindow.style.display="flex";
+        Menu_battle.style.display="flex";
     })
     const closeBattleButton = document.getElementById("closeBattle");
 
     closeBattleButton.addEventListener('click', ()=>{
         BattleMainWindow.style.display="none";
+        Battle_arena.style.display="none";
+        const List_Trainers = document.getElementById("List_Trainers");
+        List_Trainers.style.display="none";
     })
 
     const evolve1 = document.getElementById("evolution1");
@@ -2879,229 +2901,326 @@ document.addEventListener("DOMContentLoaded", function(event) {
         const MenuBatle = document.getElementById("MenuBattle");
         MenuBatle.style.display="none";
         const ListTrainers = document.getElementById("List_Trainers");
+        const divPlayer1 = document.getElementById("list_trainer_P1");
+        const divPlayer2 = document.getElementById("list_trainer_P2");
+        const divPlayer3= document.getElementById("list_trainer_P3");
+        const divPlayer4= document.getElementById("list_trainer_P4");
+        const divPlayer5= document.getElementById("list_trainer_P5");
+        const divPlayer6= document.getElementById("list_trainer_P6");
+        const divPlayer7= document.getElementById("list_trainer_P7");
+        const divPlayer8= document.getElementById("list_trainer_P8");
+        ListTrainers.style.display="flex";
+
+        divPlayer1.style.display="none";
+        divPlayer2.style.display="none";
+        divPlayer3.style.display="none";
+        divPlayer4.style.display="none";
+        divPlayer5.style.display="none";
+        divPlayer6.style.display="none";
+        divPlayer7.style.display="none";
+        divPlayer8.style.display="none";
+
+
 
         for(var i =0 ; i< Game.jugadores.length;i++){
             if (i != Game.turnoActual){
-                const newDiv = document.createElement("div");
-                newDiv.setAttribute("id",`Trainer_${i+0}`);
+                if (i == 0){
+                    divPlayer1.style.backgroundImage= `url("./FICHAS/${Game.jugadores[0].nombre}.png")`;
+                    divPlayer1.style.display="flex";
+                }
+                else if (i == 1){
+                 
+                    divPlayer2.style.backgroundImage= `url("./FICHAS/${Game.jugadores[1].nombre}.png")`;
+                    divPlayer2.style.display="flex";
+                }
+                else if (i == 2){
+             
+                    divPlayer3.style.backgroundImage= `url("./FICHAS/${Game.jugadores[2].nombre}.png")`;
+                    divPlayer3.style.display="flex";
+                }
+                else if (i == 3){
                 
-                const nameDiv = document.createElement("div");
-                nameDiv.textContent= Game.jugadores[i].nombre;
-                nameDiv.classList.add("name_trainer")
-
-                const imageDiv = document.createElement("div");
-                imageDiv.style.backgroundImage = `url("./FICHAS/${Game.jugadores[i].nombre}.png")`;
-                imageDiv.classList.add("image_trainer");
-                imageDiv.setAttribute("id",`ImgTrainer_${i+0}`);
-
-                newDiv.appendChild(nameDiv);
-                newDiv.appendChild(imageDiv);
-                newDiv.classList.add("trainer_battle");
-
-                newDiv.addEventListener("click", (e) => {
-                    var id_rival =e.target.id;
-                    console.log("id_img" + id_rival);
-                    showMyPokemons(Game, id_rival);
-                   
-                  });
-                ListTrainers.appendChild(newDiv);
-
+                    divPlayer4.style.backgroundImage= `url("./FICHAS/${Game.jugadores[3].nombre}.png")`;
+                    divPlayer4.style.display="flex";
+                }
+                else if (i == 4){
+                  
+                    divPlayer5.style.backgroundImage= `url("./FICHAS/${Game.jugadores[4].nombre}.png")`;
+                    divPlayer5.style.display="flex";
+                }
+                else if (i == 5){
+                    
+                    divPlayer6.style.backgroundImage= `url("./FICHAS/${Game.jugadores[5].nombre}.png")`;
+                    divPlayer6.style.display="flex";
+                }
+                else if (i == 6){
+                    divPlayer7.style.backgroundImage= `url("./FICHAS/${Game.jugadores[6].nombre}.png")`;
+                    divPlayer7.style.display="flex";
+                }
+                else if (i == 7){
+                    divPlayer8.style.backgroundImage= `url("./FICHAS/${Game.jugadores[7].nombre}.png")`;
+                    divPlayer8.style.display="flex";
+                }
             }
         }
+
+        divPlayer1.addEventListener('click', ()=>{
+         console.log("player selected: " + Game.jugadores[0].nombre);
+         showPokemonsV2(Game,0);
+        });
+
+        divPlayer2.addEventListener('click', ()=>{
+            console.log("player selected: " + Game.jugadores[1].nombre);
+            showPokemonsV2(Game,1);
+           });
+
+           divPlayer3.addEventListener('click', ()=>{
+            console.log("player selected: " + Game.jugadores[2].nombre);
+            showPokemonsV2(Game,2);
+           });
+           divPlayer4.addEventListener('click', ()=>{
+            console.log("player selected: " + Game.jugadores[3].nombre);
+            showPokemonsV2(Game,3);
+           });
+           divPlayer5.addEventListener('click', ()=>{
+            console.log("player selected: " + Game.jugadores[4].nombre);
+            showPokemonsV2(Game,4);
+           });
+           divPlayer6.addEventListener('click', ()=>{
+            console.log("player selected: " + Game.jugadores[5].nombre);
+            showPokemonsV2(Game,5);
+           });
+           divPlayer7.addEventListener('click', ()=>{
+            console.log("player selected: " + Game.jugadores[6].nombre);
+            showPokemonsV2(Game,6);
+           });
+
+           divPlayer8.addEventListener('click', ()=>{
+            console.log("player selected: " + Game.jugadores[7].nombre);
+            showPokemonsV2(Game,7);
+           });
+          
     });
-    
-    function showMyPokemons(Game,id_Rival){
-        const listMyPokemons = document.getElementById("List_MyPokemons");
-        const listTrainers = document.getElementById("List_Trainers");
-        listMyPokemons.style.display="flex";
-        listTrainers.style.display="none";
+
+    function showPokemonsV2(Game, Rival ){
+        const ListTrainers = document.getElementById("List_Trainers");
+        const divPlayer1 = document.getElementById("list_trainer_P1");
+        const divPlayer2 = document.getElementById("list_trainer_P2");
+        const divPlayer3= document.getElementById("list_trainer_P3");
+        const divPlayer4= document.getElementById("list_trainer_P4");
+        const divPlayer5= document.getElementById("list_trainer_P5");
+        const divPlayer6= document.getElementById("list_trainer_P6");
+        const divPlayer7= document.getElementById("list_trainer_P7");
+        const divPlayer8= document.getElementById("list_trainer_P8");
+        ListTrainers.style.display="none";
+        divPlayer1.style.display="none";
+        divPlayer2.style.display="none";
+        divPlayer3.style.display="none";
+        divPlayer4.style.display="none";
+        divPlayer5.style.display="none";
+        divPlayer6.style.display="none";
+        divPlayer7.style.display="none";
+        divPlayer8.style.display="none";
+
+        const List_Pokemons = document.getElementById("List_Pokemons");
+        List_Pokemons.style.display="flex";
+
+        let pkm1_image = document.getElementById("list_Pokemon_Pkm1");
+        let pkm2_image = document.getElementById("list_Pokemon_Pkm2");
+        let pkm3_image = document.getElementById("list_Pokemon_Pkm3");
+        let pkm4_image = document.getElementById("list_Pokemon_Pkm4");
+        let pkm5_image = document.getElementById("list_Pokemon_Pkm5");
+        let pkm6_image = document.getElementById("list_Pokemon_Pkm6");
+        pkm1_image.style.display="none";
+        pkm2_image.style.display="none";
+        pkm3_image.style.display="none";
+        pkm4_image.style.display="none";
+        pkm5_image.style.display="none";
+        pkm6_image.style.display="none";
+        let pokemonPlayer;
+        let PokemonRival; 
+
         var player = Game.turnoActual;
         for (var i=0; i < Game.jugadores[player].pokemons.length; i++) {
-            newDiv_MyPokemon = document.createElement("div");
-            newDiv_MyPokemon.id = `P${player}_Pokemon_${i}`;
-
-            const imageDiv_Mypkm = document.createElement("div");
-            imageDiv_Mypkm.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[player].pokemons[i].pokedex}.png")`;
-            imageDiv_Mypkm.classList.add("image_pkm_list");
-            imageDiv_Mypkm.setAttribute("id",`Player_Pokemon_${i}_image`);
-
-            imageDiv_Mypkm.addEventListener("click",(e) => {
-                console.log(e.target.id);
-                MyPokemonSelected(Game,e.target.id,id_Rival)
-            });
-
-            listMyPokemons.appendChild(newDiv_MyPokemon);
-            listMyPokemons.appendChild(imageDiv_Mypkm);
-        }
-
-    }
-
-    function MyPokemonSelected(Game, id, id_Rival ){
-        let PlayerPokemonSelected;
-        var player = Game.turnoActual;
-        if (id == "Player_Pokemon_0_image"){
-            PlayerPokemonSelected=  Game.jugadores[player].pokemons[0];
-            console.log(PlayerPokemonSelected.nombre);  
-            showPokemons(id_Rival,PlayerPokemonSelected); 
-        }
-        else if (id == "Player_Pokemon_1_image"){
-            PlayerPokemonSelected=  Game.jugadores[player].pokemons[1];
-            console.log(PlayerPokemonSelected.nombre);
-            showPokemons(id_Rival,PlayerPokemonSelected);  
-        }
-        else if (id == "Player_Pokemon_2_image"){
-            PlayerPokemonSelected=  Game.jugadores[player].pokemons[2];
-            console.log(PlayerPokemonSelected.nombre);  
-            showPokemons(id_Rival,PlayerPokemonSelected); 
-        }
-        else if (id == "Player_Pokemon_3_image"){
-            PlayerPokemonSelected=  Game.jugadores[player].pokemons[3];
-            console.log(PlayerPokemonSelected.nombre); 
-            showPokemons(id_Rival,PlayerPokemonSelected); 
-        }
-        else if (id == "Player_Pokemon_4_image"){
-            PlayerPokemonSelected=  Game.jugadores[player].pokemons[4];
-            console.log(PlayerPokemonSelected.nombre);   
-            showPokemons(id_Rival,PlayerPokemonSelected); 
-        }
-        else if (id == "Player_Pokemon_5_image"){
-            PlayerPokemonSelected=  Game.jugadores[player].pokemons[5];
-            console.log(PlayerPokemonSelected.nombre); 
-            showPokemons(id_Rival,PlayerPokemonSelected);  
-        }
-    }
-
-    function showPokemons (id_Rival,PlayerPokemonSelected){
-        var playerToBattle;
-        if (id_Rival == "ImgTrainer_0"){
-            playerToBattle = "P0";
-            console.log(`player ${playerToBattle} selected`);
-            displayListPokemons(Game,0,PlayerPokemonSelected);
-                    }
-        else if(id_Rival == "ImgTrainer_1"){
-            playerToBattle = "P1";
-            console.log(`player ${playerToBattle} selected`);
-            displayListPokemons(Game,1,PlayerPokemonSelected);
-                    }
-        else if (id_Rival == "ImgTrainer_2"){
-            playerToBattle = "P2";
-            console.log(`player ${playerToBattle} selected`);
-            displayListPokemons(Game,2,PlayerPokemonSelected);
-                    }
-        else if (id_Rival == "ImgTrainer_3"){
-            playerToBattle = "P3";
-            console.log(`player ${playerToBattle} selected`);
-            displayListPokemons(Game,3,PlayerPokemonSelected);
-                    }
-        else if (id_Rival == "ImgTrainer_4"){
-            playerToBattle = "P4";
-            console.log(`player ${playerToBattle} selected`);
-            displayListPokemons(Game,4,PlayerPokemonSelected);
-                    }
-        else if (id_Rival == "ImgTrainer_5"){
-            playerToBattle = "P5";
-            console.log(`player ${playerToBattle} selected`);
-            displayListPokemons(Game,5,PlayerPokemonSelected);
-                    }
-    }
-
-    function displayListPokemons(Game, player,PlayerPokemonSelected){
-        console.log("Player:" + player);
-        const listPokemons = document.getElementById("List_Pokemons");
-        const listTrainers = document.getElementById("List_Trainers");
-        const listMyPokemons = document.getElementById("List_MyPokemons");
-        listMyPokemons.style.display="none";
-        listTrainers.style.display = "none";
-        listPokemons.style.display = "flex";
-        
-         for (var i =0; i < Game.jugadores[player].pokemons.length; i++){
-            console.log(Game.jugadores[player].pokemons[i]);
-            newDiv_Pokemon = document.createElement("div");
-            newDiv_Pokemon.id = `P${player}_Pokemon_${i+1}`;
-
-            const imageDiv_pkm = document.createElement("div");
-            imageDiv_pkm.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[player].pokemons[i].pokedex}.png")`;
-            imageDiv_pkm.classList.add("image_pkm_list");
-            imageDiv_pkm.setAttribute("id",`Pokemon_${i}_image`);
-
-            imageDiv_pkm.addEventListener("click",(e) => {
-                console.log(e.target.id);
-                ShowRivalPokemons(player,e.target.id ,PlayerPokemonSelected)
+            if ( i == 0){
                 
+                pkm1_image.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[player].pokemons[i].pokedex}.png")`;
+                pkm1_image.style.display="flex";
+            }
+            else if( i == 1){
+             
+                pkm2_image.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[player].pokemons[i].pokedex}.png")`;
+                pkm2_image.style.display="flex";
+            }
+            else if( i == 2){
+                
+                pkm3_image.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[player].pokemons[i].pokedex}.png")`;
+                pkm3_image.style.display="flex";
+            }
+            else if( i == 3){
+                pkm4_image.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[player].pokemons[i].pokedex}.png")`;
+                pkm4_image.style.display="flex";
+            }
+            else if( i == 4){
+                pkm5_image.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[player].pokemons[i].pokedex}.png")`;
+                pkm5_image.style.display="flex";
+            }
+            else if( i == 5){
+                pkm6_image.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[player].pokemons[i].pokedex}.png")`;
+                pkm6_image.style.display="flex";
+            }
+        }
+
+
+            pkm1_image.addEventListener("click", ()=>  {
+                pokemonPlayer = Game.jugadores[player].pokemons[0];
+                showRivalPokemon(Rival);
             });
-            listPokemons.appendChild(newDiv_Pokemon);
-            listPokemons.appendChild(imageDiv_pkm);
+
+            pkm2_image.addEventListener("click", ()=>{
+                pokemonPlayer = Game.jugadores[player].pokemons[1];
+                showRivalPokemon(Rival);
+            });
+            pkm3_image.addEventListener("click", ()=>{
+                pokemonPlayer = Game.jugadores[player].pokemons[2];
+                showRivalPokemon(Rival);
+            });
+            pkm4_image.addEventListener("click", ()=>{
+                pokemonPlayer = Game.jugadores[player].pokemons[3];
+                showRivalPokemon(Rival);
+            });
+            pkm5_image.addEventListener("click", ()=>{
+                pokemonPlayer = Game.jugadores[player].pokemons[4];
+                showRivalPokemon(Rival);
+            });
+            pkm6_image.addEventListener("click", ()=>{
+                pokemonPlayer = Game.jugadores[player].pokemons[5];
+                showRivalPokemon(Rival);
+            });
 
 
-         }
-        console.log(Game.jugadores[player].pokemons);
+
+            function showRivalPokemon(Rival){
+                pkm1_image.style.display="none";
+                pkm2_image.style.display="none";
+                pkm3_image.style.display="none";
+                pkm4_image.style.display="none";
+                pkm5_image.style.display="none";
+                pkm6_image.style.display="none";
+                let pkm1_image_rival = document.getElementById("list_Pokemon_Pkm1_rival");
+                let pkm2_image_rival = document.getElementById("list_Pokemon_Pkm2_rival");
+                let pkm3_image_rival = document.getElementById("list_Pokemon_Pkm3_rival");
+                let pkm4_image_rival = document.getElementById("list_Pokemon_Pkm4_rival");
+                let pkm5_image_rival = document.getElementById("list_Pokemon_Pkm5_rival");
+                let pkm6_image_rival = document.getElementById("list_Pokemon_Pkm6_rival");
+                pkm1_image_rival.style.display="none";
+                pkm2_image_rival.style.display="none";
+                pkm3_image_rival.style.display="none";
+                pkm4_image_rival.style.display="none";
+                pkm5_image_rival.style.display="none";
+                pkm6_image_rival.style.display="none";
+
+
+     
+
+                for (var i=0; i < Game.jugadores[Rival].pokemons.length; i++) {
+                    if ( i == 0){
+                        
+                        pkm1_image_rival.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[Rival].pokemons[i].pokedex}.png")`;
+                        pkm1_image_rival.style.display="flex";
+                    }
+                    else if( i == 1){
+                     
+                        pkm2_image_rival.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[Rival].pokemons[i].pokedex}.png")`;
+                        pkm2_image_rival.style.display="flex";
+                    }
+                    else if( i == 2){
+                        
+                        pkm3_image_rival.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[Rival].pokemons[i].pokedex}.png")`;
+                        pkm3_image_rival.style.display="flex";
+                    }
+                    else if( i == 3){
+                        pkm4_image_rival.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[Rival].pokemons[i].pokedex}.png")`;
+                        pkm4_image_rival.style.display="flex";
+                    }
+                    else if( i == 4){
+                        pkm5_image_rival.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[Rival].pokemons[i].pokedex}.png")`;
+                        pkm5_image_rival.style.display="flex";
+                    }
+                    else if( i == 5){
+                        pkm6_image_rival.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[Rival].pokemons[i].pokedex}.png")`;
+                        pkm6_image_rival.style.display="flex";
+                    }
+            }
+
+            pkm1_image_rival.addEventListener("click", ()=>{
+                PokemonRival=Game.jugadores[Rival].pokemons[0];
+                pkm1_image_rival.style.display="none";
+                pkm2_image_rival.style.display="none";
+                pkm3_image_rival.style.display="none";
+                pkm4_image_rival.style.display="none";
+                pkm5_image_rival.style.display="none";
+                pkm6_image_rival.style.display="none";
+                battle_pokemon(pokemonPlayer,PokemonRival);
+
+            });
+            pkm2_image_rival.addEventListener("click", ()=>{
+                PokemonRival=Game.jugadores[Rival].pokemons[1];
+                pkm1_image_rival.style.display="none";
+                pkm2_image_rival.style.display="none";
+                pkm3_image_rival.style.display="none";
+                pkm4_image_rival.style.display="none";
+                pkm5_image_rival.style.display="none";
+                pkm6_image_rival.style.display="none";
+                battle_pokemon(pokemonPlayer,PokemonRival);
+            });
+            pkm3_image_rival.addEventListener("click", ()=>{
+                PokemonRival=Game.jugadores[Rival].pokemons[2];
+                pkm1_image_rival.style.display="none";
+                pkm2_image_rival.style.display="none";
+                pkm3_image_rival.style.display="none";
+                pkm4_image_rival.style.display="none";
+                pkm5_image_rival.style.display="none";
+                pkm6_image_rival.style.display="none";
+                battle_pokemon(pokemonPlayer,PokemonRival);
+            });
+            pkm4_image_rival.addEventListener("click", ()=>{
+                PokemonRival=Game.jugadores[Rival].pokemons[3];
+                pkm1_image_rival.style.display="none";
+                pkm2_image_rival.style.display="none";
+                pkm3_image_rival.style.display="none";
+                pkm4_image_rival.style.display="none";
+                pkm5_image_rival.style.display="none";
+                pkm6_image_rival.style.display="none";
+                battle_pokemon(pokemonPlayer,PokemonRival);
+            });
+            pkm5_image_rival.addEventListener("click", ()=>{
+                PokemonRival=Game.jugadores[Rival].pokemons[4];
+                pkm1_image_rival.style.display="none";
+                pkm2_image_rival.style.display="none";
+                pkm3_image_rival.style.display="none";
+                pkm4_image_rival.style.display="none";
+                pkm5_image_rival.style.display="none";
+                pkm6_image_rival.style.display="none";
+                battle_pokemon(pokemonPlayer,PokemonRival);
+            });
+            pkm6_image_rival.addEventListener("click", ()=>{
+                PokemonRival=Game.jugadores[Rival].pokemons[5];
+                pkm1_image_rival.style.display="none";
+                pkm2_image_rival.style.display="none";
+                pkm3_image_rival.style.display="none";
+                pkm4_image_rival.style.display="none";
+                pkm5_image_rival.style.display="none";
+                pkm6_image_rival.style.display="none";
+                battle_pokemon(pokemonPlayer,PokemonRival);
+            });
+
+        
+        }
+        
+
     }
-
-    
-    function ShowRivalPokemons(player,id,PlayerPokemonSelected)  {
-        const listMyPokemons = document.getElementById("List_MyPokemons");
-        let RivalPokemonSelected;
-        if (id == "Pokemon_0_image"){
-            RivalPokemonSelected=  Game.jugadores[player].pokemons[0];
-            console.log(RivalPokemonSelected.nombre); 
-            listMyPokemons.style.display="none";  
-            battle_pokemon(PlayerPokemonSelected,RivalPokemonSelected);
-        }
-        else if (id == "Pokemon_1_image"){
-            RivalPokemonSelected=  Game.jugadores[player].pokemons[1];
-            console.log(RivalPokemonSelected.nombre);   
-            listMyPokemons.style.display="none"; 
-            battle_pokemon(PlayerPokemonSelected,RivalPokemonSelected); 
-        }
-        else if (id == "Pokemon_2_image"){
-            RivalPokemonSelected=  Game.jugadores[player].pokemons[2];
-            console.log(RivalPokemonSelected.nombre);   
-            listMyPokemons.style.display="none";  
-            battle_pokemon(PlayerPokemonSelected,RivalPokemonSelected);
-        }
-        else if (id == "Pokemon_3_image"){
-            RivalPokemonSelected=  Game.jugadores[player].pokemons[3];
-            console.log(RivalPokemonSelected.nombre);   
-            listMyPokemons.style.display="none";  
-            battle_pokemon(PlayerPokemonSelected,RivalPokemonSelected);
-        }
-        else if (id == "Pokemon_4_image"){
-            RivalPokemonSelected=  Game.jugadores[player].pokemons[4];
-            console.log(RivalPokemonSelected.nombre);   
-            listMyPokemons.style.display="none"; 
-            battle_pokemon(PlayerPokemonSelected,RivalPokemonSelected); 
-        }
-        else if (id == "Pokemon_5_image"){
-            RivalPokemonSelected=  Game.jugadores[player].pokemons[5];
-            console.log(RivalPokemonSelected.nombre);   
-            listMyPokemons.style.display="none";  
-            battle_pokemon(PlayerPokemonSelected,RivalPokemonSelected);
-        }
-    
-    }
-
-  
-
-    
-    
-
-    
-
-
-
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-    
+   
     
     
 });
