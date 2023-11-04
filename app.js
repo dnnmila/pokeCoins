@@ -1032,6 +1032,13 @@ function sentData(Game) {
 /* BATTLE FUCTION */
 
 function battle_pokemon(Pokemon1,Pokemon2){
+    const Battle_arena = document.getElementById("Battle_arena");
+    const List_Pokemons = document.getElementById("List_Pokemons");
+    const Titlte_Battle = document.getElementById("Titlte_Battle");
+    List_Pokemons.style.display ="none";
+    Titlte_Battle.style.display="none";
+    Battle_arena.style.display="flex";
+    
     var Tipo1= Pokemon1.tipo;
     var Tipo2= Pokemon2.tipo;
     var Nivel1 = Pokemon1.nivel;
@@ -2819,7 +2826,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const BattleMainWindow = document.getElementById("MainBattle");
 
     BattleButton.addEventListener('click', ()=>{
-       // battle_pokemon(Game.jugadores[0].pokemons[0],Game.jugadores[1].pokemons[0]);
+        //battle_pokemon(Game.jugadores[0].pokemons[0],Game.jugadores[1].pokemons[0]);
         BattleMainWindow.style.display="flex";
     })
     const closeBattleButton = document.getElementById("closeBattle");
@@ -2867,7 +2874,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     const battleTrainer_button = document.getElementById("Trainer_battle");
     
-
+   
     battleTrainer_button.addEventListener('click', ()=>{
         const MenuBatle = document.getElementById("MenuBattle");
         MenuBatle.style.display="none";
@@ -2892,8 +2899,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 newDiv.classList.add("trainer_battle");
 
                 newDiv.addEventListener("click", (e) => {
-                    var id_img =e.target.id;
-                    showPokemons(id_img);
+                    var id_rival =e.target.id;
+                    console.log("id_img" + id_rival);
+                    showMyPokemons(Game, id_rival);
+                   
                   });
                 ListTrainers.appendChild(newDiv);
 
@@ -2901,48 +2910,180 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     });
     
+    function showMyPokemons(Game,id_Rival){
+        const listMyPokemons = document.getElementById("List_MyPokemons");
+        const listTrainers = document.getElementById("List_Trainers");
+        listMyPokemons.style.display="flex";
+        listTrainers.style.display="none";
+        var player = Game.turnoActual;
+        for (var i=0; i < Game.jugadores[player].pokemons.length; i++) {
+            newDiv_MyPokemon = document.createElement("div");
+            newDiv_MyPokemon.id = `P${player}_Pokemon_${i}`;
 
-    function displayListPokemons(Game, player){
+            const imageDiv_Mypkm = document.createElement("div");
+            imageDiv_Mypkm.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[player].pokemons[i].pokedex}.png")`;
+            imageDiv_Mypkm.classList.add("image_pkm_list");
+            imageDiv_Mypkm.setAttribute("id",`Player_Pokemon_${i}_image`);
+
+            imageDiv_Mypkm.addEventListener("click",(e) => {
+                console.log(e.target.id);
+                MyPokemonSelected(Game,e.target.id,id_Rival)
+            });
+
+            listMyPokemons.appendChild(newDiv_MyPokemon);
+            listMyPokemons.appendChild(imageDiv_Mypkm);
+        }
+
+    }
+
+    function MyPokemonSelected(Game, id, id_Rival ){
+        let PlayerPokemonSelected;
+        var player = Game.turnoActual;
+        if (id == "Player_Pokemon_0_image"){
+            PlayerPokemonSelected=  Game.jugadores[player].pokemons[0];
+            console.log(PlayerPokemonSelected.nombre);  
+            showPokemons(id_Rival,PlayerPokemonSelected); 
+        }
+        else if (id == "Player_Pokemon_1_image"){
+            PlayerPokemonSelected=  Game.jugadores[player].pokemons[1];
+            console.log(PlayerPokemonSelected.nombre);
+            showPokemons(id_Rival,PlayerPokemonSelected);  
+        }
+        else if (id == "Player_Pokemon_2_image"){
+            PlayerPokemonSelected=  Game.jugadores[player].pokemons[2];
+            console.log(PlayerPokemonSelected.nombre);  
+            showPokemons(id_Rival,PlayerPokemonSelected); 
+        }
+        else if (id == "Player_Pokemon_3_image"){
+            PlayerPokemonSelected=  Game.jugadores[player].pokemons[3];
+            console.log(PlayerPokemonSelected.nombre); 
+            showPokemons(id_Rival,PlayerPokemonSelected); 
+        }
+        else if (id == "Player_Pokemon_4_image"){
+            PlayerPokemonSelected=  Game.jugadores[player].pokemons[4];
+            console.log(PlayerPokemonSelected.nombre);   
+            showPokemons(id_Rival,PlayerPokemonSelected); 
+        }
+        else if (id == "Player_Pokemon_5_image"){
+            PlayerPokemonSelected=  Game.jugadores[player].pokemons[5];
+            console.log(PlayerPokemonSelected.nombre); 
+            showPokemons(id_Rival,PlayerPokemonSelected);  
+        }
+    }
+
+    function showPokemons (id_Rival,PlayerPokemonSelected){
+        var playerToBattle;
+        if (id_Rival == "ImgTrainer_0"){
+            playerToBattle = "P0";
+            console.log(`player ${playerToBattle} selected`);
+            displayListPokemons(Game,0,PlayerPokemonSelected);
+                    }
+        else if(id_Rival == "ImgTrainer_1"){
+            playerToBattle = "P1";
+            console.log(`player ${playerToBattle} selected`);
+            displayListPokemons(Game,1,PlayerPokemonSelected);
+                    }
+        else if (id_Rival == "ImgTrainer_2"){
+            playerToBattle = "P2";
+            console.log(`player ${playerToBattle} selected`);
+            displayListPokemons(Game,2,PlayerPokemonSelected);
+                    }
+        else if (id_Rival == "ImgTrainer_3"){
+            playerToBattle = "P3";
+            console.log(`player ${playerToBattle} selected`);
+            displayListPokemons(Game,3,PlayerPokemonSelected);
+                    }
+        else if (id_Rival == "ImgTrainer_4"){
+            playerToBattle = "P4";
+            console.log(`player ${playerToBattle} selected`);
+            displayListPokemons(Game,4,PlayerPokemonSelected);
+                    }
+        else if (id_Rival == "ImgTrainer_5"){
+            playerToBattle = "P5";
+            console.log(`player ${playerToBattle} selected`);
+            displayListPokemons(Game,5,PlayerPokemonSelected);
+                    }
+    }
+
+    function displayListPokemons(Game, player,PlayerPokemonSelected){
+        console.log("Player:" + player);
         const listPokemons = document.getElementById("List_Pokemons");
         const listTrainers = document.getElementById("List_Trainers");
+        const listMyPokemons = document.getElementById("List_MyPokemons");
+        listMyPokemons.style.display="none";
         listTrainers.style.display = "none";
         listPokemons.style.display = "flex";
         
          for (var i =0; i < Game.jugadores[player].pokemons.length; i++){
             console.log(Game.jugadores[player].pokemons[i]);
             newDiv_Pokemon = document.createElement("div");
-            newDiv_Pokemon.id = `P2_Pokemon_${i+1}`;
+            newDiv_Pokemon.id = `P${player}_Pokemon_${i+1}`;
 
             const imageDiv_pkm = document.createElement("div");
             imageDiv_pkm.style.backgroundImage = `url("./images/POKEMON/0${Game.jugadores[player].pokemons[i].pokedex}.png")`;
             imageDiv_pkm.classList.add("image_pkm_list");
-            imageDiv_pkm.setAttribute("id",`P2_Pokemon_${i+1}_image`);
+            imageDiv_pkm.setAttribute("id",`Pokemon_${i}_image`);
 
+            imageDiv_pkm.addEventListener("click",(e) => {
+                console.log(e.target.id);
+                ShowRivalPokemons(player,e.target.id ,PlayerPokemonSelected)
+                
+            });
             listPokemons.appendChild(newDiv_Pokemon);
             listPokemons.appendChild(imageDiv_pkm);
+
+
          }
         console.log(Game.jugadores[player].pokemons);
     }
-    function showPokemons (id_img){
-        if (id_img = "ImgTrainer_0"){
-            displayListPokemons(Game,0);
-                    }
-        if (id_img = "ImgTrainer_1"){
-            displayListPokemons(Game,1);
-                    }
-        if (id_img = "ImgTrainer_2"){
-            displayListPokemons(Game,2);
-                    }
-        if (id_img = "ImgTrainer_3"){
-            displayListPokemons(Game,3);
-                    }
-        if (id_img = "ImgTrainer_4"){
-            displayListPokemons(Game,4);
-                    }
-        if (id_img = "ImgTrainer_5"){
-            displayListPokemons(Game,5);
-                    }
+
+    
+    function ShowRivalPokemons(player,id,PlayerPokemonSelected)  {
+        const listMyPokemons = document.getElementById("List_MyPokemons");
+        let RivalPokemonSelected;
+        if (id == "Pokemon_0_image"){
+            RivalPokemonSelected=  Game.jugadores[player].pokemons[0];
+            console.log(RivalPokemonSelected.nombre); 
+            listMyPokemons.style.display="none";  
+            battle_pokemon(PlayerPokemonSelected,RivalPokemonSelected);
+        }
+        else if (id == "Pokemon_1_image"){
+            RivalPokemonSelected=  Game.jugadores[player].pokemons[1];
+            console.log(RivalPokemonSelected.nombre);   
+            listMyPokemons.style.display="none"; 
+            battle_pokemon(PlayerPokemonSelected,RivalPokemonSelected); 
+        }
+        else if (id == "Pokemon_2_image"){
+            RivalPokemonSelected=  Game.jugadores[player].pokemons[2];
+            console.log(RivalPokemonSelected.nombre);   
+            listMyPokemons.style.display="none";  
+            battle_pokemon(PlayerPokemonSelected,RivalPokemonSelected);
+        }
+        else if (id == "Pokemon_3_image"){
+            RivalPokemonSelected=  Game.jugadores[player].pokemons[3];
+            console.log(RivalPokemonSelected.nombre);   
+            listMyPokemons.style.display="none";  
+            battle_pokemon(PlayerPokemonSelected,RivalPokemonSelected);
+        }
+        else if (id == "Pokemon_4_image"){
+            RivalPokemonSelected=  Game.jugadores[player].pokemons[4];
+            console.log(RivalPokemonSelected.nombre);   
+            listMyPokemons.style.display="none"; 
+            battle_pokemon(PlayerPokemonSelected,RivalPokemonSelected); 
+        }
+        else if (id == "Pokemon_5_image"){
+            RivalPokemonSelected=  Game.jugadores[player].pokemons[5];
+            console.log(RivalPokemonSelected.nombre);   
+            listMyPokemons.style.display="none";  
+            battle_pokemon(PlayerPokemonSelected,RivalPokemonSelected);
+        }
+    
     }
+
+  
+
+    
+    
 
     
 
