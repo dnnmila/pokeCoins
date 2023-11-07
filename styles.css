@@ -680,9 +680,7 @@ font-size: 1.5rem;
     background-repeat: no-repeat;
 }
 
-.trainer_battle_menu{
-    display: none;
-}
+
 
 .Player1_Pokemons{
     display: none;
@@ -1573,4 +1571,97 @@ background-repeat: no-repeat;
     background-color: aquamarine;
     color: rgb(222, 38, 38);
     cursor: pointer;
+}
+
+.arena_title{
+    color: white;
+    font-size: 2rem;
+}
+
+
+
+.trainer_battle_menu{
+    background-image: url("./images/pokedex.png");
+    background-size: cover;
+    z-index: 3;
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 70%;
+    height: 60%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    border :thick double #eb1176;
+}
+#pokedexMain_battle{
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.trainer_battle_menu label{
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    color: rgb(236, 236, 227);
+    -webkit-text-stroke: 3px rgb(15, 92, 170);
+    font-family: "poke-font";
+}
+
+.trainer_battle_menu input{
+    height: 2.5rem;
+    font-size: 2rem;
+    color: rgb(66, 64, 62);
+    width: 10rem;
+    margin-bottom: 2rem;
+    font-family: "gb-font";
+}
+
+#PokemonFound_battle{
+    display: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#SearchPokedex_battle{
+    height: 3rem;
+    width: 5rem;
+    border-radius: 16px;
+    background-color: rgb(222, 38, 38);
+    color: aliceblue;
+    border: none;  
+}
+
+#SearchPokedex_battle:hover{
+    background-color: rgb(48, 55, 202);
+    cursor: pointer;
+    
+}
+#Not_Found_battle{
+    display: none;
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: rgb(1, 14, 2);
+    font-family: "gb-font";
+}
+
+#ConfirmPokemon_battle{
+    margin-left: 0vw;
+    margin-top: 2rem;
+    height: 3rem;
+    width: 5rem;
+    border-radius: 16px;
+    background-color: rgb(48, 55, 202);
+    color: aliceblue;
+    border: none;  
+}
+#ConfirmPokemon_battle:hover{
+    background-color: rgb(179, 20, 227);
 }

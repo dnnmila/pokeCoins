@@ -1007,6 +1007,76 @@ async function addPokemonTeam(Game){
     })
 }
 
+
+async function LookForPokemon(Game){
+    var pokemonFound = false;
+    var turnoActual = Game.turnoActual;
+    console.log ("Agregar Poklemon " + Game.jugadores[turnoActual].nombre);
+    const menuAddPokemon = document.getElementById("trainer_battle_menu");
+    const pokedexWindow = document.getElementById("pokedexMain_battle");
+    const pokemonfoundWindow = document.getElementById("PokemonFound_battle");
+    const search = document.getElementById("SearchPokedex_battle");
+    menuAddPokemon.style.display="block";
+    const grayed_GB = document.getElementById("grayed_BG");
+    grayed_GB.style.display = "flex";
+    pokedexWindow.style.display= "flex";
+    pokemonfoundWindow.style.display ="none";
+    const pokedex = document.getElementById("Pokedex_battle");
+    console.log("pokedex"+ pokedex.value);
+    const notFound = document.getElementById("Not_Found_battle");
+    notFound.style.display="none";
+
+    search.addEventListener('click', async()=>{
+       
+        try {
+            var pokedex_str =  zfill(pokedex.value ,3);
+            console.log("#"+ pokedex_str);
+            const resultado = await buscarPokemon(pokedex_str);
+            console.log(resultado);
+            if (resultado[1] === undefined){
+               
+                notFound.style.display="block";
+                console.log("Pokemon WAS not Found");
+                
+            }
+            else{
+                const imagenFound = document.getElementById('pokemonfound_img_battle');
+                const nombrefound = document.getElementById("pokemonfound_name_battle");
+                const tipofound = document.getElementById("pokemonfound_type_battle");
+                const levelfound = document.getElementById("pokemonfound_level_battle");
+                pokedexWindow.style.display= "none";
+                pokemonfoundWindow.style.display ="flex";
+                imagenFound.style.backgroundImage = `url("./images/POKEMON/0${resultado[0]}.png")`;
+                nombrefound.textContent = ` ${resultado[1]}`;
+                tipofound.textContent = ` ${resultado[2]}`;
+                levelfound.textContent = ` ${resultado[3]}`;
+
+                const confirm = document.getElementById("ConfirmPokemon_battle");
+                 confirm.addEventListener('click',()=>{
+                if(pokemonFound == false){
+                const PokeNew = new Pokemon(resultado[0],resultado[1],resultado[2],resultado[3],resultado[4],resultado[5],resultado[6],resultado[7]);
+                menuAddPokemon.style.display="none";
+                grayed_GB.style.display = "none";
+                pokedex.value="";
+                pokemonadded = true;
+                console.log("Wild to battle:" + PokeNew.nombre);
+                return PokeNew;
+                 }
+               else{
+                        console.log("Pokemon was not found");
+                 }
+                })
+             
+                
+            }
+            
+          } catch (error) {
+            console.error('Error:', error);
+          }
+
+    })
+}
+
 function asignarPosicion(Game) {
 
     for(var turno =0 ; turno < Game.jugadores.length; turno++){
@@ -1124,9 +1194,105 @@ function sentData(Game) {
   }
 
 /* BATTLE FUCTION */
+function PlayersToBattle(Trainer, Rival){
+    let List_PokemonsPlayer = Trainer.pokemons; 
+    let List_PokemonsRival = Rival.pokemons;
+    var Battle = 0;
+    function choosePokemonToBattle(Lista_Pokemons){
+        let pkm1_image = document.getElementById("list_Pokemon_Pkm1");
+        let pkm2_image = document.getElementById("list_Pokemon_Pkm2");
+        let pkm3_image = document.getElementById("list_Pokemon_Pkm3");
+        let pkm4_image = document.getElementById("list_Pokemon_Pkm4");
+        let pkm5_image = document.getElementById("list_Pokemon_Pkm5");
+        let pkm6_image = document.getElementById("list_Pokemon_Pkm6");
+        pkm1_image.style.display="none";
+        pkm2_image.style.display="none";
+        pkm3_image.style.display="none";
+        pkm4_image.style.display="none";
+        pkm5_image.style.display="none";
+        pkm6_image.style.display="none";
 
-function battle_pokemon(Pokemon1,Pokemon2){
-  
+        for (var i=0; i < Lista_Pokemons.length; i++) {
+            if ( i == 0){
+                
+                pkm1_image.style.backgroundImage = `url("./images/POKEMON/0${Lista_Pokemons[i].pokedex}.png")`;
+                pkm1_image.style.display="flex";
+            }
+            else if( i == 1){
+             
+                pkm2_image.style.backgroundImage = `url("./images/POKEMON/0${Lista_Pokemons[i].pokedex}.png")`;
+                pkm2_image.style.display="flex";
+            }
+            else if( i == 2){
+                
+                pkm3_image.style.backgroundImage = `url("./images/POKEMON/0${Lista_Pokemons[i].pokedex}.png")`;
+                pkm3_image.style.display="flex";
+            }
+            else if( i == 3){
+                pkm4_image.style.backgroundImage = `url("./images/POKEMON/0${Lista_Pokemons[i].pokedex}.png")`;
+                pkm4_image.style.display="flex";
+            }
+            else if( i == 4){
+                pkm5_image.style.backgroundImage = `url("./images/POKEMON/0${Lista_Pokemons[i].pokedex}.png")`;
+                pkm5_image.style.display="flex";
+            }
+            else if( i == 5){
+                pkm6_image.style.backgroundImage = `url("./images/POKEMON/0${Lista_Pokemons[i].pokedex}.png")`;
+                pkm6_image.style.display="flex";
+            }
+        }
+
+        pkm1_image.addEventListener("click", ()=>  {
+            return Lista_Pokemons[0];
+        });
+
+        pkm2_image.addEventListener("click", ()=>{
+            return Lista_Pokemons[1];
+        });
+        pkm3_image.addEventListener("click", ()=>{
+            return Lista_Pokemons[2];
+        });
+        pkm4_image.addEventListener("click", ()=>{
+            return Lista_Pokemons[3];
+        });
+        pkm5_image.addEventListener("click", ()=>{
+            return Lista_Pokemons[4];
+        });
+        pkm6_image.addEventListener("click", ()=>{
+            return Lista_Pokemons[5];
+        });
+
+    }
+
+    let Pkm_Player_Selected = choosePokemonToBattle(List_PokemonsPlayer);
+    let Pkm_Rival_Selected = choosePokemonToBattle(List_PokemonsRival);
+    let Winner;
+    Winner = battle_pokemon(Pkm_Player_Selected,Pkm_Rival_Selected);
+    console.log ("Winner is " + Winner);
+
+    if (Winner == Pkm_Player_Selected){
+        List_PokemonsRival = List_PokemonsRival.filter(element => element !== Pkm_Rival_Selected);
+        if (List_PokemonsRival.length > 0){
+            Pkm_Rival_Selected = choosePokemonToBattle(List_PokemonsRival);
+            Winner = battle_pokemon(Pkm_Player_Selected,Pkm_Rival_Selected);
+            }
+    else if (Winner == Pkm_Rival_Selected){
+        List_PokemonsPlayer = List_PokemonsPlayer.filter(element => element !== Pkm_Player_Selected);
+        Pkm_Player_Selected = choosePokemonToBattle(List_PokemonsPlayer);
+        Winner = battle_pokemon(Pkm_Player_Selected,Pkm_Rival_Selected);
+    }
+
+
+    }
+
+
+    
+}
+
+function battle_pokemon(Pokemon1,Pokemon2,round){
+   var ronda = round;
+   let arena_title = document.getElementById("arena_title");
+   arena_title.textContent = "ROUND -> " + ronda;
     let Finish_Battle = document.getElementById('Finish_Battle');
     Finish_Battle.style.display ="none";
    
@@ -1137,6 +1303,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
     let Pokemon2_suma = document.getElementById("Pokemon2_suma");
     Pokemon1_suma.style.display="none";
     Pokemon2_suma.style.display="none";
+
 
     List_Pokemons.style.display ="none";
     Titlte_Battle.style.display="none";
@@ -1953,7 +2120,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
        }
        else if (Total2 == Total1){
         console.log("Battle star AGAIN")    
-        Winner = battle_pokemon(Pokemon1, Pokemon2);
+        Winner = battle_pokemon(Pokemon1, Pokemon2,round+1);
 
        }
 
@@ -3063,7 +3230,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
 
     BattleButton.addEventListener('click', ()=>{
-        //battle_pokemon(Game.jugadores[0].pokemons[0],Game.jugadores[1].pokemons[0]);
         BattleMainWindow.style.display="flex";
         Menu_battle.style.display="flex";
     })
@@ -3380,7 +3546,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 pkm4_image_rival.style.display="none";
                 pkm5_image_rival.style.display="none";
                 pkm6_image_rival.style.display="none";
-                battle_pokemon(pokemonPlayer,PokemonRival);
+                battle_pokemon(pokemonPlayer,PokemonRival,1);
 
             });
             pkm2_image_rival.addEventListener("click", ()=>{
@@ -3391,7 +3557,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 pkm4_image_rival.style.display="none";
                 pkm5_image_rival.style.display="none";
                 pkm6_image_rival.style.display="none";
-                battle_pokemon(pokemonPlayer,PokemonRival);
+                battle_pokemon(pokemonPlayer,PokemonRival,1);
             });
             pkm3_image_rival.addEventListener("click", ()=>{
                 PokemonRival=Game.jugadores[Rival].pokemons[2];
@@ -3401,7 +3567,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 pkm4_image_rival.style.display="none";
                 pkm5_image_rival.style.display="none";
                 pkm6_image_rival.style.display="none";
-                battle_pokemon(pokemonPlayer,PokemonRival);
+                battle_pokemon(pokemonPlayer,PokemonRival,1);
             });
             pkm4_image_rival.addEventListener("click", ()=>{
                 PokemonRival=Game.jugadores[Rival].pokemons[3];
@@ -3411,7 +3577,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 pkm4_image_rival.style.display="none";
                 pkm5_image_rival.style.display="none";
                 pkm6_image_rival.style.display="none";
-                battle_pokemon(pokemonPlayer,PokemonRival);
+                battle_pokemon(pokemonPlayer,PokemonRival,1);
             });
             pkm5_image_rival.addEventListener("click", ()=>{
                 PokemonRival=Game.jugadores[Rival].pokemons[4];
@@ -3421,7 +3587,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 pkm4_image_rival.style.display="none";
                 pkm5_image_rival.style.display="none";
                 pkm6_image_rival.style.display="none";
-                battle_pokemon(pokemonPlayer,PokemonRival);
+                battle_pokemon(pokemonPlayer,PokemonRival,1);
             });
             pkm6_image_rival.addEventListener("click", ()=>{
                 PokemonRival=Game.jugadores[Rival].pokemons[5];
@@ -3431,7 +3597,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 pkm4_image_rival.style.display="none";
                 pkm5_image_rival.style.display="none";
                 pkm6_image_rival.style.display="none";
-                battle_pokemon(pokemonPlayer,PokemonRival);
+                battle_pokemon(pokemonPlayer,PokemonRival,1);
             });
 
         
@@ -3442,7 +3608,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
    
     
     // ATTATCH ITEM 
-
+/*
     const attach1 = document.getElementById("attach1");
     const attach2 = document.getElementById("attach2");
     const attach3 = document.getElementById("attach3");
@@ -3612,6 +3778,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             strenght0.addEventListener("click", ()=>{
                 AddStrenghtMenu.style.display="none";
                 TM = new Attack("TM",type,0,"NONE","NONE","D6");
+                console.log("Poke =>"+ poke);
                 Game.jugadores[Game.turnoActual].pokemons[poke].attack3 = TM ;
                 console.log(Game.jugadores[Game.turnoActual].pokemons[poke]);
                 AttachMenu.style.display="none";
@@ -3622,6 +3789,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             strenght1.addEventListener("click", ()=>{
                 AddStrenghtMenu.style.display="none";
                 TM = new Attack("TM",type,1,"NONE","NONE","D6");
+                console.log("Poke =>"+ poke);
                 Game.jugadores[Game.turnoActual].pokemons[poke].attack3 = TM ;
                 console.log(Game.jugadores[Game.turnoActual].pokemons[poke]);
                 AttachMenu.style.display="none";
@@ -3631,6 +3799,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             strenght2.addEventListener("click", ()=>{
                 AddStrenghtMenu.style.display="none";
                 TM = new Attack("TM",type,2,"NONE","NONE","D6");
+                console.log("Poke =>"+ poke);
                 Game.jugadores[Game.turnoActual].pokemons[poke].attack3 = TM ;
                 console.log(Game.jugadores[Game.turnoActual].pokemons[poke]);
                 AttachMenu.style.display="none";
@@ -3640,6 +3809,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             strenght3.addEventListener("click", ()=>{
                 AddStrenghtMenu.style.display="none";
                 TM = new Attack("TM",type,3,"NONE","NONE","D6");
+                console.log("Poke =>"+ poke);
                 Game.jugadores[Game.turnoActual].pokemons[poke].attack3 = TM ;
                 console.log(Game.jugadores[Game.turnoActual].pokemons[poke]);
                 AttachMenu.style.display="none";
@@ -3658,6 +3828,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             strenght5.addEventListener("click", ()=>{
                 AddStrenghtMenu.style.display="none";
                 TM = new Attack("TM",type,5,"NONE","NONE","D6");
+                console.log("Poke =>"+ poke);
                 Game.jugadores[Game.turnoActual].pokemons[poke].attack3 = TM ;
                 console.log(Game.jugadores[Game.turnoActual].pokemons[poke]);
                 AttachMenu.style.display="none";
@@ -3665,36 +3836,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 PaginaOnePlayer(Game);
             });
 
-           
-
-           
-           /* TM_NORMAL.style.display="none";
-            TM_FIRE.style.display="none";
-            TM_WATER.style.display="none";
-            TM_ELECTRIC.style.display="none";
-            TM_GRASS.style.display="none";
-            TM_ICE.style.display="none";
-            TM_FIGHTING.style.display="none";
-            TM_POISON.style.display="none";
-            TM_GROUND.style.display="none";
-            TM_FLYING.style.display="none";
-            TM_PSYCHIC.style.display="none";
-            TM_BUG.style.display="none";
-            TM_ROCK.style.display="none";
-            TM_GHOST.style.display="none";
-            TM_DRAGON.style.display="none";
-            TM_DARK.style.display="none";
-            TM_STEEL.style.display="none";
-            TM_FAIRY.style.display="none";*/
-
 
            }
 
 
         });
 
-    }
+    } 
+    */
 
+// WILD Pokemon Battle
+ const WildBattle_button = document.getElementById("Pokemon_battle");
+ const wildBattle_inputMenu = document.getElementById("trainer_battle_menu");
+ const pokedexMain_battle = document.getElementById("pokedexMain_battle");
+ const MenuBattle = document.getElementById("MenuBattle");
+ let WildToBattle;
+ WildBattle_button.addEventListener('click', ()=>{
+    wildBattle_inputMenu.style.display="flex";
+    pokedexMain_battle.style.display="flex";
+    MenuBattle.style.display="none";
+    WildToBattle = LookForPokemon(Game);
+
+ });
 
 
 });
