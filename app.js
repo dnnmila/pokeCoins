@@ -1126,6 +1126,10 @@ function sentData(Game) {
 /* BATTLE FUCTION */
 
 function battle_pokemon(Pokemon1,Pokemon2){
+  
+    let Finish_Battle = document.getElementById('Finish_Battle');
+    Finish_Battle.style.display ="none";
+   
     const Battle_arena = document.getElementById("Battle_arena");
     const List_Pokemons = document.getElementById("List_Pokemons");
     const Titlte_Battle = document.getElementById("Titlte_Battle");
@@ -1420,6 +1424,19 @@ function battle_pokemon(Pokemon1,Pokemon2){
     P2_frozen = document.getElementById("P2_frozen");
     P2_burned = document.getElementById("P2_burned");
     P2_confused = document.getElementById("P2_confused");
+
+    function status_Off(){
+        P1_paralized.style.filter = "brightness(30%)";
+        P1_sleep.style.filter = "brightness(30%)";
+        P1_frozen.style.filter = "brightness(30%)";
+        P1_burned.style.filter = "brightness(30%)";
+        P1_confused.style.filter = "brightness(30%)";
+        P2_paralized.style.filter = "brightness(30%)";
+        P2_sleep.style.filter = "brightness(30%)";
+        P2_frozen.style.filter = "brightness(30%)";
+        P2_burned.style.filter = "brightness(30%)";
+        P2_confused.style.filter = "brightness(30%)";
+    }
 
     function CalcularTotales(player){
         if (player == "P1"){
@@ -1839,6 +1856,8 @@ function battle_pokemon(Pokemon1,Pokemon2){
         P1_dice6.style.filter = "brightness(100%)";
     })
 
+
+    
     P2_dice1.addEventListener('click',()=>{
         Dice2 =1;
         updateTotales();
@@ -1848,6 +1867,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
         P2_dice4.style.filter = "brightness(30%)";
         P2_dice5.style.filter = "brightness(30%)";
         P2_dice6.style.filter = "brightness(30%)";
+        Finish_Battle.style.display ="flex";
     })
     P2_dice2.addEventListener('click',()=>{
         Dice2 =2;
@@ -1858,6 +1878,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
         P2_dice4.style.filter = "brightness(30%)";
         P2_dice5.style.filter = "brightness(30%)";
         P2_dice6.style.filter = "brightness(30%)";
+        Finish_Battle.style.display ="flex";
     })
     P2_dice3.addEventListener('click',()=>{
         Dice2 =3;
@@ -1868,6 +1889,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
         P2_dice4.style.filter = "brightness(30%)";
         P2_dice5.style.filter = "brightness(30%)";
         P2_dice6.style.filter = "brightness(30%)";
+        Finish_Battle.style.display ="flex";
     })
     P2_dice4.addEventListener('click',()=>{
         Dice2 =4;
@@ -1878,6 +1900,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
         P2_dice4.style.filter = "brightness(100%)";
         P2_dice5.style.filter = "brightness(30%)";
         P2_dice6.style.filter = "brightness(30%)";
+        Finish_Battle.style.display ="flex";
     })
     P2_dice5.addEventListener('click',()=>{
         Dice2 =5;
@@ -1888,6 +1911,7 @@ function battle_pokemon(Pokemon1,Pokemon2){
         P2_dice4.style.filter = "brightness(30%)";
         P2_dice5.style.filter = "brightness(100%)";
         P2_dice6.style.filter = "brightness(30%)";
+        Finish_Battle.style.display ="flex";
     })
     P2_dice6.addEventListener('click',()=>{
         Dice2 =6;
@@ -1898,9 +1922,45 @@ function battle_pokemon(Pokemon1,Pokemon2){
         P2_dice4.style.filter = "brightness(30%)";
         P2_dice5.style.filter = "brightness(30%)";
         P2_dice6.style.filter = "brightness(100%)";
+        Finish_Battle.style.display ="flex";
     })
 
+    let Winner;
 
+
+    Finish_Battle.addEventListener('click',()=>{
+        let List_Trainers = document.getElementById("List_Trainers");
+        let BattleMainWindow = document.getElementById("MainBattle");
+        let Battle_arena = document.getElementById("Battle_arena");
+     
+        if(Total1 > Total2){
+            Winner = Pokemon1;
+            console.log("Winner: " +Winner.nombre  );  
+                BattleMainWindow.style.display="none";
+                Battle_arena.style.display="none";
+                List_Trainers.style.display="none";
+           
+            return Winner;
+        }
+        else if (Total2 > Total1) {
+            Winner = Pokemon2;
+            console.log("Winner: " +Winner.nombre  );  
+                BattleMainWindow.style.display="none";
+                Battle_arena.style.display="none";
+                List_Trainers.style.display="none";
+
+            return Winner;
+       }
+       else if (Total2 == Total1){
+        console.log("Battle star AGAIN")    
+        Winner = battle_pokemon(Pokemon1, Pokemon2);
+
+       }
+
+    });
+
+   
+    console.log ("Winner:" + Winner);
 
 
 }

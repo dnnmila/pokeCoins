@@ -1556,3 +1556,21 @@ background-repeat: no-repeat;
     color: white;
 
 }
+
+.Finish_Button button{
+    height: 3rem;
+    width: 10%;
+    border-radius: 16px;
+    background-color: rgb(222, 38, 38);
+    color: aliceblue;
+    border: none;
+    position: absolute;
+    bottom: 15%;
+    left: 45%;
+   
+}
+.Finish_Button:hover button{
+    background-color: aquamarine;
+    color: rgb(222, 38, 38);
+    cursor: pointer;
+}
