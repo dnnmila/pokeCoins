@@ -137,6 +137,7 @@ class Pokemon {
         this.estatus = "Normal";
         this.attack1 =attack1;
         this.attack2 = attack2;
+        this.attack3= {};
         this.attached = "";
         this.evolution = evolution;
         this.LevelToEvo = LevelToEvo;
@@ -153,6 +154,21 @@ class Pokemon {
             this.extra =0;
             this.nivel = this.base;
         }
+    }
+
+    addProtein(){
+        this.attached = "PROTEIN";
+        this.extra += 1;
+    }
+    removeProtein(){
+        this.attached = "";
+        this.extra = 0;
+    }
+
+    
+
+    removeTM(){
+        this.attached = "";
     }
 }
 
@@ -623,6 +639,84 @@ function PaginaOnePlayer( Game){
 
     }
         
+    let attach1 = document.getElementById("attach1");
+    let attach2 = document.getElementById("attach2");
+    let attach3 = document.getElementById("attach3");
+    let attach4 = document.getElementById("attach4");
+    let attach5 = document.getElementById("attach5");
+    let attach6 = document.getElementById("attach6");
+
+    for( var i=0 ; i< Game.jugadores[Game.turnoActual].pokemons.length;i++){
+        switch (i){
+            case 0:
+                if( Game.jugadores[Game.turnoActual].pokemons[0].attached == "TM"){
+                    attach1.style.backgroundImage= "url('./images/tm.png')";
+                }
+                else if( Game.jugadores[Game.turnoActual].pokemons[0].attached == "PROTEIN"){
+                    attach1.style.backgroundImage= "url('./images/protein.webp')";
+                }
+                else if( Game.jugadores[Game.turnoActual].pokemons[0].attached == ""){
+                    attach1.style.backgroundImage= "url('./images/cardBack.jpg')";
+                }
+                break;
+            case 1:
+                if( Game.jugadores[Game.turnoActual].pokemons[1].attached == "TM"){
+                    attach2.style.backgroundImage= "url('./images/tm.png')";
+                }
+                else if( Game.jugadores[Game.turnoActual].pokemons[1].attached == "PROTEIN"){
+                    attach2.style.backgroundImage= "url('./images/protein.webp')";
+                }
+                else if( Game.jugadores[Game.turnoActual].pokemons[1].attached == ""){
+                    attach2.style.backgroundImage= "url('./images/cardBack.jpg')";
+                }
+                break;
+            case 2:
+                if( Game.jugadores[Game.turnoActual].pokemons[2].attached == "TM"){
+                    attach3.style.backgroundImage= "url('./images/tm.png')";
+                }
+                else if( Game.jugadores[Game.turnoActual].pokemons[2].attached == "PROTEIN"){
+                    attach3.style.backgroundImage= "url('./images/protein.webp')";
+                }
+                else if( Game.jugadores[Game.turnoActual].pokemons[2].attached == ""){
+                    attach3.style.backgroundImage= "url('./images/cardBack.jpg')";
+                }
+                break;
+            case 3:
+                if( Game.jugadores[Game.turnoActual].pokemons[3].attached == "TM"){
+                    attach4.style.backgroundImage= "url('./images/tm.png')";
+                }
+                else if( Game.jugadores[Game.turnoActual].pokemons[3].attached == "PROTEIN"){
+                    attach4.style.backgroundImage= "url('./images/protein.webp')";
+                }
+                else if( Game.jugadores[Game.turnoActual].pokemons[3].attached == ""){
+                    attach4.style.backgroundImage= "url('./images/cardBack.jpg')";
+                }
+                break;
+            case 4:
+                if( Game.jugadores[Game.turnoActual].pokemons[4].attached == "TM"){
+                    attach5.style.backgroundImage= "url('./images/tm.png')";
+                }
+                else if( Game.jugadores[Game.turnoActual].pokemons[4].attached == "PROTEIN"){
+                    attach5.style.backgroundImage= "url('./images/protein.webp')";
+                }
+                else if( Game.jugadores[Game.turnoActual].pokemons[4].attached == ""){
+                    attach5.style.backgroundImage= "url('./images/cardBack.jpg')";
+                }
+                break;
+            case 5:
+                if( Game.jugadores[Game.turnoActual].pokemons[5].attached == "TM"){
+                    attach6.style.backgroundImage= "url('./images/tm.png')";
+                }
+                else if( Game.jugadores[Game.turnoActual].pokemons[5].attached == "PROTEIN"){
+                    attach6.style.backgroundImage= "url('./images/protein.webp')";
+                }
+                else if( Game.jugadores[Game.turnoActual].pokemons[5].attached == ""){
+                    attach6.style.backgroundImage= "url('./images/cardBack.jpg')";
+                }
+                break;
+        }
+
+    }
        
     
 
@@ -1054,8 +1148,10 @@ function battle_pokemon(Pokemon1,Pokemon2){
     var Attached2= Pokemon2.attached;
     var P1_Atkl = Pokemon1.attack1;
     var P1_Atk2 = Pokemon1.attack2;
+    var P1_Atk3 = Pokemon1.attack3;
     var P2_Atkl = Pokemon2.attack1;
     var P2_Atk2 = Pokemon2.attack2;
+    var P2_Atk3 = Pokemon2.attack3;
     var AttackSelected1 = "";
     var AttackSelected2 = "";
     var Total1=0;
@@ -1076,8 +1172,10 @@ function battle_pokemon(Pokemon1,Pokemon2){
 
     var P1Bonus1 = checkBonusType(P1_Atkl.tipo,Tipo2);
     var P1Bonus2 = checkBonusType(P1_Atk2.tipo ,Tipo2);
+    var P1Bonus3 = checkBonusType(P1_Atk3.tipo ,Tipo2);
     var P2Bonus1 = checkBonusType(P2_Atkl.tipo,Tipo1);
     var P2Bonus2 = checkBonusType(P2_Atk2 .tipo,Tipo1);
+    var P2Bonus3 = checkBonusType(P2_Atk3 .tipo,Tipo1);
 
     var P1_atk1_bonusLabel = document.getElementById("P1_atk1_bonus");
     P1_atk1_bonusLabel.textContent="";
@@ -1085,12 +1183,18 @@ function battle_pokemon(Pokemon1,Pokemon2){
     var P1_atk2_bonusLabel = document.getElementById("P1_atk2_bonus");
     P1_atk2_bonusLabel.textContent="";
     P1_atk2_bonusLabel.className="bonus";
+    var P1_atk3_bonusLabel = document.getElementById("P1_atk3_bonus");
+    P1_atk3_bonusLabel.textContent="";
+    P1_atk3_bonusLabel.className="bonus";
     var P2_atk1_bonusLabel = document.getElementById("P2_atk1_bonus");
     P2_atk1_bonusLabel.textContent="";
     P2_atk1_bonusLabel.className="bonus2";
     var P2_atk2_bonusLabel = document.getElementById("P2_atk2_bonus");
     P2_atk2_bonusLabel.textContent="";
     P2_atk2_bonusLabel.className="bonus2";
+    var P2_atk3_bonusLabel = document.getElementById("P2_atk3_bonus");
+    P2_atk3_bonusLabel.textContent="";
+    P2_atk3_bonusLabel.className="bonus2";
 
     function showBonusType (Bonus, elemento){
         if(Bonus == 2){
@@ -1103,8 +1207,10 @@ function battle_pokemon(Pokemon1,Pokemon2){
 
      showBonusType(P1Bonus1,P1_atk1_bonusLabel);
      showBonusType(P1Bonus2,P1_atk2_bonusLabel);
+     showBonusType(P1Bonus3,P1_atk3_bonusLabel);
      showBonusType(P2Bonus1,P2_atk1_bonusLabel);
      showBonusType(P2Bonus2,P2_atk2_bonusLabel);
+     showBonusType(P2Bonus3,P2_atk3_bonusLabel);
 
 
 
@@ -1117,13 +1223,20 @@ function battle_pokemon(Pokemon1,Pokemon2){
     const P2_Atk3_button = document.getElementById("P2_attack3");
     actualizarClasesTipo(P1_Atk1_button,P1_Atkl.tipo);
     actualizarClasesTipo(P1_Atk2_button,P1_Atk2.tipo);
+    actualizarClasesTipo(P1_Atk3_button,P1_Atk3.tipo);
     actualizarClasesTipo(P2_Atk1_button,P2_Atkl.tipo);
     actualizarClasesTipo(P2_Atk2_button,P2_Atk2.tipo);
+    actualizarClasesTipo(P2_Atk3_button,P2_Atk3.tipo);
     P1_Atk1_button.style.display="flex";
     P1_Atk2_button.style.display="flex";
     P2_Atk1_button.style.display="none";
     P2_Atk2_button.style.display="none";
-    P1_Atk3_button.style.display="none";
+    if (Pokemon1.attached == "TM"){
+        P1_Atk3_button.style.display="flex";
+    }else{
+        P1_Atk3_button.style.display="none";
+    }
+    
     P2_Atk3_button.style.display="none";
     
     
@@ -1197,6 +1310,11 @@ function battle_pokemon(Pokemon1,Pokemon2){
         P1_Atk3_button.style.display="none";
         P2_Atk1_button.style.display="flex";
         P2_Atk2_button.style.display="flex";
+        if (Pokemon2.attached == "TM"){
+            P2_Atk3_button.style.display="flex";
+        }else{
+            P2_Atk3_button.style.display="none";
+        }
         actualizarTotales(Total1,Total2);
 
     })
@@ -1213,6 +1331,32 @@ function battle_pokemon(Pokemon1,Pokemon2){
         P1_Atk3_button.style.display="none";
         P2_Atk1_button.style.display="flex";
         P2_Atk2_button.style.display="flex";
+        if (Pokemon2.attached == "TM"){
+            P2_Atk3_button.style.display="flex";
+        }else{
+            P2_Atk3_button.style.display="none";
+        }
+        actualizarTotales(Total1,Total2);
+   
+    })
+
+    P1_Atk3_button.addEventListener('click',()=>{
+        AttackSelected1 = P1_Atk3;
+        Bonus1 = P1Bonus3;
+        Bonus1_selected  = P1Bonus3;
+        Atk1_Power= AttackSelected1 .strength;
+        Total1 = Nivel1 + Atk1_Power + Bonus1;
+        console.log("P1 Total: " + Total1);
+        P1_Atk1_button.style.display="none";
+        P1_Atk2_button.style.display="none";
+        P1_Atk3_button.style.display="none";
+        P2_Atk1_button.style.display="flex";
+        P2_Atk2_button.style.display="flex";
+        if (Pokemon2.attached == "TM"){
+            P2_Atk3_button.style.display="flex";
+        }else{
+            P2_Atk3_button.style.display="none";
+        }
         actualizarTotales(Total1,Total2);
    
     })
@@ -1237,6 +1381,21 @@ function battle_pokemon(Pokemon1,Pokemon2){
         AttackSelected2 = P2_Atk2;
         Bonus2 = P2Bonus2;
         Bonus2_selected  = P2Bonus2;
+        Atk2_Power= AttackSelected2 .strength;
+        Total2 = Nivel2 + Atk2_Power + Bonus2;
+        console.log("P2 Total: " + Total2);
+        P2_Atk1_button.style.display="none";
+        P2_Atk2_button.style.display="none";
+        P2_Atk3_button.style.display="none";
+        actualizarTotales(Total1,Total2);
+        displayPt2();
+        updateTotales(Total1,Total2,Pokemon1,Pokemon2,Dice1,Dice2,Bonus1,Bonus2);
+    })
+
+    P2_Atk3_button.addEventListener('click',()=>{
+        AttackSelected2 = P2_Atk3;
+        Bonus2 = P2Bonus3;
+        Bonus2_selected  = P2Bonus3;
         Atk2_Power= AttackSelected2 .strength;
         Total2 = Nivel2 + Atk2_Power + Bonus2;
         console.log("P2 Total: " + Total2);
@@ -3222,7 +3381,262 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
    
     
-    
+    // ATTATCH ITEM 
+
+    const attach1 = document.getElementById("attach1");
+    const attach2 = document.getElementById("attach2");
+    const attach3 = document.getElementById("attach3");
+    const attach4 = document.getElementById("attach4");
+    const attach5 = document.getElementById("attach5");
+    const attach6 = document.getElementById("attach6");
+    let AttachMenu = document.getElementById("AttachMenu");
+    let addProtein = document.getElementById("addProtein");
+    let AddTM = document.getElementById("AddTM");
+
+    attach1.addEventListener("click", () => {
+        AttachMenu.style.display="flex";
+        addProtein.style.display="flex";
+        AddTM.style.display="flex";
+        selectAttach(0);
+    });
+    attach2.addEventListener("click", () => {
+        AttachMenu.style.display="flex";
+        addProtein.style.display="flex";
+        AddTM.style.display="flex";
+        selectAttach(1);
+    });
+    attach3.addEventListener("click", () => {
+        AttachMenu.style.display="flex";
+        addProtein.style.display="flex";
+        AddTM.style.display="flex";
+        selectAttach(2);
+    });
+    attach4.addEventListener("click", () => {
+        AttachMenu.style.display="flex";
+        addProtein.style.display="flex";
+        AddTM.style.display="flex";
+        selectAttach(3);
+    });
+    attach5.addEventListener("click", () => {
+        AttachMenu.style.display="flex";
+        addProtein.style.display="flex";
+        AddTM.style.display="flex";
+        selectAttach(4);
+    });
+    attach6.addEventListener("click", () => {
+        AttachMenu.style.display="flex";
+        addProtein.style.display="flex";
+        AddTM.style.display="flex";
+        selectAttach(5);
+    });
+
+        function selectAttach(poke){
+            var type ="";
+            addProtein.addEventListener("click", () => {
+            AttachMenu.style.display="none";
+            Game.jugadores[Game.turnoActual].pokemons[poke].attached = "PROTEIN";
+            console.log(Game.jugadores[Game.turnoActual].pokemons[poke]);
+            PaginaOnePlayer(Game);
+        });
+
+        AddTM.addEventListener("click", () => {
+            const AddTM_menu = document.getElementById("AddTM_menu");
+            addProtein.style.display="none";
+            AddTM.style.display="none";
+            AddTM_menu.style.display="flex";
+
+            const TM_NORMAL = document.getElementById("TM_NORMAL");
+            const TM_FIRE = document.getElementById("TM_FIRE");
+            const TM_WATER = document.getElementById("TM_WATER");
+            const TM_ELECTRIC = document.getElementById("TM_ELECTRIC");
+            const TM_GRASS = document.getElementById("TM_GRASS");
+            const TM_ICE = document.getElementById("TM_ICE");
+            const TM_FIGHTING = document.getElementById("TM_FIGHTING");
+            const TM_POISON = document.getElementById("TM_POISON");
+            const TM_GROUND = document.getElementById("TM_GROUND");
+            const TM_FLYING = document.getElementById("TM_FLYING");
+            const TM_PSYCHIC = document.getElementById("TM_PSYCHIC");
+            const TM_BUG = document.getElementById("TM_BUG");
+            const TM_ROCK = document.getElementById("TM_ROCK");
+            const TM_GHOST = document.getElementById("TM_GHOST");
+            const TM_DRAGON = document.getElementById("TM_DRAGON");
+            const TM_DARK = document.getElementById("TM_DARK");
+            const TM_STEEL = document.getElementById("TM_STEEL");
+            const TM_FAIRY = document.getElementById("TM_FAIRY");
+
+
+            TM_NORMAL.addEventListener("click", ()=>{
+                type= "NORMAL";
+                selectAttackTM(poke,type)
+            });
+            TM_FIRE.addEventListener("click", ()=>{
+                type= "FIRE";
+                selectAttackTM(poke,type)
+            });
+            TM_WATER.addEventListener("click", ()=>{
+                type= "WATER";
+                selectAttackTM(poke,type)
+            });
+            TM_ELECTRIC.addEventListener("click", ()=>{
+                type= "ELECTRIC";
+                selectAttackTM(poke,type)
+            });
+            TM_GRASS.addEventListener("click", ()=>{
+                type= "GRASS";
+                selectAttackTM(poke,type)
+            });
+            TM_ICE.addEventListener("click", ()=>{
+                type= "ICE";
+                selectAttackTM(poke,type)
+            });
+            TM_FIGHTING.addEventListener("click", ()=>{
+                type= "FIGHTING";
+                selectAttackTM(poke,type)
+            });
+            TM_POISON.addEventListener("click", ()=>{
+                type= "POISON";
+                selectAttackTM(poke,type)
+            });
+            TM_GROUND.addEventListener("click", ()=>{
+                type= "GROUND";
+                selectAttackTM(poke,type)
+            });
+            TM_FLYING.addEventListener("click", ()=>{
+                type= "FLYING";
+                selectAttackTM(poke,type)
+            });
+            TM_PSYCHIC.addEventListener("click", ()=>{
+                type= "PSYCHIC";
+                selectAttackTM(poke,type)
+            });
+            TM_BUG.addEventListener("click", ()=>{
+                type= "BUG";
+                selectAttackTM(poke,type)
+            });
+            TM_ROCK.addEventListener("click", ()=>{
+                type= "ROCK";
+                selectAttackTM(poke,type)
+            });
+            TM_GHOST.addEventListener("click", ()=>{
+                type= "GHOST";
+                selectAttackTM(poke,type)
+            });
+            TM_DRAGON.addEventListener("click", ()=>{
+                type= "DRAGON";
+                selectAttackTM(poke,type)
+            });
+            TM_DARK.addEventListener("click", ()=>{
+                type= "DARK";
+                selectAttackTM(poke,type)
+            });
+            TM_STEEL.addEventListener("click", ()=>{
+                type= "STEEL";
+                selectAttackTM(poke,type)
+            });
+            TM_FAIRY.addEventListener("click", ()=>{
+                type= "FAIRY";
+                selectAttackTM(poke,type)
+            });
+
+           function selectAttackTM (poke,type){
+            AddTM_menu.style.display="none";
+            const AddStrenghtMenu = document.getElementById("AddStrenghtMenu");
+            AddStrenghtMenu.style.display="flex";
+            const strenght0 = document.getElementById("strenght0");
+            const strenght1 = document.getElementById("strenght1");
+            const strenght2 = document.getElementById("strenght2");
+            const strenght3 = document.getElementById("strenght3");
+            const strenght4 = document.getElementById("strenght4");
+            const strenght5 = document.getElementById("strenght5");
+
+            strenght0.addEventListener("click", ()=>{
+                AddStrenghtMenu.style.display="none";
+                TM = new Attack("TM",type,0,"NONE","NONE","D6");
+                Game.jugadores[Game.turnoActual].pokemons[poke].attack3 = TM ;
+                console.log(Game.jugadores[Game.turnoActual].pokemons[poke]);
+                AttachMenu.style.display="none";
+                Game.jugadores[Game.turnoActual].pokemons[poke].attached = "TM";
+                PaginaOnePlayer(Game);
+            });
+
+            strenght1.addEventListener("click", ()=>{
+                AddStrenghtMenu.style.display="none";
+                TM = new Attack("TM",type,1,"NONE","NONE","D6");
+                Game.jugadores[Game.turnoActual].pokemons[poke].attack3 = TM ;
+                console.log(Game.jugadores[Game.turnoActual].pokemons[poke]);
+                AttachMenu.style.display="none";
+                Game.jugadores[Game.turnoActual].pokemons[poke].attached = "TM";
+                PaginaOnePlayer(Game);
+            });
+            strenght2.addEventListener("click", ()=>{
+                AddStrenghtMenu.style.display="none";
+                TM = new Attack("TM",type,2,"NONE","NONE","D6");
+                Game.jugadores[Game.turnoActual].pokemons[poke].attack3 = TM ;
+                console.log(Game.jugadores[Game.turnoActual].pokemons[poke]);
+                AttachMenu.style.display="none";
+                Game.jugadores[Game.turnoActual].pokemons[poke].attached = "TM";
+                PaginaOnePlayer(Game);
+            });
+            strenght3.addEventListener("click", ()=>{
+                AddStrenghtMenu.style.display="none";
+                TM = new Attack("TM",type,3,"NONE","NONE","D6");
+                Game.jugadores[Game.turnoActual].pokemons[poke].attack3 = TM ;
+                console.log(Game.jugadores[Game.turnoActual].pokemons[poke]);
+                AttachMenu.style.display="none";
+                Game.jugadores[Game.turnoActual].pokemons[poke].attached = "TM";
+                PaginaOnePlayer(Game);
+            });
+            strenght4.addEventListener("click", ()=>{
+                AddStrenghtMenu.style.display="none";
+                TM = new Attack("TM",type,4,"NONE","NONE","D6");
+                Game.jugadores[Game.turnoActual].pokemons[poke].attack3 = TM ;
+                console.log(Game.jugadores[Game.turnoActual].pokemons[poke]);
+                AttachMenu.style.display="none";
+                Game.jugadores[Game.turnoActual].pokemons[poke].attached = "TM";
+                PaginaOnePlayer(Game);
+            });
+            strenght5.addEventListener("click", ()=>{
+                AddStrenghtMenu.style.display="none";
+                TM = new Attack("TM",type,5,"NONE","NONE","D6");
+                Game.jugadores[Game.turnoActual].pokemons[poke].attack3 = TM ;
+                console.log(Game.jugadores[Game.turnoActual].pokemons[poke]);
+                AttachMenu.style.display="none";
+                Game.jugadores[Game.turnoActual].pokemons[poke].attached = "TM";
+                PaginaOnePlayer(Game);
+            });
+
+           
+
+           
+           /* TM_NORMAL.style.display="none";
+            TM_FIRE.style.display="none";
+            TM_WATER.style.display="none";
+            TM_ELECTRIC.style.display="none";
+            TM_GRASS.style.display="none";
+            TM_ICE.style.display="none";
+            TM_FIGHTING.style.display="none";
+            TM_POISON.style.display="none";
+            TM_GROUND.style.display="none";
+            TM_FLYING.style.display="none";
+            TM_PSYCHIC.style.display="none";
+            TM_BUG.style.display="none";
+            TM_ROCK.style.display="none";
+            TM_GHOST.style.display="none";
+            TM_DRAGON.style.display="none";
+            TM_DARK.style.display="none";
+            TM_STEEL.style.display="none";
+            TM_FAIRY.style.display="none";*/
+
+
+           }
+
+
+        });
+
+    }
+
+
+
 });
 
 

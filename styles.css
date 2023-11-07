@@ -240,7 +240,7 @@
     margin-right: 1rem;
 }
 .name{
-    width: 30%;
+    width: 23%;
     font-size: 1.5rem;
 }
 
@@ -251,7 +251,7 @@
     text-decoration: line-through;
 }
 .type{
-    width: 15%;
+    width: 10%;
 }
 .level{
     width: 15%;
@@ -291,7 +291,7 @@ font-size: 1.5rem;
     background-color: rgb(25, 28, 183);
 }
 .remove {
-    width: 10%;
+    width: 3%;
 }
 .remove button {
     background-color: rgb(19, 15, 15);
@@ -1376,5 +1376,183 @@ cursor: pointer;
 #pokemon-titles{
     margin-left: 6rem;
 }
+.attached{
+    width: 3%;
+    margin-left: 4rem;
+}
+
+.attach{
+    margin-left: 1rem;
+    width: 2vw;
+    height: 6vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#attach1{
+    background-image: url("./images/cardBack.jpg");
+}
+#attach2{
+    background-image: url("./images/cardBack.jpg");
+}
+#attach3{
+    background-image: url("./images/cardBack.jpg");
+}
+#attach4{
+    background-image: url("./images/cardBack.jpg");
+}
+#attach5{
+    background-image: url("./images/cardBack.jpg");
+}
+#attach6{
+    background-image: url("./images/cardBack.jpg");
+}
+
+.attachItemMenu{
+    display: none;
+}
+
+.attachItemMenu{
+    background-image: url("./images/PKMBG2.jpg");
+    background-size: cover;
+    z-index: 3;
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 70%;
+    height: 60%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    border :solid 3px #084dc6;
+}
+#closeAttach{
+    font-size: 3rem;
+    position: absolute;
+    top: -7%;
+    right: -2%;
+}
+#closeAttach img{
+    width: 4rem;
+    height: 4rem;
+}
+#closeAttach img:hover{
+    width: 6rem;
+    height: 6rem;
+}
+#closeAttach:hover{
+    cursor: pointer;
+}
+.MenuAttach{
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    align-items: center;
+}
+.AddProtein{
+ background-image: url("./images/protein.webp");
+ width: 8vw;
+ height: 20vh;
+ background-size: contain;
+ background-repeat: no-repeat;
+}
+
+.AddTM{
+background-image: url("./images/tm.png");
+width: 8vw;
+height: 20vh;
+background-size: contain;
+background-repeat: no-repeat;
+}
+.AddStrenghtMenu{
+    display: none;
+}
+.AddTM_menu{
+    display: none;
+    flex-wrap: wrap;
+    width: 80%;
+}
+.TM_type{
+    width: 10vw;
+    height: 10vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: .5rem;
+}
+.TM_type:hover{
+    cursor: pointer;
+    transform: scale(1.5);
+}
 
 
+#TM_NORMAL{
+    background-image: url("./images/Types/Normal.png");
+}
+#TM_FIRE{
+    background-image: url("./images/Types/Fire.png");
+}
+#TM_WATER{
+    background-image: url("./images/Types/Water.png");
+}
+#TM_ELECTRIC{
+    background-image: url("./images/Types/Electric.png");
+}
+#TM_GRASS{
+    background-image: url("./images/Types/Grass.png");
+}
+#TM_ICE{
+    background-image: url("./images/Types/Ice.png");
+}
+#TM_FIGHTING{
+    background-image: url("./images/Types/Fighting.png");
+}
+#TM_POISON{
+    background-image: url("./images/Types/Poison.png");
+}
+#TM_GROUND{
+    background-image: url("./images/Types/Ground.png");
+}
+#TM_FLYING{
+    background-image: url("./images/Types/Flying.png");
+}
+#TM_PSYCHIC{
+    background-image: url("./images/Types/Psychic.png");
+}
+#TM_BUG{
+    background-image: url("./images/Types/Bug.png");
+}
+#TM_ROCK{
+    background-image: url("./images/Types/Rock.png");
+}
+#TM_GHOST{
+    background-image: url("./images/Types/Ghost.png");
+}
+#TM_DRAGON{
+    background-image: url("./images/Types/Dragon.png");
+}
+#TM_DARK{
+    background-image: url("./images/Types/Dark.png");
+}
+#TM_STEEL{
+    background-image: url("./images/Types/Steel.png");
+}
+#TM_FAIRY{
+    background-image: url("./images/Types/Fairy.png");
+}
+
+.numer_TM{
+    font-size: 5rem;
+    margin-right: 1rem;
+    margin-left:  1rem;
+    font-family: "poke-coins";
+    color: #084dc6;
+}
+
+.numer_TM:hover{
+    cursor: pointer;
+    transform: scale(1.5);
+    color: white;
+
+}
