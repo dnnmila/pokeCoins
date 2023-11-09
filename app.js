@@ -1195,104 +1195,130 @@ function sentData(Game) {
 
 /* BATTLE FUCTION */
 function PlayersToBattle(Trainer, Rival){
-    let List_PokemonsPlayer = Trainer.pokemons; 
-    let List_PokemonsRival = Rival.pokemons;
+    console.log("PlayersToBattle");
+
+    let List_PokemonsPlayer = [...Trainer.pokemons]; 
+    let List_PokemonsRival = [...Rival.pokemons];
+    console.log ("Lista Player! "+ List_PokemonsPlayer);
+    console.log ("Lista Rival! "+ List_PokemonsRival);
     var Battle = 0;
-    function choosePokemonToBattle(Lista_Pokemons){
-        let pkm1_image = document.getElementById("list_Pokemon_Pkm1");
-        let pkm2_image = document.getElementById("list_Pokemon_Pkm2");
-        let pkm3_image = document.getElementById("list_Pokemon_Pkm3");
-        let pkm4_image = document.getElementById("list_Pokemon_Pkm4");
-        let pkm5_image = document.getElementById("list_Pokemon_Pkm5");
-        let pkm6_image = document.getElementById("list_Pokemon_Pkm6");
-        pkm1_image.style.display="none";
-        pkm2_image.style.display="none";
-        pkm3_image.style.display="none";
-        pkm4_image.style.display="none";
-        pkm5_image.style.display="none";
-        pkm6_image.style.display="none";
 
-        for (var i=0; i < Lista_Pokemons.length; i++) {
-            if ( i == 0){
-                
-                pkm1_image.style.backgroundImage = `url("./images/POKEMON/0${Lista_Pokemons[i].pokedex}.png")`;
-                pkm1_image.style.display="flex";
-            }
-            else if( i == 1){
-             
-                pkm2_image.style.backgroundImage = `url("./images/POKEMON/0${Lista_Pokemons[i].pokedex}.png")`;
-                pkm2_image.style.display="flex";
-            }
-            else if( i == 2){
-                
-                pkm3_image.style.backgroundImage = `url("./images/POKEMON/0${Lista_Pokemons[i].pokedex}.png")`;
-                pkm3_image.style.display="flex";
-            }
-            else if( i == 3){
-                pkm4_image.style.backgroundImage = `url("./images/POKEMON/0${Lista_Pokemons[i].pokedex}.png")`;
-                pkm4_image.style.display="flex";
-            }
-            else if( i == 4){
-                pkm5_image.style.backgroundImage = `url("./images/POKEMON/0${Lista_Pokemons[i].pokedex}.png")`;
-                pkm5_image.style.display="flex";
-            }
-            else if( i == 5){
-                pkm6_image.style.backgroundImage = `url("./images/POKEMON/0${Lista_Pokemons[i].pokedex}.png")`;
-                pkm6_image.style.display="flex";
-            }
+    function choosePokemonToBattlePlayer(Lista_Pokemons, callback) {
+        console.log("Choose Pokemon");
+        let List_Pokemons = document.getElementById("List_Pokemons");
+        let List_Trainers = document.getElementById("List_Trainers");
+        List_Trainers.style.display = "none";
+        List_Pokemons.style.display = "flex";
+      
+        // Obtener todos los elementos de div para los Pokémon
+        const divs = Array.from(List_Pokemons.querySelectorAll('div'));
+      
+        // Clonar la lista de Pokémon para evitar modificaciones directas
+        const clonedLista_Pokemons = [...Lista_Pokemons];
+      
+        // Recorrer los divs y asignar la imagen y los clics
+        divs.forEach((div, i) => {
+          if (i < clonedLista_Pokemons.length) {
+            const pokemon = clonedLista_Pokemons[i];
+            const pokedexNumber = pokemon.pokedex;
+            div.style.backgroundImage = `url("./images/POKEMON/0${pokedexNumber}.png")`;
+            div.style.display = "flex";
+          } else {
+            div.style.display = "none";
+          }
+        });
+      
+        // Agregar un manejador de eventos para la selección de Pokémon
+        List_Pokemons.addEventListener('click', function(event) {
+          // Encuentra el div clickeado dentro del array de divs
+          const clickedDivIndex = divs.findIndex(div => div === event.target);
+          if (clickedDivIndex !== -1) {
+            const selectedPokemon = clonedLista_Pokemons[clickedDivIndex];
+            callback(selectedPokemon);
+      
+            // Opcional: Después de seleccionar un Pokémon, puedes quitar el manejador de eventos si ya no es necesario
+            List_Pokemons.removeEventListener('click', arguments.callee);
+          }
+        });
+      }
+   
+  
+      function battleSequence(player, rival, playerPokemons, rivalPokemons, onBattleEnd) {
+        function selectPokemonFor(playerName, pokemons, onSelected) {
+          choosePokemonToBattlePlayer(pokemons, selectedPokemon => {
+            console.log(`${playerName} selected: `, selectedPokemon);
+            onSelected(selectedPokemon);
+          });
         }
-
-        pkm1_image.addEventListener("click", ()=>  {
-            return Lista_Pokemons[0];
-        });
-
-        pkm2_image.addEventListener("click", ()=>{
-            return Lista_Pokemons[1];
-        });
-        pkm3_image.addEventListener("click", ()=>{
-            return Lista_Pokemons[2];
-        });
-        pkm4_image.addEventListener("click", ()=>{
-            return Lista_Pokemons[3];
-        });
-        pkm5_image.addEventListener("click", ()=>{
-            return Lista_Pokemons[4];
-        });
-        pkm6_image.addEventListener("click", ()=>{
-            return Lista_Pokemons[5];
-        });
-
-    }
-
-    let Pkm_Player_Selected = choosePokemonToBattle(List_PokemonsPlayer);
-    let Pkm_Rival_Selected = choosePokemonToBattle(List_PokemonsRival);
-    let Winner;
-    Winner = battle_pokemon(Pkm_Player_Selected,Pkm_Rival_Selected);
-    console.log ("Winner is " + Winner);
-
-    if (Winner == Pkm_Player_Selected){
-        List_PokemonsRival = List_PokemonsRival.filter(element => element !== Pkm_Rival_Selected);
-        if (List_PokemonsRival.length > 0){
-            Pkm_Rival_Selected = choosePokemonToBattle(List_PokemonsRival);
-            Winner = battle_pokemon(Pkm_Player_Selected,Pkm_Rival_Selected);
+      
+        function battlePokemons(playerPokemon, rivalPokemon) {
+          battle_pokemon(playerPokemon, rivalPokemon, winner => {
+            console.log("Winner is: ", winner);
+      
+            // Si el Pokémon del jugador es el ganador
+            if (winner === playerPokemon) {
+              // Remover el Pokémon derrotado del rival
+              const newRivalPokemons = rivalPokemons.filter(pkm => pkm !== rivalPokemon);
+      
+              // Comprobar si el rival aún tiene Pokémon
+              if (newRivalPokemons.length > 0) {
+                console.log("Rival is choosing a new pokemon...");
+                selectPokemonFor(rival, newRivalPokemons, newRivalPokemon => {
+                  battlePokemons(playerPokemon, newRivalPokemon);
+                });
+              } else {
+                console.log("Player wins the game!");
+                onBattleEnd(player);
+              }
+            } else { // Si el Pokémon del rival es el ganador
+              // Remover el Pokémon derrotado del jugador
+              const newPlayerPokemons = playerPokemons.filter(pkm => pkm !== playerPokemon);
+      
+              // Comprobar si el jugador aún tiene Pokémon
+              if (newPlayerPokemons.length > 0) {
+                console.log("Player is choosing a new pokemon...");
+                selectPokemonFor(player, newPlayerPokemons, newPlayerPokemon => {
+                  battlePokemons(newPlayerPokemon, rivalPokemon);
+                });
+              } else {
+                console.log("Rival wins the game!");
+                onBattleEnd(rival);
+              }
             }
-    else if (Winner == Pkm_Rival_Selected){
-        List_PokemonsPlayer = List_PokemonsPlayer.filter(element => element !== Pkm_Player_Selected);
-        Pkm_Player_Selected = choosePokemonToBattle(List_PokemonsPlayer);
-        Winner = battle_pokemon(Pkm_Player_Selected,Pkm_Rival_Selected);
-    }
-
-
-    }
+          });
+        }
+      
+        // Iniciar la primera selección de Pokémon para el jugador y el rival
+        selectPokemonFor(player, playerPokemons, playerPokemonSelected => {
+          selectPokemonFor(rival, rivalPokemons, rivalPokemonSelected => {
+            battlePokemons(playerPokemonSelected, rivalPokemonSelected);
+          });
+        });
+      }
+      
+      // Uso de la función battleSequence
+      battleSequence(
+        "Player",
+        "Rival",
+        List_PokemonsPlayer,
+        List_PokemonsRival,
+        winner => {
+          MainBattle.style.display = "none";
+          List_Pokemons.style.display = "none";
+          console.log(winner + " has won the whole battle!");
+        }
+      );
+    
 
 
     
 }
 
-function battle_pokemon(Pokemon1,Pokemon2,round){
-   var ronda = round;
+function battle_pokemon(Pokemon1,Pokemon2,callback){
+    console.log("BattlePokemon");
+   
    let arena_title = document.getElementById("arena_title");
-   arena_title.textContent = "ROUND -> " + ronda;
+  
     let Finish_Battle = document.getElementById('Finish_Battle');
     Finish_Battle.style.display ="none";
    
@@ -2097,30 +2123,28 @@ function battle_pokemon(Pokemon1,Pokemon2,round){
 
     Finish_Battle.addEventListener('click',()=>{
         let List_Trainers = document.getElementById("List_Trainers");
-        let BattleMainWindow = document.getElementById("MainBattle");
-        let Battle_arena = document.getElementById("Battle_arena");
+      
+        
      
         if(Total1 > Total2){
             Winner = Pokemon1;
             console.log("Winner: " +Winner.nombre  );  
-                BattleMainWindow.style.display="none";
-                Battle_arena.style.display="none";
+                
                 List_Trainers.style.display="none";
            
-            return Winner;
+                callback(Winner);
         }
         else if (Total2 > Total1) {
             Winner = Pokemon2;
             console.log("Winner: " +Winner.nombre  );  
-                BattleMainWindow.style.display="none";
-                Battle_arena.style.display="none";
+             
                 List_Trainers.style.display="none";
 
-            return Winner;
+                callback(Winner);
        }
        else if (Total2 == Total1){
         console.log("Battle star AGAIN")    
-        Winner = battle_pokemon(Pokemon1, Pokemon2,round+1);
+        Winner = battle_pokemon(Pokemon1, Pokemon2,callback);
 
        }
 
@@ -3351,38 +3375,39 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         divPlayer1.addEventListener('click', ()=>{
          console.log("player selected: " + Game.jugadores[0].nombre);
-         showPokemonsV2(Game,0);
+         PlayersToBattle(Game.jugadores[Game.turnoActual],Game.jugadores[0] );
+         //showPokemonsV2(Game,0);
         });
 
         divPlayer2.addEventListener('click', ()=>{
             console.log("player selected: " + Game.jugadores[1].nombre);
-            showPokemonsV2(Game,1);
+            PlayersToBattle(Game.jugadores[Game.turnoActual],Game.jugadores[1] );
            });
 
            divPlayer3.addEventListener('click', ()=>{
             console.log("player selected: " + Game.jugadores[2].nombre);
-            showPokemonsV2(Game,2);
+            PlayersToBattle(Game.jugadores[Game.turnoActual],Game.jugadores[2] );
            });
            divPlayer4.addEventListener('click', ()=>{
             console.log("player selected: " + Game.jugadores[3].nombre);
-            showPokemonsV2(Game,3);
+            PlayersToBattle(Game.jugadores[Game.turnoActual],Game.jugadores[3] );
            });
            divPlayer5.addEventListener('click', ()=>{
             console.log("player selected: " + Game.jugadores[4].nombre);
-            showPokemonsV2(Game,4);
+            PlayersToBattle(Game.jugadores[Game.turnoActual],Game.jugadores[4] );
            });
            divPlayer6.addEventListener('click', ()=>{
             console.log("player selected: " + Game.jugadores[5].nombre);
-            showPokemonsV2(Game,5);
+            PlayersToBattle(Game.jugadores[Game.turnoActual],Game.jugadores[5] );
            });
            divPlayer7.addEventListener('click', ()=>{
             console.log("player selected: " + Game.jugadores[6].nombre);
-            showPokemonsV2(Game,6);
+            PlayersToBattle(Game.jugadores[Game.turnoActual],Game.jugadores[6] );
            });
 
            divPlayer8.addEventListener('click', ()=>{
             console.log("player selected: " + Game.jugadores[7].nombre);
-            showPokemonsV2(Game,7);
+            PlayersToBattle(Game.jugadores[Game.turnoActual],Game.jugadores[7] );
            });
           
     });
@@ -3608,7 +3633,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
    
     
     // ATTATCH ITEM 
-/*
+
     const attach1 = document.getElementById("attach1");
     const attach2 = document.getElementById("attach2");
     const attach3 = document.getElementById("attach3");
@@ -3843,7 +3868,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         });
 
     } 
-    */
+    
 
 // WILD Pokemon Battle
  const WildBattle_button = document.getElementById("Pokemon_battle");
