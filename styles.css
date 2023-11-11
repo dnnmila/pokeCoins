@@ -291,7 +291,7 @@ font-size: 1.5rem;
     background-color: rgb(25, 28, 183);
 }
 .remove {
-    width: 3%;
+    display: block;
 }
 .remove button {
     background-color: rgb(19, 15, 15);
@@ -1664,4 +1664,17 @@ background-repeat: no-repeat;
 }
 #ConfirmPokemon_battle:hover{
     background-color: rgb(179, 20, 227);
+}
+
+
+.pokemon_display{
+    width: 10vw;
+    height: 20vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.pokemon_display:hover{
+    cursor: pointer;
+    transform: scale(1.5);
 }
